@@ -11,7 +11,7 @@ const faqCategories = [
     title: "General",
     icon: HelpCircle,
     items: [
-      { q: "What is ZeyronCloud?", a: "ZeyronCloud is a premium game server hosting provider offering high-performance servers for Minecraft, Palworld, Rust, Valheim, and more. We provide instant setup, DDoS protection, and 24/7 support." },
+      { q: "What is VixonCloud?", a: "VixonCloud is a premium game server hosting provider offering high-performance servers for Minecraft, Palworld, Rust, Valheim, and more. We provide instant setup, DDoS protection, and 24/7 support." },
       { q: "How do I get started?", a: "Simply choose a plan from our hosting pages, complete your order, and your server will be set up within minutes. You can also join our Discord for instant assistance." },
       { q: "What games do you support?", a: "We support Minecraft (Java & Bedrock), Palworld, Rust, Valheim, Terraria, 7 Days to Die, ARK, Satisfactory, Hytale, and more. Check our Games section for the full list." },
       { q: "Do you offer a free trial?", a: "We don't offer free trials, but our starter plans are very affordable. If you're not satisfied, reach out to our support team within 24 hours." },
@@ -125,7 +125,7 @@ const FAQPage = () => (
           <p className="text-muted-foreground text-xs mb-5">
             Our support team is available 24/7 on Discord. Create a ticket and we'll help you out!
           </p>
-          <a href="https://discord.gg/zeyron" target="_blank" rel="noopener noreferrer">
+          <a href="https://discord.gg/vixon" target="_blank" rel="noopener noreferrer">
             <Button className="glow-primary gap-2 text-xs font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90">
               <ExternalLink className="h-3.5 w-3.5" /> Join Discord
             </Button>

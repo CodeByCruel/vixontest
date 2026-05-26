@@ -37,7 +37,7 @@ const ProfilePage = () => {
   return (
     <div className="min-h-screen bg-background relative">
       <AnimatedBackground />
-      <SEOHead title="Profile — ZeyronCloud" description="Your ZeyronCloud account profile." path="/profile" />
+      <SEOHead title="Profile — VixonCloud" description="Your VixonCloud account profile." path="/profile" />
       <Navbar />
       <main className="container mx-auto px-4 pt-24 pb-16 max-w-2xl">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
@@ -65,7 +65,7 @@ const ProfilePage = () => {
                 <Button variant="outline" size="sm" onClick={handleSignOut} className="gap-1.5 text-xs text-destructive hover:text-destructive">
                   <LogOut className="h-3 w-3" /> Sign Out
                 </Button>
-                <a href="https://gp.zeyroncloud.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://gp.vixoncloud.com" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="sm" className="gap-1.5 text-xs">
                     <ExternalLink className="h-3 w-3" /> Visit Panel
                   </Button>

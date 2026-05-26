@@ -26,7 +26,7 @@ const botPlans = [
 ];
 
 const BotPlans = () => {
-  const BILLING_URL = "https://client.zeyroncloud.com/register";
+  const BILLING_URL = "https://client.vixoncloud.com/register";
 
   return (
     <div className="min-h-screen bg-background relative">

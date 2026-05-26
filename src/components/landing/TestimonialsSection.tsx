@@ -82,7 +82,7 @@ const TestimonialsSection = () => {
           </div>
           <p className="text-sm font-semibold mb-1">Rate us 5 Stars on Trustpilot!</p>
           <p className="text-xs text-muted-foreground mb-4">Your feedback helps us grow and serve you better.</p>
-          <a href="https://www.trustpilot.com/review/zeyroncloud.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.trustpilot.com/review/vixoncloud.com" target="_blank" rel="noopener noreferrer">
             <Button className="gap-2 bg-[#00b67a] hover:bg-[#00a06a] text-white text-xs">
               <Star className="h-3.5 w-3.5 fill-white" />
               Review us on Trustpilot

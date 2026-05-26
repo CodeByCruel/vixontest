@@ -26,7 +26,7 @@ const AdvantagesSection = () => {
           </motion.span>
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter font-display">
             Experience the{" "}
-            <span className="gradient-text">ZeyronCloud</span>
+            <span className="gradient-text">VixonCloud</span>
             <br />
             Advantage
           </h2>

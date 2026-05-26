@@ -28,7 +28,7 @@ import terrariaBg from "@/assets/hero/terraria-bg.jpg";
 import hytaleBg from "@/assets/hero/hytale-bg.jpg";
 import gta5Bg from "@/assets/hero/gta5-bg.jpg";
 
-const BILLING_URL = "https://client.zeyroncloud.com/register";
+const BILLING_URL = "https://client.vixoncloud.com/register";
 
 const games = [
   { name: "Minecraft", img: minecraft, bg: minecraftBg, desc: "World's most popular sandbox game", price: "From ₹20/GB", available: true, link: "/minecraft-plans", tag: "Popular" },
@@ -70,7 +70,7 @@ const AllGames = () => {
                 Game Server <span className="gradient-text">Hosting</span>
               </h1>
               <p className="text-muted-foreground max-w-xl mx-auto text-sm">
-                Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games with ZeyronCloud.
+                Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games with VixonCloud.
               </p>
             </motion.div>
           </div>

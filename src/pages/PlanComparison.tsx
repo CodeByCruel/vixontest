@@ -36,7 +36,7 @@ const plans = [
 
 const PlanComparison = () => (
   <div className="min-h-screen bg-background relative">
-    <SEOHead title="Compare Plans — ZeyronCloud" description="Compare Intel, AMD, and Premium Minecraft hosting plans side by side." path="/compare" />
+    <SEOHead title="Compare Plans — VixonCloud" description="Compare Intel, AMD, and Premium Minecraft hosting plans side by side." path="/compare" />
     <AnimatedBackground />
     <Navbar />
     <main className="pt-24 pb-16 relative z-10">

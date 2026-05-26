@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ExternalLink, User, LogOut, FileText, Monitor, Shield, ChevronDown, Gamepad2, Bot, Wrench, Newspaper, HelpCircle, Server, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import logo from "@/assets/zeyron-logo.png";
+import logo from "@/assets/vixon-logo.png";
 import { supabase } from "@/integrations/supabase/client";
 import NotificationCenter from "@/components/NotificationCenter";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -17,7 +17,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [cursorEnabled, setCursorEnabled] = useState(() => localStorage.getItem("zeyron-custom-cursor") !== "false");
+  const [cursorEnabled, setCursorEnabled] = useState(() => localStorage.getItem("vixon-custom-cursor") !== "false");
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const Navbar = () => {
   const toggleCursor = () => {
     const next = !cursorEnabled;
     setCursorEnabled(next);
-    localStorage.setItem("zeyron-custom-cursor", String(next));
+    localStorage.setItem("vixon-custom-cursor", String(next));
     window.dispatchEvent(new CustomEvent("cursor-toggle", { detail: next }));
   };
 
@@ -86,8 +86,8 @@ const Navbar = () => {
     {
       label: "Panels",
       children: [
-        { label: "Game Panel", to: "https://gp.zeyroncloud.com", icon: Monitor, desc: "Manage your servers", external: true },
-        { label: "Client Area", to: "https://client.zeyroncloud.com", icon: Server, desc: "Billing & account", external: true },
+        { label: "Game Panel", to: "https://gp.vixoncloud.com", icon: Monitor, desc: "Manage your servers", external: true },
+        { label: "Client Area", to: "https://client.vixoncloud.com", icon: Server, desc: "Billing & account", external: true },
       ],
     },
   ];
@@ -101,9 +101,9 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
-          <motion.img src={logo} alt="ZeyronCloud" className="h-7 w-7 rounded-lg" whileHover={{ scale: 1.15, rotate: [0, -5, 5, 0] }} transition={{ duration: 0.4 }} />
+          <motion.img src={logo} alt="VixonCloud" className="h-7 w-7 rounded-lg" whileHover={{ scale: 1.15, rotate: [0, -5, 5, 0] }} transition={{ duration: 0.4 }} />
           <span className="font-bold text-base tracking-tight font-display">
-            Zeyron<span className="gradient-text">Cloud</span>
+            Vixon<span className="gradient-text">Cloud</span>
           </span>
         </Link>
 
@@ -234,7 +234,7 @@ const Navbar = () => {
                 <DropdownMenuItem onClick={() => navigate("/profile")} className="cursor-pointer gap-2 text-xs">
                   <User className="h-3 w-3" /> My Orders
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => window.open("https://gp.zeyroncloud.com", "_blank")} className="cursor-pointer gap-2 text-xs">
+                <DropdownMenuItem onClick={() => window.open("https://gp.vixoncloud.com", "_blank")} className="cursor-pointer gap-2 text-xs">
                   <Monitor className="h-3 w-3" /> Visit Panel
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => navigate("/tos")} className="cursor-pointer gap-2 text-xs">
@@ -252,7 +252,7 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-          <a href="https://client.zeyroncloud.com/register" target="_blank" rel="noopener noreferrer">
+          <a href="https://client.vixoncloud.com/register" target="_blank" rel="noopener noreferrer">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button size="sm" className="glow-primary text-xs h-8 gap-1.5 font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90">
                   Client Area

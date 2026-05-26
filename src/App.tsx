@@ -43,7 +43,7 @@ const PageLoader = () => (
 
 const App = () => {
   const [cursorEnabled, setCursorEnabled] = useState(() => {
-    const saved = localStorage.getItem("zeyron-custom-cursor");
+    const saved = localStorage.getItem("vixon-custom-cursor");
     return saved !== "false";
   });
 

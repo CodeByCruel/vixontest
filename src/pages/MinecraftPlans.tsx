@@ -32,7 +32,7 @@ const planTheme = {
 };
 
 const MinecraftPlans = () => {
-  const BILLING_URL = "https://client.zeyroncloud.com/register";
+  const BILLING_URL = "https://client.vixoncloud.com/register";
 
   const PlanGrid = ({ plans, type }: { plans: Plan[]; type: "starter" | "standard" | "premium" }) => {
     const t = planTheme[type];

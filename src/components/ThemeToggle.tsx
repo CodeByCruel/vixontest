@@ -6,7 +6,7 @@ const ThemeToggle = () => {
   const [dark, setDark] = useState(true);
 
   useEffect(() => {
-    const saved = localStorage.getItem("zeyron-theme");
+    const saved = localStorage.getItem("vixon-theme");
     if (saved === "light") {
       setDark(false);
       document.documentElement.classList.add("light");
@@ -18,10 +18,10 @@ const ThemeToggle = () => {
       const next = !prev;
       if (next) {
         document.documentElement.classList.remove("light");
-        localStorage.setItem("zeyron-theme", "dark");
+        localStorage.setItem("vixon-theme", "dark");
       } else {
         document.documentElement.classList.add("light");
-        localStorage.setItem("zeyron-theme", "light");
+        localStorage.setItem("vixon-theme", "light");
       }
       return next;
     });

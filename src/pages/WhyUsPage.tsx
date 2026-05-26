@@ -4,7 +4,7 @@ import SEOHead from "@/components/SEOHead";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import WelcomeSection from "@/components/landing/WelcomeSection";
 import TrustStatsSection from "@/components/landing/TrustStatsSection";
-import ZeyronMCSection from "@/components/landing/ZeyronMCSection";
+import VixonMCSection from "@/components/landing/VixonMCSection";
 import FAQPreview from "@/components/landing/FAQPreview";
 
 const WhyUsPage = () => {
@@ -12,8 +12,8 @@ const WhyUsPage = () => {
     <div className="min-h-screen bg-background relative">
       <AnimatedBackground />
       <SEOHead
-        title="Why ZeyronCloud — Trusted Game Hosting"
-        description="Discover why thousands of gamers trust ZeyronCloud. See our stats, community, and what makes us different."
+        title="Why VixonCloud — Trusted Game Hosting"
+        description="Discover why thousands of gamers trust VixonCloud. See our stats, community, and what makes us different."
         path="/why-us"
       />
       <Navbar />
@@ -23,7 +23,7 @@ const WhyUsPage = () => {
             WHY US
           </span>
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter font-display mb-4">
-            Why Choose <span className="gradient-text">ZeyronCloud</span>?
+            Why Choose <span className="gradient-text">VixonCloud</span>?
           </h1>
           <p className="text-muted-foreground text-sm max-w-md mx-auto">
             Trusted by gamers worldwide for performance, reliability, and support.
@@ -31,7 +31,7 @@ const WhyUsPage = () => {
         </div>
         <WelcomeSection />
         <TrustStatsSection />
-        <ZeyronMCSection />
+        <VixonMCSection />
         <FAQPreview />
       </main>
       <Footer />

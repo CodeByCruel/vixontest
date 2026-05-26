@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import logo from "@/assets/zeyroncloud-logo.png";
+import logo from "@/assets/vixoncloud-logo.png";
 import { ExternalLink, Heart } from "lucide-react";
 
 const DISCORD_LINK = "https://discord.gg/KWaU6GMmgs";
@@ -19,8 +19,8 @@ const Footer = () => (
       <div className="grid grid-cols-2 gap-8 md:grid-cols-4 mb-10">
         <motion.div custom={0} variants={colVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="col-span-2 md:col-span-1">
           <Link to="/" className="flex items-center gap-2 mb-3 group">
-            <motion.img src={logo} alt="ZeyronCloud" className="h-7 w-7 rounded-lg" whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }} transition={{ duration: 0.4 }} />
-            <span className="font-bold text-sm font-display">Zeyron<span className="gradient-text">Cloud</span></span>
+            <motion.img src={logo} alt="VixonCloud" className="h-7 w-7 rounded-lg" whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }} transition={{ duration: 0.4 }} />
+            <span className="font-bold text-sm font-display">Vixon<span className="gradient-text">Cloud</span></span>
           </Link>
           <p className="text-xs text-muted-foreground leading-relaxed max-w-[200px]">Premium game server hosting. Fast, reliable, affordable. Trusted by thousands of gamers worldwide.</p>
         </motion.div>
@@ -30,9 +30,9 @@ const Footer = () => (
           { title: "Resources", links: [{ label: "MC Tools", to: "/tools" }, { label: "News", to: "/news" }, { label: "FAQ", to: "/faq" }, { label: "Terms", to: "/tos" }] },
           { title: "Connect", links: [
             { label: "Discord", to: DISCORD_LINK, external: true },
-            { label: "YouTube", to: "https://www.youtube.com/@ZeyronCloud", external: true },
-            { label: "Game Panel", to: "https://gp.zeyroncloud.com", external: true },
-            { label: "Client Area", to: "https://client.zeyroncloud.com", external: true },
+            { label: "YouTube", to: "https://www.youtube.com/@VixonCloud", external: true },
+            { label: "Game Panel", to: "https://gp.vixoncloud.com", external: true },
+            { label: "Client Area", to: "https://client.vixoncloud.com", external: true },
             { label: "Contact Us", to: "/contact" },
             { label: "Sign In", to: "/auth" },
           ] },
@@ -57,7 +57,7 @@ const Footer = () => (
       </div>
 
       <motion.div className="pt-5 border-t border-border/8 flex flex-col sm:flex-row items-center justify-between gap-2" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.5, duration: 0.6 }}>
-        <p className="text-[10px] text-muted-foreground/25">© {new Date().getFullYear()} ZeyronCloud</p>
+        <p className="text-[10px] text-muted-foreground/25">© {new Date().getFullYear()} VixonCloud</p>
         <p className="text-[10px] text-muted-foreground/20 flex items-center gap-1">
           Owned By <span className="text-muted-foreground/40 font-semibold">Ahamo</span> & <span className="text-muted-foreground/40 font-semibold">Akshit</span>
           <span className="mx-1">•</span>

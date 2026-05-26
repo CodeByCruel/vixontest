@@ -38,11 +38,11 @@ const CTASection = () => {
               </motion.span>
             </motion.h2>
             <motion.p className="text-muted-foreground text-sm max-w-md mx-auto mb-8 leading-relaxed">
-              Join thousands of gamers on ZeyronCloud. Deploy in under 60 seconds.
+              Join thousands of gamers on VixonCloud. Deploy in under 60 seconds.
             </motion.p>
             <motion.div className="flex flex-col sm:flex-row gap-3 justify-center">
               <motion.div whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.94 }}>
-                <Button size="lg" onClick={() => window.open("https://client.zeyroncloud.com/register", "_blank")} className="glow-primary gap-2 px-8 text-sm font-bold group rounded-xl h-11 bg-primary text-primary-foreground hover:bg-primary/90 relative overflow-hidden">
+                <Button size="lg" onClick={() => window.open("https://client.vixoncloud.com/register", "_blank")} className="glow-primary gap-2 px-8 text-sm font-bold group rounded-xl h-11 bg-primary text-primary-foreground hover:bg-primary/90 relative overflow-hidden">
                   <span className="shine-line absolute inset-0" />
                   <span className="relative z-10 flex items-center gap-2">
                     Visit Billing

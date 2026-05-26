@@ -22,7 +22,7 @@ import type { SiteSettings, NewsItem } from "@/lib/storage";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import ThemeToggle from "@/components/ThemeToggle";
-import logo from "@/assets/zeyroncloud-logo.png";
+import logo from "@/assets/vixoncloud-logo.png";
 
 import AdminTickets from "@/components/admin/AdminTickets";
 import AdminCoupons from "@/components/admin/AdminCoupons";
@@ -188,7 +188,7 @@ const AdminSettings = () => {
         <div className="h-16 flex items-center px-4 gap-3 border-b border-border/30 shrink-0">
           <motion.img
             src={logo}
-            alt="ZeyronCloud"
+            alt="VixonCloud"
             className="h-8 w-8 rounded-lg shrink-0"
             whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
           />

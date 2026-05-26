@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Icosahedron, MeshDistortMaterial, Sparkles } from "@react-three/drei";
 import * as THREE from "three";
-import logo from "@/assets/zeyroncloud-logo.png";
+import logo from "@/assets/vixoncloud-logo.png";
 
 /* 3D logo reveal scene */
 const LoadingCrystal = () => {
@@ -113,7 +113,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
           <div className="relative z-10 flex flex-col items-center pointer-events-none">
             <motion.img
               src={logo}
-              alt="ZeyronCloud"
+              alt="VixonCloud"
               className="h-14 w-14 rounded-2xl mb-4"
               style={{
                 filter:
@@ -129,7 +129,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-2xl font-bold tracking-tight font-display text-white"
             >
-              Zeyron
+              Vixon
               <span
                 className="bg-clip-text text-transparent"
                 style={{

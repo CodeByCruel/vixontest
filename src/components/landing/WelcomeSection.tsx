@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Sparkles, Gamepad2, Server, Headphones } from "lucide-react";
-import logo from "@/assets/zeyron-logo.png";
+import logo from "@/assets/vixon-logo.png";
 
 const cards = [
   {
@@ -40,7 +40,7 @@ const WelcomeSection = () => {
         >
           <motion.img
             src={logo}
-            alt="ZeyronCloud"
+            alt="VixonCloud"
             className="h-16 w-16 mx-auto mb-6 rounded-2xl"
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}

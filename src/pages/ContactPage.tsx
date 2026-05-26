@@ -9,7 +9,7 @@ import SEOHead from "@/components/SEOHead";
 const ContactPage = () => {
   return (
     <div className="min-h-screen bg-background animated-bg">
-      <SEOHead title="Contact Us — ZeyronCloud" description="Get in touch with ZeyronCloud support via Discord or email." path="/contact" />
+      <SEOHead title="Contact Us — VixonCloud" description="Get in touch with VixonCloud support via Discord or email." path="/contact" />
       <AnimatedBackground />
       <Navbar />
       <main className="pt-28 pb-20 relative z-10">
@@ -69,10 +69,10 @@ const ContactPage = () => {
               <div className="text-xs text-muted-foreground/50 bg-muted/30 rounded-full px-3 py-1 border border-border/10">
                 Response within 24h
               </div>
-              <a href="mailto:support@zeyroncloud.com" className="w-full mt-auto">
+              <a href="mailto:support@vixoncloud.com" className="w-full mt-auto">
                 <Button variant="outline" className="w-full gap-2">
                   <Mail className="h-4 w-4" />
-                  support@zeyroncloud.com
+                  support@vixoncloud.com
                 </Button>
               </a>
             </motion.div>

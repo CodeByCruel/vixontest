@@ -13,8 +13,8 @@ const FeaturesPage = () => {
     <div className="min-h-screen bg-background relative">
       <AnimatedBackground />
       <SEOHead
-        title="Features — ZeyronCloud"
-        description="Explore ZeyronCloud's powerful features: DDoS protection, NVMe storage, custom control panel, instant setup, and more."
+        title="Features — VixonCloud"
+        description="Explore VixonCloud's powerful features: DDoS protection, NVMe storage, custom control panel, instant setup, and more."
         path="/features"
       />
       <Navbar />

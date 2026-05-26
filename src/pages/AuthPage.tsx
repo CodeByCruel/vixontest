@@ -104,7 +104,7 @@ const AuthPage = () => {
             <div className="text-center mb-8">
               <div className="inline-flex rounded-full bg-primary/10 p-4 mb-4 glow-blue"><LogIn className="h-8 w-8 text-primary" /></div>
               <h1 className="font-display text-2xl font-bold tracking-wider">SIGN <span className="text-primary">IN</span></h1>
-              <p className="text-xs text-muted-foreground mt-2">Sign in to your ZeyronCloud account</p>
+              <p className="text-xs text-muted-foreground mt-2">Sign in to your VixonCloud account</p>
             </div>
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="relative"><Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" /><Input type="email" placeholder="Email" value={email} onChange={e => { setEmail(e.target.value); setError(""); }} className="bg-card border-border pl-10" /></div>
@@ -122,7 +122,7 @@ const AuthPage = () => {
             <div className="text-center mb-8">
               <div className="inline-flex rounded-full bg-primary/10 p-4 mb-4 glow-blue"><UserPlus className="h-8 w-8 text-primary" /></div>
               <h1 className="font-display text-2xl font-bold tracking-wider">CREATE <span className="text-primary">ACCOUNT</span></h1>
-              <p className="text-xs text-muted-foreground mt-2">Create your ZeyronCloud account</p>
+              <p className="text-xs text-muted-foreground mt-2">Create your VixonCloud account</p>
             </div>
             <form onSubmit={handleSignup} className="space-y-4">
               <div className="relative"><Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" /><Input type="email" placeholder="Email" value={email} onChange={e => { setEmail(e.target.value); setError(""); }} className="bg-card border-border pl-10" /></div>
