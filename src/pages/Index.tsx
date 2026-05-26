@@ -8,7 +8,6 @@ import DiscordBanner from "@/components/landing/DiscordBanner";
 import CTASection from "@/components/landing/CTASection";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
-import SEOHead from "@/components/SEOHead";
 
 const Index = () => {
   return (
