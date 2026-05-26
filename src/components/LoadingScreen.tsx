@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/zeyroncloud-logo.png";
+import logo from "@/assets/vixoncloud-logo.png";
 
 /**
  * Lightweight, fast loading screen — no 3D, no heavy assets.
