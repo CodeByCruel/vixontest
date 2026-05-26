@@ -11,7 +11,7 @@ import { Bot, MemoryStick, HardDrive, Wifi, ShoppingCart, ExternalLink, Shield }
 import { getSettings, DEFAULT_SETTINGS } from "@/lib/storage";
 import type { SiteSettings } from "@/lib/storage";
 
-const DISCORD_LINK = "https://discord.gg/KWaU6GMmgs";
+const DISCORD_LINK = "https://discord.gg/nFvnxwmsAS";
 const PRICE_PER_GB = 50;
 const formatRam = (mb: number) => mb >= 1024 ? `${mb / 1024} GB` : `${mb} MB`;
 

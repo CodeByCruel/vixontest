@@ -10,7 +10,7 @@ import NotificationCenter from "@/components/NotificationCenter";
 import ThemeToggle from "@/components/ThemeToggle";
 import CursorToggle from "@/components/CursorToggle";
 
-const DISCORD_LINK = "https://discord.gg/KWaU6GMmgs";
+const DISCORD_LINK = "https://discord.gg/nFvnxwmsAS";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);

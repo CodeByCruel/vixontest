@@ -1,21 +1,21 @@
-import { Suspense, useRef, useMemo, useState, useEffect } from "react";
+import { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   Float,
   MeshDistortMaterial,
   Stars,
   Sparkles,
-  Environment,
   Icosahedron,
   Torus,
 } from "@react-three/drei";
+
 import * as THREE from "three";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink, Sparkles as SparklesIcon } from "lucide-react";
 
-const DISCORD_LINK = "https://discord.gg/KWaU6GMmgs";
+const DISCORD_LINK = "https://discord.gg/nFvnxwmsAS";
 
 /* ---------- 3D crystal planet ---------- */
 const CrystalPlanet = () => {

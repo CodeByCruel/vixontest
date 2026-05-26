@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "@/assets/vixoncloud-logo.png";
 import { ExternalLink, Heart } from "lucide-react";
 
-const DISCORD_LINK = "https://discord.gg/KWaU6GMmgs";
+const DISCORD_LINK = "https://discord.gg/nFvnxwmsAS";
 
 const colVariants = {
   hidden: { opacity: 0, y: 30 },

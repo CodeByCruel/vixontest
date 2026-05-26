@@ -19,7 +19,7 @@ const cpuTiers = [
 ];
 const getPlayerSlots = (ram: number) => { if (ram <= 2) return 20; if (ram <= 4) return 40; if (ram <= 8) return 80; if (ram <= 16) return 160; if (ram <= 32) return 300; return 500; };
 
-const DISCORD_LINK = "https://discord.gg/KWaU6GMmgs";
+const DISCORD_LINK = "https://discord.gg/nFvnxwmsAS";
 
 const MinecraftHosting = () => {
   const [cpu, setCpu] = useState("starter");
