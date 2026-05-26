@@ -8,6 +8,7 @@ import BackToTop from "@/components/BackToTop";
 import CustomCursor from "@/components/CustomCursor";
 import FlashSaleBanner from "@/components/FlashSaleBanner";
 import LoadingScreen from "@/components/LoadingScreen";
+import AnimatedBackground from "@/components/AnimatedBackground";
 import { useState, useEffect } from "react";
 
 const Index = lazy(() => import("./pages/Index"));
@@ -43,7 +44,7 @@ const PageLoader = () => (
 
 const App = () => {
   const [cursorEnabled, setCursorEnabled] = useState(() => {
-    const saved = localStorage.getItem("zeyron-custom-cursor");
+    const saved = localStorage.getItem("vixon-custom-cursor");
     return saved !== "false";
   });
 
@@ -83,6 +84,7 @@ const App = () => {
         <Sonner />
         {showLoader && <LoadingScreen onComplete={() => setShowLoader(false)} />}
         <BrowserRouter>
+          <AnimatedBackground />
           {cursorEnabled && <CustomCursor />}
           <FlashSaleBanner />
           <Suspense fallback={<PageLoader />}>

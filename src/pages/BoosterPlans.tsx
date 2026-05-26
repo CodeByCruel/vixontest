@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Zap, Crown, MemoryStick, HardDrive, Cpu, Shield, Gift, Wifi, Check, XCircle } from "lucide-react";
 import { getSettings } from "@/lib/storage";
-const BILLING_URL = "https://billing.zeyroncloud.com";
+const BILLING_URL = "https://billing.vixoncloud.com";
 
 const boosterPlans = [
   {
@@ -45,7 +45,7 @@ const BoosterPlans = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen relative">
       <AnimatedBackground />
       <Navbar />
       <main className="pt-24 pb-16 relative z-10">

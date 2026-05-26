@@ -6,8 +6,8 @@ import SEOHead from "@/components/SEOHead";
 
 const TermsOfService = () => {
   return (
-    <div className="min-h-screen bg-background animated-bg">
-      <SEOHead title="Terms of Service — ZeyronCloud" description="ZeyronCloud terms of service and refund policy." path="/tos" />
+    <div className="min-h-screen animated-bg">
+      <SEOHead title="Terms of Service — VixonCloud" description="VixonCloud terms of service and refund policy." path="/tos" />
       <AnimatedBackground />
       <Navbar />
       <main className="pt-28 pb-20 relative z-10">
@@ -25,7 +25,7 @@ const TermsOfService = () => {
             {[
               {
                 title: "1. Acceptance of Service",
-                content: `By purchasing any Minecraft or Bot hosting plan from ZeyronCloud, via our website or Discord, you agree to these terms. Failure to follow these rules will result in immediate suspension without a refund.`,
+                content: `By purchasing any Minecraft or Bot hosting plan from VixonCloud, via our website or Discord, you agree to these terms. Failure to follow these rules will result in immediate suspension without a refund.`,
               },
               {
                 title: "2. Refund & Cancellation Policy",
@@ -35,7 +35,7 @@ const TermsOfService = () => {
                   "**Refund Amount:** Only 80% of the payment will be refunded (to cover transaction fees and setup costs).",
                   "**Final Sale:** After 24 hours, all payments are 100% non-refundable.",
                   "**Chargeback Policy:** Raising a dispute or chargeback through your payment provider (UPI/Bank) is strictly prohibited. Any such action will result in immediate termination of all active services and a permanent ban from our website and Discord.",
-                  "**How to Request:** You must open a Ticket on our website or contact support via Discord: https://discord.gg/zeyron.",
+                  "**How to Request:** You must open a Ticket on our website or contact support via Discord: https://discord.gg/vixon.",
                 ],
               },
               {
@@ -57,7 +57,7 @@ const TermsOfService = () => {
               },
               {
                 title: '5. "Permanent" Server Guarantee',
-                content: 'Servers sold as "Permanent" come with a 1-year (12 months) uptime guarantee. After the first year, ZeyronCloud is not liable for data loss or hardware decommissioning, and the "Permanent" status may be reviewed based on hardware costs.',
+                content: 'Servers sold as "Permanent" come with a 1-year (12 months) uptime guarantee. After the first year, VixonCloud is not liable for data loss or hardware decommissioning, and the "Permanent" status may be reviewed based on hardware costs.',
               },
               {
                 title: "6. Termination of Service",
@@ -70,7 +70,7 @@ const TermsOfService = () => {
               },
               {
                 title: "7. Limitation of Liability",
-                content: "ZeyronCloud shall not be held liable for any indirect, incidental, or consequential damages arising from the use or inability to use our services. Our total liability is limited to the amount paid for the specific service in question.",
+                content: "VixonCloud shall not be held liable for any indirect, incidental, or consequential damages arising from the use or inability to use our services. Our total liability is limited to the amount paid for the specific service in question.",
               },
               {
                 title: "8. Data & Privacy",
@@ -78,15 +78,15 @@ const TermsOfService = () => {
               },
               {
                 title: "9. Modifications to Terms",
-                content: "ZeyronCloud reserves the right to modify these terms at any time. Users will be notified of significant changes via Discord or email. Continued use of our services after changes constitutes acceptance of the new terms.",
+                content: "VixonCloud reserves the right to modify these terms at any time. Users will be notified of significant changes via Discord or email. Continued use of our services after changes constitutes acceptance of the new terms.",
               },
               {
                 title: "10. Contact",
-                content: "For questions about these terms, contact us via Discord: https://discord.gg/BdFNqyNuKD or email us at support@zeyroncloud.com.",
+                content: "For questions about these terms, contact us via Discord: https://discord.gg/BdFNqyNuKD or email us at support@vixoncloud.com.",
               },
               {
                 title: "Ownership",
-                content: "ZeyronCloud is owned and operated by Ahamo and Akshit.",
+                content: "VixonCloud is owned and operated by Deepak and Akshit.",
               },
             ].map((section, i) => (
               <motion.div

@@ -2,15 +2,15 @@ import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 
 const features = [
-  { name: "Starting Price (per GB)", zeyron: "₹20/mo", other1: "₹30/mo", other2: "₹50/mo" },
-  { name: "DDoS Protection", zeyron: true, other1: true, other2: false },
-  { name: "Instant Setup", zeyron: true, other1: false, other2: false },
-  { name: "NVMe Storage", zeyron: true, other1: false, other2: true },
-  { name: "24/7 Live Support", zeyron: true, other1: true, other2: false },
-  { name: "Free Subdomain", zeyron: true, other1: false, other2: false },
-  { name: "Uptime SLA", zeyron: "99.99%", other1: "99.5%", other2: "99%" },
-  { name: "Custom Modpacks", zeyron: true, other1: true, other2: true },
-  { name: "Auto Backups", zeyron: true, other1: false, other2: false },
+  { name: "Starting Price (per GB)", vixon: "₹20/mo", other1: "₹30/mo", other2: "₹50/mo" },
+  { name: "DDoS Protection", vixon: true, other1: true, other2: false },
+  { name: "Instant Setup", vixon: true, other1: false, other2: false },
+  { name: "NVMe Storage", vixon: true, other1: false, other2: true },
+  { name: "24/7 Live Support", vixon: true, other1: true, other2: false },
+  { name: "Free Subdomain", vixon: true, other1: false, other2: false },
+  { name: "Uptime SLA", vixon: "99.99%", other1: "99.5%", other2: "99%" },
+  { name: "Custom Modpacks", vixon: true, other1: true, other2: true },
+  { name: "Auto Backups", vixon: true, other1: false, other2: false },
 ];
 
 const CellValue = ({ value }: { value: boolean | string }) => {
@@ -36,7 +36,7 @@ const ComparisonTable = () => (
           COMPARISON
         </motion.span>
         <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter font-display">
-          Why <span className="gradient-text">ZeyronCloud</span>?
+          Why <span className="gradient-text">VixonCloud</span>?
         </h2>
         <p className="text-muted-foreground text-sm max-w-md mx-auto mt-4">
           See how we stack up against other hosting providers.
@@ -52,7 +52,7 @@ const ComparisonTable = () => (
       >
         <div className="grid grid-cols-4 text-center text-[10px] font-semibold uppercase tracking-wider border-b border-border/30">
           <div className="p-4 text-left text-muted-foreground">Feature</div>
-          <div className="p-4 bg-primary/10 text-primary">ZeyronCloud</div>
+          <div className="p-4 bg-primary/10 text-primary">VixonCloud</div>
           <div className="p-4 text-muted-foreground">Host A</div>
           <div className="p-4 text-muted-foreground">Host B</div>
         </div>
@@ -68,7 +68,7 @@ const ComparisonTable = () => (
           >
             <div className="p-3.5 text-left text-xs text-foreground/80">{f.name}</div>
             <div className="p-3.5 bg-primary/5">
-              <CellValue value={f.zeyron} />
+              <CellValue value={f.vixon} />
             </div>
             <div className="p-3.5">
               <CellValue value={f.other1} />

@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Copy, Check, Gamepad2, Users, Globe } from "lucide-react";
 
-const ZeyronMCSection = () => {
+const VixonMCSection = () => {
   const [copied, setCopied] = useState(false);
-  const IP = "play.zeyronmc.fun";
+  const IP = "play.vixonmc.fun";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(IP);
@@ -34,7 +34,7 @@ const ZeyronMCSection = () => {
           </div>
 
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter font-display mb-4">
-            Join <span className="gradient-text">ZeyronMC</span>
+            Join <span className="gradient-text">VixonMC</span>
           </h2>
           <p className="text-muted-foreground text-sm max-w-lg mx-auto mb-8 leading-relaxed">
             Jump into our official Minecraft network — featuring survival, minigames, and a growing community. Java & Bedrock supported.
@@ -79,4 +79,4 @@ const ZeyronMCSection = () => {
   );
 };
 
-export default ZeyronMCSection;
+export default VixonMCSection;

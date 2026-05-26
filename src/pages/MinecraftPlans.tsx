@@ -32,7 +32,7 @@ const planTheme = {
 };
 
 const MinecraftPlans = () => {
-  const BILLING_URL = "https://client.zeyroncloud.com/register";
+  const BILLING_URL = "https://client.vixoncloud.com/register";
 
   const PlanGrid = ({ plans, type }: { plans: Plan[]; type: "starter" | "standard" | "premium" }) => {
     const t = planTheme[type];
@@ -65,7 +65,7 @@ const MinecraftPlans = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen relative">
       <AnimatedBackground />
       <Navbar />
       <main className="pt-24 pb-16 relative z-10">

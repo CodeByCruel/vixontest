@@ -19,12 +19,12 @@ const cpuTiers = [
 ];
 const getPlayerSlots = (ram: number) => { if (ram <= 2) return 20; if (ram <= 4) return 40; if (ram <= 8) return 80; if (ram <= 16) return 160; if (ram <= 32) return 300; return 500; };
 
-const DISCORD_LINK = "https://discord.gg/KWaU6GMmgs";
+const DISCORD_LINK = "https://discord.gg/nFvnxwmsAS";
 
 const MinecraftHosting = () => {
   const [cpu, setCpu] = useState("starter");
   const [ram, setRam] = useState(4);
-  const BILLING_URL = "https://client.zeyroncloud.com/register";
+  const BILLING_URL = "https://client.vixoncloud.com/register";
   const [settings, setSettingsState] = useState<SiteSettings>(DEFAULT_SETTINGS);
 
   useEffect(() => { getSettings().then(setSettingsState); }, []);
@@ -35,7 +35,7 @@ const MinecraftHosting = () => {
   const isPremium = cpu === "premium";
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen relative">
       <AnimatedBackground />
       <Navbar />
       <main className="pt-24 pb-16 relative z-10">

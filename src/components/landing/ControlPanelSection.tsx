@@ -68,7 +68,7 @@ const ControlPanelSection = () => {
             {/* Fake terminal */}
             <div className="p-6 font-mono text-xs space-y-2">
               <div className="flex items-center gap-2 text-muted-foreground">
-                <span className="text-primary">gp.zeyroncloud.com</span>
+                <span className="text-primary">gp.vixoncloud.com</span>
                 <span className="text-border">|</span>
                 <span>Server Console</span>
               </div>

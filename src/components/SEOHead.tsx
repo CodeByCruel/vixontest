@@ -7,11 +7,11 @@ interface SEOHeadProps {
   type?: string;
 }
 
-const BASE_URL = "https://zeyroncloud.lovable.app";
+const BASE_URL = "https://vixoncloud.lovable.app";
 
 const SEOHead = ({ title, description, path = "", type = "website" }: SEOHeadProps) => {
   useEffect(() => {
-    const fullTitle = title.includes("ZeyronCloud") ? title : `${title} | ZeyronCloud`;
+    const fullTitle = title.includes("VixonCloud") ? title : `${title} | VixonCloud`;
     document.title = fullTitle;
 
     const setMeta = (attr: string, key: string, content: string) => {

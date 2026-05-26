@@ -37,7 +37,7 @@ interface Props {
 type Currency = "INR" | "PKR";
 
 const INR_TO_PKR = 3.3;
-const DISCORD_INVITE = "https://discord.gg/zeyron";
+const DISCORD_INVITE = "https://discord.gg/vixon";
 
 const currencyConfig: Record<Currency, { symbol: string; label: string; flag: string; qr: string; paymentMethod: string; accountInfo: string; accountName: string }> = {
   INR: { symbol: "₹", label: "INR", flag: "🇮🇳", qr: qrInr, paymentMethod: "UPI", accountInfo: "akshit1408@fam", accountName: "AKSHIT" },
@@ -204,7 +204,7 @@ const CheckoutDialog = ({ open, onOpenChange, plan }: Props) => {
                 {/* Panel Registration Alert */}
                 <div className="rounded-lg bg-amber-500/10 border border-amber-500/20 px-3 py-2.5 space-y-1.5">
                   <p className="text-[11px] text-amber-400 font-semibold">⚠️ Make sure you have registered on our Panel</p>
-                  <a href="https://gp.zeyroncloud.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://gp.vixoncloud.com" target="_blank" rel="noopener noreferrer">
                     <Button variant="outline" size="sm" className="h-7 text-[10px] gap-1 border-amber-500/30 text-amber-400 hover:bg-amber-500/10">
                       <ExternalLink className="h-3 w-3" /> Register on Panel
                     </Button>
@@ -214,7 +214,7 @@ const CheckoutDialog = ({ open, onOpenChange, plan }: Props) => {
                 {/* Panel Email */}
                 <div className="space-y-2">
                   <Label className="text-xs">Panel Email <span className="text-destructive">*</span></Label>
-                  <Input value={panelEmail} onChange={e => setPanelEmail(e.target.value)} placeholder="Email used on gp.zeyroncloud.com" className="text-xs h-8" type="email" />
+                  <Input value={panelEmail} onChange={e => setPanelEmail(e.target.value)} placeholder="Email used on gp.vixoncloud.com" className="text-xs h-8" type="email" />
                   <p className="text-[10px] text-muted-foreground">Enter the email you registered with on the panel.</p>
                 </div>
 

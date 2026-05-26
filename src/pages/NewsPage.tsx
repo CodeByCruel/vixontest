@@ -53,13 +53,13 @@ const NewsPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background animated-bg">
+    <div className="min-h-screen animated-bg">
       <AnimatedBackground /><Navbar />
       <main className="pt-24 pb-16 relative z-10">
         <div className="container mx-auto px-4 max-w-3xl">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
             <h1 className="font-display text-3xl font-black tracking-tight md:text-5xl">NEWS & <span className="text-primary text-glow">OFFERS</span></h1>
-            <p className="mt-4 text-muted-foreground">Stay updated with the latest ZeyronCloud announcements.</p>
+            <p className="mt-4 text-muted-foreground">Stay updated with the latest VixonCloud announcements.</p>
           </motion.div>
           {loading ? (
             <div className="space-y-4">{[1, 2, 3].map(i => <Skeleton key={i} className="h-32 w-full rounded-xl" />)}</div>

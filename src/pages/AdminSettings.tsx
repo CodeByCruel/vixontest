@@ -22,7 +22,7 @@ import type { SiteSettings, NewsItem } from "@/lib/storage";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import ThemeToggle from "@/components/ThemeToggle";
-import logo from "@/assets/zeyroncloud-logo.png";
+import logo from "@/assets/vixoncloud-logo.png";
 
 import AdminTickets from "@/components/admin/AdminTickets";
 import AdminCoupons from "@/components/admin/AdminCoupons";
@@ -159,7 +159,7 @@ const AdminSettings = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -175,7 +175,7 @@ const AdminSettings = () => {
   const currentTab = tabs.find(t => t.id === tab);
 
   return (
-    <div className="min-h-screen bg-background flex relative">
+    <div className="min-h-screen flex relative">
       <AnimatedBackground />
       {/* Sidebar */}
       <motion.aside
@@ -188,7 +188,7 @@ const AdminSettings = () => {
         <div className="h-16 flex items-center px-4 gap-3 border-b border-border/30 shrink-0">
           <motion.img
             src={logo}
-            alt="ZeyronCloud"
+            alt="VixonCloud"
             className="h-8 w-8 rounded-lg shrink-0"
             whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
           />

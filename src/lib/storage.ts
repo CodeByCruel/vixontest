@@ -446,7 +446,7 @@ export const saveWebhookSettings = async (settings: WebhookSettings) => {
 };
 
 // ─── Cart (localStorage — stays per-browser) ────────────────────────────────
-const CART_KEY = "zeyroncloud_cart";
+const CART_KEY = "vixoncloud_cart";
 export const getCart = (): CartItem[] => {
   try { return JSON.parse(localStorage.getItem(CART_KEY) || "[]"); } catch { return []; }
 };

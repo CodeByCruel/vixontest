@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
 
-const DISCORD_LINK = "https://discord.gg/KWaU6GMmgs";
+const DISCORD_LINK = "https://discord.gg/nFvnxwmsAS";
 
 const CTASection = () => {
   const navigate = useNavigate();
@@ -38,11 +38,11 @@ const CTASection = () => {
               </motion.span>
             </motion.h2>
             <motion.p className="text-muted-foreground text-sm max-w-md mx-auto mb-8 leading-relaxed">
-              Join thousands of gamers on ZeyronCloud. Deploy in under 60 seconds.
+              Join thousands of gamers on VixonCloud. Deploy in under 60 seconds.
             </motion.p>
             <motion.div className="flex flex-col sm:flex-row gap-3 justify-center">
               <motion.div whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.94 }}>
-                <Button size="lg" onClick={() => window.open("https://client.zeyroncloud.com/register", "_blank")} className="glow-primary gap-2 px-8 text-sm font-bold group rounded-xl h-11 bg-primary text-primary-foreground hover:bg-primary/90 relative overflow-hidden">
+                <Button size="lg" onClick={() => window.open("https://client.vixoncloud.com/register", "_blank")} className="glow-primary gap-2 px-8 text-sm font-bold group rounded-xl h-11 bg-primary text-primary-foreground hover:bg-primary/90 relative overflow-hidden">
                   <span className="shine-line absolute inset-0" />
                   <span className="relative z-10 flex items-center gap-2">
                     Visit Billing
@@ -69,7 +69,7 @@ const CTASection = () => {
           transition={{ delay: 0.5 }}
           className="text-center text-xs text-muted-foreground/30 mt-8"
         >
-          Owned By <span className="text-muted-foreground/50 font-semibold">Ahamo</span> and <span className="text-muted-foreground/50 font-semibold">Akshit</span>
+          Owned By <span className="text-muted-foreground/50 font-semibold">Deepak</span> and <span className="text-muted-foreground/50 font-semibold">Akshit</span>
         </motion.p>
       </div>
     </section>

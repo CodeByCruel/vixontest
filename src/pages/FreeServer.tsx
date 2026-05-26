@@ -16,7 +16,7 @@ const specs = [
 ];
 
 const steps = [
-  { num: "01", title: "Join Our Discord", desc: "Click the button below to join the ZeyronCloud Discord server." },
+  { num: "01", title: "Join Our Discord", desc: "Click the button below to join the VixonCloud Discord server." },
   { num: "02", title: "Create a Ticket", desc: "Open a support ticket in the #create-ticket channel." },
   { num: "03", title: "Request Free Server", desc: "Mention you'd like to claim the free server plan." },
   { num: "04", title: "Get Your Server!", desc: "Our team will set up your server within minutes." },
@@ -47,7 +47,7 @@ const FreeServer = () => {
   if (!enabled) {
     return (
       <>
-        <SEOHead title="Free Server - ZeyronCloud" description="Free Minecraft server hosting by ZeyronCloud" />
+        <SEOHead title="Free Server - VixonCloud" description="Free Minecraft server hosting by VixonCloud" />
         <Navbar />
         <AnimatedBackground />
         <main className="min-h-screen flex items-center justify-center bg-background pt-20 relative z-10">
@@ -63,7 +63,7 @@ const FreeServer = () => {
             <p className="text-muted-foreground text-sm leading-relaxed">
               The free server program is currently paused. Join our Discord to get notified when it's back!
             </p>
-            <a href="https://discord.gg/zeyron" target="_blank" rel="noopener noreferrer" className="mt-6 inline-block">
+            <a href="https://discord.gg/vixon" target="_blank" rel="noopener noreferrer" className="mt-6 inline-block">
               <Button className="gap-2">
                 <ExternalLink className="h-4 w-4" /> Join Discord
               </Button>
@@ -77,10 +77,10 @@ const FreeServer = () => {
 
   return (
     <>
-      <SEOHead title="Free Server - ZeyronCloud" description="Get a free 4GB RAM Minecraft server from ZeyronCloud" />
+      <SEOHead title="Free Server - VixonCloud" description="Get a free 4GB RAM Minecraft server from VixonCloud" />
       <Navbar />
       <AnimatedBackground />
-      <main className="min-h-screen bg-background pt-20 pb-16 relative z-10">
+      <main className="min-h-screen pt-20 pb-16 relative z-10">
         {/* Hero */}
         <section className="py-20 relative overflow-hidden">
           <motion.div
@@ -179,7 +179,7 @@ const FreeServer = () => {
               viewport={{ once: true }}
               className="text-center mt-12"
             >
-              <a href="https://discord.gg/zeyron" target="_blank" rel="noopener noreferrer">
+              <a href="https://discord.gg/vixon" target="_blank" rel="noopener noreferrer">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button size="lg" className="glow-primary gap-2.5 px-10 text-sm font-bold rounded-xl h-12 bg-primary text-primary-foreground hover:bg-primary/90">
                     <ExternalLink className="h-4 w-4" /> Join Discord & Claim Now
