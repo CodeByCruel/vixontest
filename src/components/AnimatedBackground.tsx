@@ -1,114 +1,129 @@
+import { Suspense, useRef } from "react";
 import { motion } from "framer-motion";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Points, PointMaterial } from "@react-three/drei";
+import * as THREE from "three";
+
+/* Subtle drifting starfield */
+const Starfield = () => {
+  const ref = useRef<THREE.Points>(null!);
+  const positions = useRef<Float32Array>();
+  if (!positions.current) {
+    const arr = new Float32Array(1500 * 3);
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = (Math.random() - 0.5) * 12;
+    }
+    positions.current = arr;
+  }
+  useFrame((state, delta) => {
+    if (!ref.current) return;
+    ref.current.rotation.y += delta * 0.02;
+    ref.current.rotation.x += delta * 0.005;
+  });
+  return (
+    <Points ref={ref} positions={positions.current} stride={3} frustumCulled={false}>
+      <PointMaterial
+        transparent
+        color="#5eb6ff"
+        size={0.018}
+        sizeAttenuation
+        depthWrite={false}
+        opacity={0.75}
+      />
+    </Points>
+  );
+};
+
+const FloatingOrb = ({
+  position,
+  color,
+  size,
+  speed,
+}: {
+  position: [number, number, number];
+  color: string;
+  size: number;
+  speed: number;
+}) => {
+  const ref = useRef<THREE.Mesh>(null!);
+  useFrame((state) => {
+    if (!ref.current) return;
+    const t = state.clock.getElapsedTime() * speed;
+    ref.current.position.x = position[0] + Math.sin(t) * 0.6;
+    ref.current.position.y = position[1] + Math.cos(t * 1.2) * 0.4;
+  });
+  return (
+    <mesh ref={ref} position={position}>
+      <icosahedronGeometry args={[size, 1]} />
+      <meshBasicMaterial color={color} transparent opacity={0.45} wireframe />
+    </mesh>
+  );
+};
 
 const AnimatedBackground = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      {/* Base gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90" />
+    <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10" aria-hidden="true">
+      {/* Base dark blue gradient */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at top, hsl(220 50% 8%) 0%, hsl(220 60% 3%) 60%, hsl(220 70% 2%) 100%)",
+        }}
+      />
 
-      {/* Ambient radial glows */}
-      <div className="absolute inset-0">
-        <div className="absolute w-full h-full bg-[radial-gradient(circle_at_50%_40%,hsl(160_100%_45%/0.06),transparent_55%)]" />
-        <motion.div
-          className="absolute w-full h-full"
-          style={{ background: "radial-gradient(circle at 75% 25%, hsl(160 100% 50% / 0.07), transparent 40%)" }}
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute w-full h-full"
-          style={{ background: "radial-gradient(circle at 25% 70%, hsl(45 100% 60% / 0.04), transparent 40%)" }}
-          animate={{ opacity: [0.4, 0.8, 0.4] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
+      {/* 3D layer */}
+      <div className="absolute inset-0 opacity-90">
+        <Canvas
+          camera={{ position: [0, 0, 5], fov: 60 }}
+          dpr={[1, 1.5]}
+          gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        >
+          <Suspense fallback={null}>
+            <Starfield />
+            <FloatingOrb position={[-3, 1, -2]} color="#3b9eff" size={0.5} speed={0.3} />
+            <FloatingOrb position={[3, -1, -3]} color="#5eb6ff" size={0.7} speed={0.25} />
+            <FloatingOrb position={[1, 2, -4]} color="#2d7fd9" size={0.4} speed={0.35} />
+          </Suspense>
+        </Canvas>
       </div>
 
-      {/* Animated blobs */}
+      {/* Ambient blue glows */}
       <motion.div
-        className="absolute -top-32 -left-16 w-[500px] h-[500px] rounded-full mix-blend-screen filter blur-[100px]"
-        style={{ background: "hsl(160 100% 45% / 0.08)" }}
-        animate={{
-          x: [0, 60, -30, 0],
-          y: [0, 40, -20, 0],
-          scale: [1, 1.2, 0.9, 1],
-        }}
+        className="absolute -top-32 -left-16 w-[500px] h-[500px] rounded-full blur-[100px]"
+        style={{ background: "hsl(210 100% 50% / 0.15)" }}
+        animate={{ x: [0, 60, 0], y: [0, 40, 0], scale: [1, 1.2, 1] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute -top-24 -right-20 w-[450px] h-[450px] rounded-full mix-blend-screen filter blur-[100px]"
-        style={{ background: "hsl(160 80% 50% / 0.06)" }}
-        animate={{
-          x: [0, -50, 30, 0],
-          y: [0, 50, -30, 0],
-          scale: [1, 0.85, 1.15, 1],
-        }}
+        className="absolute -bottom-24 -right-20 w-[450px] h-[450px] rounded-full blur-[100px]"
+        style={{ background: "hsl(195 100% 55% / 0.12)" }}
+        animate={{ x: [0, -50, 0], y: [0, 30, 0], scale: [1, 0.9, 1] }}
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
       <motion.div
-        className="absolute -bottom-32 left-1/3 w-[550px] h-[550px] rounded-full mix-blend-screen filter blur-[120px]"
-        style={{ background: "hsl(160 90% 40% / 0.05)" }}
-        animate={{
-          x: [0, -40, 50, 0],
-          y: [0, -60, 20, 0],
-          scale: [1, 1.3, 0.95, 1],
-        }}
+        className="absolute top-1/2 left-1/3 w-[400px] h-[400px] rounded-full blur-[120px]"
+        style={{ background: "hsl(220 100% 45% / 0.1)" }}
+        animate={{ x: [0, 40, 0], y: [0, -50, 0], scale: [1, 1.15, 1] }}
         transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 4 }}
       />
-      {/* Warm accent blob */}
-      <motion.div
-        className="absolute top-1/2 right-1/4 w-[300px] h-[300px] rounded-full mix-blend-screen filter blur-[80px]"
-        style={{ background: "hsl(45 100% 60% / 0.03)" }}
-        animate={{
-          x: [0, 30, -20, 0],
-          y: [0, -30, 20, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-      />
 
-      {/* Perspective grid */}
+      {/* Grid overlay */}
       <div
-        className="absolute inset-0 opacity-[0.035]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage: `
-            linear-gradient(hsl(160 100% 45% / 0.5) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(160 100% 45% / 0.5) 1px, transparent 1px)
+            linear-gradient(hsl(210 100% 60% / 0.6) 1px, transparent 1px),
+            linear-gradient(90deg, hsl(210 100% 60% / 0.6) 1px, transparent 1px)
           `,
-          backgroundSize: "40px 40px",
-          maskImage: "linear-gradient(transparent 5%, black 30%, black 70%, transparent 95%)",
-          WebkitMaskImage: "linear-gradient(transparent 5%, black 30%, black 70%, transparent 95%)",
-          transform: "perspective(800px) rotateX(55deg) translateY(-80px) translateZ(80px)",
+          backgroundSize: "50px 50px",
+          maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
         }}
       />
 
-      {/* Dot grid overlay */}
-      <div className="absolute inset-0 dot-grid opacity-20" />
-
-      {/* Floating particles */}
-      {[...Array(8)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 rounded-full bg-primary/30"
-          style={{
-            left: `${15 + i * 10}%`,
-            top: `${20 + (i % 3) * 25}%`,
-          }}
-          animate={{
-            y: [0, -40, 0],
-            opacity: [0, 0.6, 0],
-            scale: [0.5, 1.5, 0.5],
-          }}
-          transition={{
-            duration: 5 + i * 0.7,
-            delay: i * 0.8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-
       {/* Vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,hsl(var(--background))_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,hsl(220_60%_3%)_100%)]" />
     </div>
   );
 };

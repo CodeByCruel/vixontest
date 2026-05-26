@@ -183,34 +183,30 @@ const Scene = () => {
 /* ---------- Public component ---------- */
 const Hero3D = () => {
   const navigate = useNavigate();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
 
   return (
-    <section className="relative min-h-[100dvh] flex items-center overflow-hidden bg-[#0a0a1a]">
-      {/* 3D canvas — absolute background */}
+    <section className="relative min-h-[100dvh] flex items-center overflow-hidden bg-[#050b1a]">
+      {/* 3D canvas — absolute background, mounts immediately */}
       <div className="absolute inset-0 z-0">
-        {mounted && (
-          <Canvas
-            camera={{ position: [0, 0, 5], fov: 50 }}
-            dpr={[1, 1.5]}
-            gl={{
-              antialias: true,
-              powerPreference: "high-performance",
-              alpha: false,
-            }}
-          >
-            <Suspense fallback={null}>
-              <Scene />
-            </Suspense>
-          </Canvas>
-        )}
+        <Canvas
+          camera={{ position: [0, 0, 5], fov: 50 }}
+          dpr={[1, 1.5]}
+          gl={{
+            antialias: true,
+            powerPreference: "high-performance",
+            alpha: false,
+          }}
+        >
+          <Suspense fallback={null}>
+            <Scene />
+          </Suspense>
+        </Canvas>
       </div>
 
       {/* Side fade so text remains readable */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#0a0a1a] via-[#0a0a1a]/70 to-transparent pointer-events-none" />
-      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#0a0a1a] via-transparent to-[#0a0a1a]/40 pointer-events-none" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#050b1a] via-[#050b1a]/70 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#050b1a] via-transparent to-[#050b1a]/40 pointer-events-none" />
+
 
       {/* Foreground content */}
       <div className="container relative z-10 mx-auto px-4 py-28">
