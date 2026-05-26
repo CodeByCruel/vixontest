@@ -69,7 +69,7 @@ const CTASection = () => {
           transition={{ delay: 0.5 }}
           className="text-center text-xs text-muted-foreground/30 mt-8"
         >
-          Owned By <span className="text-muted-foreground/50 font-semibold">Ahamo</span> and <span className="text-muted-foreground/50 font-semibold">Akshit</span>
+          Owned By <span className="text-muted-foreground/50 font-semibold">Deepak</span> and <span className="text-muted-foreground/50 font-semibold">Akshit</span>
         </motion.p>
       </div>
     </section>

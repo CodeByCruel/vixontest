@@ -86,7 +86,7 @@ const TermsOfService = () => {
               },
               {
                 title: "Ownership",
-                content: "VixonCloud is owned and operated by Ahamo and Akshit.",
+                content: "VixonCloud is owned and operated by Deepak and Akshit.",
               },
             ].map((section, i) => (
               <motion.div

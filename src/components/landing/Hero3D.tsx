@@ -175,7 +175,7 @@ const Scene = () => {
       <OrbitingNode radius={2.4} speed={-0.4} phase={Math.PI / 2} color="#fbbf24" />
       <OrbitingNode radius={2.8} speed={0.3} phase={Math.PI / 1.5} color="#fbbf24" size={0.05} />
 
-      <Environment preset="night" />
+      
     </>
   );
 };

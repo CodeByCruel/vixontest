@@ -86,7 +86,7 @@ const ContactPage = () => {
             className="text-center mt-16 pt-8 border-t border-border/10"
           >
             <p className="text-xs text-muted-foreground/40">
-              Owned By <span className="text-foreground/60 font-semibold">Ahamo</span> and <span className="text-foreground/60 font-semibold">Akshit</span>
+              Owned By <span className="text-foreground/60 font-semibold">Deepak</span> and <span className="text-foreground/60 font-semibold">Akshit</span>
             </p>
           </motion.div>
         </div>
