@@ -32,10 +32,10 @@ const ProfilePage = () => {
     navigate("/");
   };
 
-  if (loading) return <div className="min-h-screen bg-background flex items-center justify-center text-muted-foreground text-sm">Loading...</div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center text-muted-foreground text-sm">Loading...</div>;
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen relative">
       <AnimatedBackground />
       <SEOHead title="Profile — VixonCloud" description="Your VixonCloud account profile." path="/profile" />
       <Navbar />

@@ -35,7 +35,7 @@ const plans = [
 ];
 
 const PlanComparison = () => (
-  <div className="min-h-screen bg-background relative">
+  <div className="min-h-screen relative">
     <SEOHead title="Compare Plans — VixonCloud" description="Compare Intel, AMD, and Premium Minecraft hosting plans side by side." path="/compare" />
     <AnimatedBackground />
     <Navbar />

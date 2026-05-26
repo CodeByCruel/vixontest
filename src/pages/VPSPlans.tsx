@@ -125,7 +125,7 @@ const VPSPlans = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen relative">
       <AnimatedBackground />
       <Navbar />
       <main className="pt-24 pb-16 relative z-10">

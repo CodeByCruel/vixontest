@@ -80,7 +80,7 @@ const FreeServer = () => {
       <SEOHead title="Free Server - VixonCloud" description="Get a free 4GB RAM Minecraft server from VixonCloud" />
       <Navbar />
       <AnimatedBackground />
-      <main className="min-h-screen bg-background pt-20 pb-16 relative z-10">
+      <main className="min-h-screen pt-20 pb-16 relative z-10">
         {/* Hero */}
         <section className="py-20 relative overflow-hidden">
           <motion.div

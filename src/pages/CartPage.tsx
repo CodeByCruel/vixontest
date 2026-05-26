@@ -152,7 +152,7 @@ const CartPage = () => {
   if (selectedOrder) {
     const stepIdx = getStepIndex(selectedOrder.status);
     return (
-      <div className="min-h-screen bg-background animated-bg">
+      <div className="min-h-screen animated-bg">
         <AnimatedBackground />
         <Navbar />
         <main className="pt-24 pb-16 relative z-10">
@@ -285,7 +285,7 @@ const CartPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background animated-bg">
+    <div className="min-h-screen animated-bg">
       <AnimatedBackground />
       <Navbar />
       <main className="pt-24 pb-16 relative z-10">

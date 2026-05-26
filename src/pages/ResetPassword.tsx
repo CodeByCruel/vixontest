@@ -59,7 +59,7 @@ const ResetPassword = () => {
   if (checking) return null;
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4 relative">
+    <div className="min-h-screen flex items-center justify-center px-4 relative">
       <AnimatedBackground />
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-sm">
         {success ? (

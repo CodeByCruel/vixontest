@@ -10,7 +10,7 @@ import HowItWorksSection from "@/components/landing/HowItWorksSection";
 
 const FeaturesPage = () => {
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen relative">
       <AnimatedBackground />
       <SEOHead
         title="Features — VixonCloud"

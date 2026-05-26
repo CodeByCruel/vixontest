@@ -58,7 +58,7 @@ const faqCategories = [
 ];
 
 const FAQPage = () => (
-  <div className="min-h-screen bg-background animated-bg">
+  <div className="min-h-screen animated-bg">
     <AnimatedBackground />
     <Navbar />
     <main className="pt-24 pb-16 relative z-10">

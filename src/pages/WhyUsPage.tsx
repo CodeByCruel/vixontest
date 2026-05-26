@@ -9,7 +9,7 @@ import FAQPreview from "@/components/landing/FAQPreview";
 
 const WhyUsPage = () => {
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen relative">
       <AnimatedBackground />
       <SEOHead
         title="Why VixonCloud — Trusted Game Hosting"

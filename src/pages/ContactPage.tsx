@@ -8,7 +8,7 @@ import SEOHead from "@/components/SEOHead";
 
 const ContactPage = () => {
   return (
-    <div className="min-h-screen bg-background animated-bg">
+    <div className="min-h-screen animated-bg">
       <SEOHead title="Contact Us — VixonCloud" description="Get in touch with VixonCloud support via Discord or email." path="/contact" />
       <AnimatedBackground />
       <Navbar />

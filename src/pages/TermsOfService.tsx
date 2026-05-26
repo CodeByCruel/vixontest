@@ -6,7 +6,7 @@ import SEOHead from "@/components/SEOHead";
 
 const TermsOfService = () => {
   return (
-    <div className="min-h-screen bg-background animated-bg">
+    <div className="min-h-screen animated-bg">
       <SEOHead title="Terms of Service — VixonCloud" description="VixonCloud terms of service and refund policy." path="/tos" />
       <AnimatedBackground />
       <Navbar />
