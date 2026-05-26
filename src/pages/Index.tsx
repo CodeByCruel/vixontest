@@ -8,13 +8,12 @@ import DiscordBanner from "@/components/landing/DiscordBanner";
 import CTASection from "@/components/landing/CTASection";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
-import AnimatedBackground from "@/components/AnimatedBackground";
+import SEOHead from "@/components/SEOHead";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background relative">
-      <AnimatedBackground />
-      <SEOHead title="VixonCloud — Premium Game Server Hosting" description="Premium game server hosting for Minecraft, Palworld, Rust, Valheim & more. 99.99% uptime, DDoS protection, instant setup." path="/" />
+    <div className="min-h-screen relative">
+      <SEOHead title="VixonCloud — Premium Game Server Hosting" description="VixonCloud: Premium game server hosting for Minecraft, Palworld, Rust, Valheim & more. 99.99% uptime, DDoS protection, instant setup." path="/" />
       <Navbar />
       <main>
         <Hero3D />

@@ -84,6 +84,7 @@ const App = () => {
         <Sonner />
         {showLoader && <LoadingScreen onComplete={() => setShowLoader(false)} />}
         <BrowserRouter>
+          <AnimatedBackground />
           {cursorEnabled && <CustomCursor />}
           <FlashSaleBanner />
           <Suspense fallback={<PageLoader />}>
