@@ -1,35 +1,64 @@
-## Goal
+Massive overhaul. Let me confirm the plan before touching code.
 
-Get the uploaded `web-main.zip` (ZeyronCloud — a Vite + React + React Router + Tailwind v3 + Supabase app) running inside this Lovable project so you can preview it here and also deploy it to Vercel.
+## Scope
 
-## Approach
+### Visual / Theme
+- Fix "pressed text" look: remove tracking-wider/font-display uppercase styling across site, use normal weight & casing.
+- Remove light/dark toggle. Lock to dark theme only. Delete `ThemeToggle.tsx`.
+- Replace navbar icons with better Lucide icons.
+- Remove all decorative images from pages (game backgrounds, screenshots, etc.) — use built-in CSS/icons only.
+- Add tagline: "We host whatever you want."
 
-The uploaded repo is a standard Vite SPA. This Lovable project is currently a TanStack Start template (different routing, different Tailwind, different server runtime). Rather than rewriting your repo into TanStack Start (very large effort, would change every route file), I'll **replace this project's scaffolding with your repo as-is**. The result behaves like your original repo, runs in the Lovable preview as a Vite app, and is ready for `vercel deploy` (your `vercel.json` is already in the zip).
+### Branding / Content
+- Founder name: "Akshit and Deepak" (Akshit first) everywhere.
+- Rename to "VixonCloud" in TOS.
+- Remove "international payment" notice from plan pages.
+- Remove reviews section site-wide. Keep only Trustpilot link/embed.
 
-## Steps
+### Navbar / Buttons
+- Remove "Client Area" button → replace with "Panel" → `https://dash.vixoncloud.com`.
+- Add "Status" page button.
+- Add "ToS & Refund Policy" button → TOS page.
+- Rename "Visit Billing" → "Visit Discord". On click: popup "Billing temporarily off, please buy via Discord" + Discord invite link.
 
-1. **Remove TanStack Start scaffolding** that conflicts with a plain Vite app:
-   - `src/routes/`, `src/routeTree.gen.ts`, `src/router.tsx`, `src/server.ts`, `src/start.ts`
-   - `wrangler.jsonc`, `src/styles.css` (replaced by your `src/index.css`)
-   - Old root `package.json`, `vite.config.ts`, `tsconfig*.json`, `components.json`, `eslint.config.js`, `index.html`, `bun.lock`
+### Pages
+- **NEW**: `/services/website-plans` — "Our devs build websites like VixonCloud, starting ₹299–₹5,000 INR."
+- **NEW**: `/services/vps-starter` — "Coming Soon"
+- **NEW**: `/services/vps-premium` — "Coming Soon"
+- **NEW**: `/status` — shows nodes from Pterodactyl API with uptime + admin-renamed labels.
+- **REMOVE**: MC Configurator, Bot Configurator pages.
+- **REMOVE**: News/Offers pages.
 
-2. **Copy uploaded repo into project root**:
-   - All `src/**` (App.tsx, main.tsx, components, pages, assets, hooks, lib, integrations, etc.)
-   - `public/**` (favicon, robots.txt, placeholder.svg)
-   - `supabase/config.toml`
-   - Config files: `index.html`, `vite.config.ts`, `tailwind.config.ts`, `postcss.config.js`, `tsconfig*.json`, `components.json`, `eslint.config.js`, `vercel.json`, `vitest.config.ts`, `.gitignore`, `package.json`
+### Auth / Users
+- Remove ALL user signup/signin from public site (AuthPage, ResetPassword, ProfilePage, Cart for users).
+- Keep only hidden admin login at `/adminpagemeow`.
+- Admin creds: username `vixonadmin` / password `vixon@67` (hardcoded check, no Supabase auth for users).
 
-3. **Install dependencies** from the uploaded `package.json` (Tailwind v3, react-router-dom, framer-motion, three.js, @supabase/supabase-js, etc.).
+### Admin Panel (rebuild from scratch)
+Hidden URL: `/adminpagemeow`. Remove old admin entirely (tickets, reviews, notifications, coupons, flash sales, triggers, webhooks, dashboard).
 
-4. **Environment variables**: the uploaded `.env` references Supabase. I'll surface what keys it needs and you can provide values (or connect Lovable Cloud if you'd rather use Lovable's managed Supabase). Without these, the app will load but Supabase-backed features (orders, admin, auth) won't work.
+New admin tabs:
+1. **Pterodactyl Nodes** — input Pterodactyl panel URL + admin API key. Fetches nodes, lets admin rename them (website-only label). Powers the public Status page.
+2. **Site Settings** — Discord invite link input. Saving updates invite link everywhere (navbar, footer, popups, TOS).
 
-5. **Verify in preview** — build should pass, landing page should render.
+### Backend
+- Need a `site_settings` table (key/value: `discord_invite`, `ptero_url`, `ptero_api_key`, node rename map).
+- Need an edge function `ptero-nodes` that proxies to Pterodactyl API (so API key stays server-side) and returns node list + status + uptime.
+- Status page polls this function.
 
-6. **Vercel deploy** is then a separate step you run from your own machine / Vercel dashboard against your GitHub fork; nothing extra to wire on this side because `vercel.json` is already included.
+### Cleanup
+Delete: `AdminTickets`, `AdminReviews`, `AdminNotifications`, `AdminCoupons`, `AdminFlashSales`, `AdminTriggers`, `AdminWebhooks`, `AdminDashboard`, `OrderChatDialog`, `NotificationCenter`, `FlashSaleBanner`, `DiscordOrderDialog`, `CheckoutDialog`, `CartPage`, `AuthPage`, `ResetPassword`, `ProfilePage`, `NewsPage`, `MinecraftTools` (configurator), bot configurator page, `ThemeToggle`, reviews components.
 
-## Things to confirm before I run this
+## Questions before I build
 
-- This wipes the current TanStack starter (nothing of value there — it's just placeholder).
-- For Supabase: do you want to **paste your existing Supabase URL + anon key** (from your `.env`), or **enable Lovable Cloud** and switch the client to use it? The former matches your repo exactly; the latter is Lovable-native.
+1. **Admin auth** — You said username `vixonadmin` / pass `vixon@67`. Storing the password in client-side code is insecure (anyone viewing source can see it). Options:
+   - (a) Hardcode anyway as you wrote (fast, insecure)
+   - (b) Store hash in Supabase + check via edge function (secure)
+   
+2. **Pterodactyl API** — I'll need the panel URL + admin API key stored as a Lovable Cloud secret (not in DB). Confirm OK?
 
-Reply "go" (and tell me the Supabase choice) and I'll execute.
+3. **Status uptime source** — Pterodactyl doesn't track uptime natively. I'll compute "uptime %" from periodic ping checks (cron-style edge function logging to a table). OK, or just show current online/offline status?
+
+4. **Scope confirmation** — This is ~3-4 hours of work. Want me to do it all in one shot, or stage it (Phase 1: theme/text/branding/nav cleanup, Phase 2: new admin + status page)?
+
+Once you answer I'll build straight through.
