@@ -1,87 +1,73 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Lock, ArrowLeft, Mail } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { checkIsAdmin } from "@/lib/storage";
+import { Label } from "@/components/ui/label";
+import { Lock, User } from "lucide-react";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import {
+  ADMIN_TOKEN_KEY, ADMIN_TOKEN_VALUE,
+  HARDCODED_ADMIN_USER, HARDCODED_ADMIN_PASS, isAdminLoggedIn
+} from "@/lib/vixon";
+import { toast } from "@/hooks/use-toast";
 
 const AdminLogin = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [checking, setChecking] = useState(true);
-  const navigate = useNavigate();
+  const nav = useNavigate();
 
   useEffect(() => {
-    const check = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        const isAdmin = await checkIsAdmin();
-        if (isAdmin) { navigate("/admin/settings"); return; }
-      }
-      setChecking(false);
-    };
-    check();
-  }, [navigate]);
+    if (isAdminLoggedIn()) nav("/adminpagemeow/panel", { replace: true });
+  }, [nav]);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
     setLoading(true);
-    try {
-      const { data: { session: currentSession } } = await supabase.auth.getSession();
-      if (currentSession) {
-        const isAdmin = await checkIsAdmin();
-        if (isAdmin) { navigate("/admin/settings"); return; }
-        await supabase.auth.signOut();
-      }
-      const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
-      if (authError) { setError(authError.message); setLoading(false); return; }
-      const isAdmin = await checkIsAdmin();
-      if (isAdmin) {
-        navigate("/admin/settings");
-      } else {
-        setError("You don't have admin access.");
-      }
-    } catch {
-      setError("Login failed");
+    if (username.trim() === HARDCODED_ADMIN_USER && password === HARDCODED_ADMIN_PASS) {
+      localStorage.setItem(ADMIN_TOKEN_KEY, ADMIN_TOKEN_VALUE);
+      nav("/adminpagemeow/panel", { replace: true });
+    } else {
+      toast({ title: "Invalid credentials", variant: "destructive" });
+      setLoading(false);
     }
-    setLoading(false);
   };
-
-  if (checking) return null;
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 relative">
       <AnimatedBackground />
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-sm">
-        <div className="mb-6">
-          <Link to="/"><Button variant="ghost" size="sm" className="gap-2 text-muted-foreground"><ArrowLeft className="h-4 w-4" /> Back to Home</Button></Link>
-        </div>
-        <div className="text-center mb-8">
-          <div className="inline-flex rounded-full bg-primary/10 p-4 mb-4 glow-blue"><Lock className="h-8 w-8 text-primary" /></div>
-          <h1 className="font-display text-2xl font-bold tracking-wider">ADMIN <span className="text-primary">LOGIN</span></h1>
-          <p className="text-xs text-muted-foreground mt-2">Sign in with your admin account</p>
-        </div>
-        <form onSubmit={handleLogin} className="space-y-4">
-          <div className="relative">
-            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input type="email" placeholder="Admin Email" value={email} onChange={(e) => { setEmail(e.target.value); setError(""); }} className="bg-card border-border pl-10" />
+      <motion.form
+        onSubmit={submit}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="w-full max-w-sm space-y-4 relative z-10 glass p-7 rounded-2xl"
+      >
+        <div className="text-center mb-2">
+          <div className="inline-flex rounded-full bg-primary/10 p-3 mb-3 glow-primary">
+            <Lock className="h-6 w-6 text-primary" />
           </div>
-          <div className="relative">
+          <h1 className="text-xl font-bold font-display">Admin <span className="gradient-text">Sign In</span></h1>
+          <p className="text-xs text-muted-foreground mt-1">VixonCloud control panel</p>
+        </div>
+        <div>
+          <Label className="text-xs text-muted-foreground">Username</Label>
+          <div className="relative mt-1">
+            <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input value={username} onChange={(e) => setUsername(e.target.value)} className="pl-10" placeholder="vixonadmin" autoFocus />
+          </div>
+        </div>
+        <div>
+          <Label className="text-xs text-muted-foreground">Password</Label>
+          <div className="relative mt-1">
             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input type="password" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value); setError(""); }} className="bg-card border-border pl-10" />
+            <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="pl-10" />
           </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <Button type="submit" disabled={loading} className="w-full glow-blue font-display text-xs tracking-wider">
-            {loading ? "SIGNING IN..." : "LOGIN"}
-          </Button>
-        </form>
-      </motion.div>
+        </div>
+        <Button type="submit" disabled={loading} className="w-full glow-primary bg-primary text-primary-foreground hover:bg-primary/90">
+          {loading ? "Signing in..." : "Sign In"}
+        </Button>
+      </motion.form>
     </div>
   );
 };

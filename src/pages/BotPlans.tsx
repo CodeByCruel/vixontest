@@ -26,7 +26,7 @@ const botPlans = [
 ];
 
 const BotPlans = () => {
-  const BILLING_URL = "https://client.vixoncloud.com/register";
+  const BILLING_URL = "https://discord.gg/nFvnxwmsAS";
 
   return (
     <div className="min-h-screen relative">
@@ -55,7 +55,7 @@ const BotPlans = () => {
                     </div>
                     <CurrencyConverter amount={plan.price} />
                     <Button onClick={() => window.open(BILLING_URL, "_blank")} className="w-full glow-primary gap-1.5 text-xs font-semibold" size="sm">
-                      <ShoppingCart className="h-3.5 w-3.5" /> Visit Billing
+                      <ShoppingCart className="h-3.5 w-3.5" /> Order on Discord
                     </Button>
                   </CardContent>
                 </Card>

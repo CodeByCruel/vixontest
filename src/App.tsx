@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useState, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,76 +6,55 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BackToTop from "@/components/BackToTop";
 import CustomCursor from "@/components/CustomCursor";
-import FlashSaleBanner from "@/components/FlashSaleBanner";
 import LoadingScreen from "@/components/LoadingScreen";
 import AnimatedBackground from "@/components/AnimatedBackground";
-import { useState, useEffect } from "react";
+import { refreshDiscordInvite } from "@/lib/vixon";
 
 const Index = lazy(() => import("./pages/Index"));
 const MinecraftHosting = lazy(() => import("./pages/MinecraftHosting"));
 const MinecraftPlans = lazy(() => import("./pages/MinecraftPlans"));
 const BotHosting = lazy(() => import("./pages/BotHosting"));
 const BotPlans = lazy(() => import("./pages/BotPlans"));
-const MinecraftTools = lazy(() => import("./pages/MinecraftTools"));
 const AllGames = lazy(() => import("./pages/AllGames"));
 const FeaturesPage = lazy(() => import("./pages/FeaturesPage"));
 const WhyUsPage = lazy(() => import("./pages/WhyUsPage"));
-
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
-const AdminLogin = lazy(() => import("./pages/AdminLogin"));
-const AdminSettings = lazy(() => import("./pages/AdminSettings"));
-const NewsPage = lazy(() => import("./pages/NewsPage"));
-
-const AuthPage = lazy(() => import("./pages/AuthPage"));
 const FAQPage = lazy(() => import("./pages/FAQPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const PlanComparison = lazy(() => import("./pages/PlanComparison"));
-const ProfilePage = lazy(() => import("./pages/ProfilePage"));
-const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const StatusPage = lazy(() => import("./pages/StatusPage"));
+const WebsitePlans = lazy(() => import("./pages/WebsitePlans"));
+const VpsStarter = lazy(() => import("./pages/VpsStarter"));
+const VpsPremium = lazy(() => import("./pages/VpsPremium"));
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
+const AdminPanel = lazy(() => import("./pages/AdminPanel"));
 
 const queryClient = new QueryClient();
 
 const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-background">
+  <div className="min-h-screen flex items-center justify-center">
     <div className="h-6 w-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
   </div>
 );
 
 const App = () => {
-  const [cursorEnabled, setCursorEnabled] = useState(() => {
-    const saved = localStorage.getItem("vixon-custom-cursor");
-    return saved !== "false";
-  });
-
-  // Loading screen only shows if the page hasn't loaded within ~500ms
   const [showLoader, setShowLoader] = useState(() => {
     if (typeof window === "undefined") return false;
     return document.readyState !== "complete";
   });
 
   useEffect(() => {
-    if (!showLoader) return;
-    // If everything is ready quickly, hide the loader immediately
-    const fastTimer = setTimeout(() => {
-      if (document.readyState === "complete") setShowLoader(false);
-    }, 500);
-    return () => clearTimeout(fastTimer);
-  }, [showLoader]);
-
-  useEffect(() => {
-    const handler = (e: Event) => setCursorEnabled((e as CustomEvent).detail);
-    window.addEventListener("cursor-toggle", handler);
-    return () => window.removeEventListener("cursor-toggle", handler);
+    // Force dark theme always
+    document.documentElement.classList.remove("light");
+    try { localStorage.removeItem("vixon-theme"); } catch {}
+    refreshDiscordInvite();
   }, []);
 
   useEffect(() => {
-    if (cursorEnabled) {
-      document.documentElement.classList.remove("no-custom-cursor");
-    } else {
-      document.documentElement.classList.add("no-custom-cursor");
-    }
-  }, [cursorEnabled]);
+    if (!showLoader) return;
+    const t = setTimeout(() => setShowLoader(false), 800);
+    return () => clearTimeout(t);
+  }, [showLoader]);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -85,8 +64,7 @@ const App = () => {
         {showLoader && <LoadingScreen onComplete={() => setShowLoader(false)} />}
         <BrowserRouter>
           <AnimatedBackground />
-          {cursorEnabled && <CustomCursor />}
-          <FlashSaleBanner />
+          <CustomCursor />
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Index />} />
@@ -94,24 +72,18 @@ const App = () => {
               <Route path="/minecraft-plans" element={<MinecraftPlans />} />
               <Route path="/bot-hosting" element={<BotHosting />} />
               <Route path="/bot-plans" element={<BotPlans />} />
-              <Route path="/tools" element={<MinecraftTools />} />
               <Route path="/games" element={<AllGames />} />
               <Route path="/features" element={<FeaturesPage />} />
               <Route path="/why-us" element={<WhyUsPage />} />
-              
               <Route path="/tos" element={<TermsOfService />} />
-              <Route path="/news" element={<NewsPage />} />
-              
-              <Route path="/auth" element={<AuthPage />} />
               <Route path="/faq" element={<FAQPage />} />
-              <Route path="/admin" element={<AdminLogin />} />
-              <Route path="/admin/settings" element={<AdminSettings />} />
-              
-              <Route path="/compare" element={<PlanComparison />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/contact" element={<ContactPage />} />
-              
+              <Route path="/status" element={<StatusPage />} />
+              <Route path="/website-plans" element={<WebsitePlans />} />
+              <Route path="/vps-starter" element={<VpsStarter />} />
+              <Route path="/vps-premium" element={<VpsPremium />} />
+              <Route path="/adminpagemeow" element={<AdminLogin />} />
+              <Route path="/adminpagemeow/panel" element={<AdminPanel />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
