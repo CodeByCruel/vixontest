@@ -1,6 +1,6 @@
 // VixonCloud admin settings proxy.
-// Handles get/save of public settings (discord_invite, status_redirect_url)
-// using a hardcoded admin token (insecure, per user choice).
+// Reads/writes public site settings via service role (bypasses RLS).
+// Keys: discord_invite, status_redirect_url.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
@@ -12,6 +12,11 @@ const corsHeaders = {
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_KEY  = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const ADMIN_TOKEN  = "vixon-admin-token-67";
+
+const DEFAULTS: Record<string, string> = {
+  discord_invite: "https://discord.gg/nFvnxwmsAS",
+  status_redirect_url: "",
+};
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -29,27 +34,40 @@ Deno.serve(async (req) => {
     const supabase = createClient(SUPABASE_URL, SERVICE_KEY);
 
     if (action === "get_settings") {
-      const { data } = await supabase.from("vc_settings").select("key, value");
-      const map: Record<string, string> = {};
-      (data || []).forEach((r: any) => { map[r.key] = r.value; });
-      return json({
-        discord_invite: map.discord_invite || "https://discord.gg/nFvnxwmsAS",
-        status_redirect_url: map.status_redirect_url || "",
-      });
+      const { data } = await supabase
+        .from("site_settings")
+        .select("key, value")
+        .in("key", ["discord_invite", "status_redirect_url"]);
+      const map: Record<string, string> = { ...DEFAULTS };
+      (data || []).forEach((r: any) => { if (r.value) map[r.key] = r.value; });
+      return json(map);
     }
 
     if (adminToken !== ADMIN_TOKEN) return json({ error: "Unauthorized" }, 401);
 
     if (action === "save_settings") {
-      const updates: Array<{ key: string; value: string; updated_at: string }> = [];
       const now = new Date().toISOString();
-      if (typeof body.discord_invite === "string")
-        updates.push({ key: "discord_invite", value: body.discord_invite, updated_at: now });
-      if (typeof body.status_redirect_url === "string")
-        updates.push({ key: "status_redirect_url", value: body.status_redirect_url, updated_at: now });
-      if (updates.length === 0) return json({ ok: true });
-      const { error } = await supabase.from("vc_settings").upsert(updates, { onConflict: "key" });
-      if (error) return json({ error: error.message }, 500);
+      const keys: Array<[string, string]> = [];
+      if (typeof body.discord_invite === "string") keys.push(["discord_invite", body.discord_invite]);
+      if (typeof body.status_redirect_url === "string") keys.push(["status_redirect_url", body.status_redirect_url]);
+
+      for (const [key, value] of keys) {
+        // Try update first, insert if missing (site_settings.id is uuid, key is unique).
+        const { data: existing } = await supabase
+          .from("site_settings").select("id").eq("key", key).maybeSingle();
+        if (existing) {
+          const { error } = await supabase
+            .from("site_settings")
+            .update({ value, updated_at: now })
+            .eq("key", key);
+          if (error) return json({ error: error.message }, 500);
+        } else {
+          const { error } = await supabase
+            .from("site_settings")
+            .insert({ key, value, updated_at: now });
+          if (error) return json({ error: error.message }, 500);
+        }
+      }
       return json({ ok: true });
     }
 
