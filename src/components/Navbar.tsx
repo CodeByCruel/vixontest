@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Menu, X, ExternalLink, FileText, Monitor, ChevronDown, Gamepad2,
-  Server, HelpCircle, Activity, Code2, MessageCircle, Home
+  Menu, X, ExternalLink, FileText, LayoutDashboard, ChevronDown, Gamepad2,
+  Box, Cpu, Rocket, Globe, Bot, HelpCircle, Activity, Code2, MessagesSquare, Home, Sparkles
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/vixon-logo.png";
@@ -27,23 +27,23 @@ const Navbar = () => {
     {
       label: "Services",
       children: [
-        { label: "Minecraft Hosting", to: "/minecraft-plans", icon: Gamepad2, desc: "Java & Bedrock servers" },
-        { label: "Bot Hosting", to: "/bot-plans", icon: Server, desc: "Discord bot hosting" },
-        { label: "VPS — Starter", to: "/vps-starter", icon: Server, desc: "Coming soon" },
-        { label: "VPS — Premium", to: "/vps-premium", icon: Server, desc: "Coming soon" },
-        { label: "Website Plans", to: "/website-plans", icon: Code2, desc: "We build websites for you" },
+        { label: "Minecraft Plan",     to: "/minecraft-plans", icon: Box,    desc: "Java & Bedrock servers" },
+        { label: "Bot Plan",           to: "/bot-plans",       icon: Bot,    desc: "Discord bot hosting" },
+        { label: "Website Plan",       to: "/website-plans",   icon: Globe,  desc: "We build websites for you" },
+        { label: "VPS Starter Plan",   to: "/vps-starter",     icon: Cpu,    desc: "Coming soon" },
+        { label: "VPS Premium Plan",   to: "/vps-premium",     icon: Rocket, desc: "Coming soon" },
       ],
     },
-    { label: "Games", to: "/games", icon: Gamepad2 },
-    { label: "Features", to: "/features" },
-    { label: "Why Us", to: "/why-us" },
-    { label: "Status", to: "/status", icon: Activity },
+    { label: "Games",    to: "/games",    icon: Gamepad2 },
+    { label: "Features", to: "/features", icon: Sparkles },
+    { label: "Why Us",   to: "/why-us",   icon: Activity },
     {
       label: "More",
       children: [
-        { label: "FAQ", to: "/faq", icon: HelpCircle, desc: "Common questions" },
-        { label: "Contact", to: "/contact", icon: MessageCircle, desc: "Get in touch" },
-        { label: "Terms & Refund Policy", to: "/tos", icon: FileText, desc: "Legal terms" },
+        { label: "FAQ",                  to: "/faq",     icon: HelpCircle,    desc: "Common questions" },
+        { label: "Contact",              to: "/contact", icon: MessagesSquare, desc: "Get in touch" },
+        { label: "Status",               to: "/status",  icon: Activity,      desc: "Live system status" },
+        { label: "Terms & Refund Policy",to: "/tos",     icon: FileText,      desc: "Legal terms" },
       ],
     },
   ];
@@ -128,12 +128,12 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-2 shrink-0">
           <a href={invite} target="_blank" rel="noopener noreferrer">
             <Button size="sm" variant="outline" className="gap-1.5 text-sm h-9">
-              <MessageCircle className="h-4 w-4" /> Discord
+              <MessagesSquare className="h-4 w-4" /> Discord
             </Button>
           </a>
           <a href={PANEL_URL} target="_blank" rel="noopener noreferrer">
             <Button size="sm" className="glow-primary text-sm h-9 gap-1.5 font-semibold bg-primary text-primary-foreground hover:bg-primary/90">
-              <Monitor className="h-4 w-4" /> Panel
+              <LayoutDashboard className="h-4 w-4" /> Panel
               <ExternalLink className="h-3 w-3" />
             </Button>
           </a>
@@ -189,10 +189,10 @@ const Navbar = () => {
               })}
               <div className="border-t border-border/20 mt-2 pt-2 flex flex-col gap-2">
                 <a href={invite} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
-                  <Button variant="outline" size="sm" className="w-full gap-1.5"><MessageCircle className="h-4 w-4" /> Discord</Button>
+                  <Button variant="outline" size="sm" className="w-full gap-1.5"><MessagesSquare className="h-4 w-4" /> Discord</Button>
                 </a>
                 <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
-                  <Button size="sm" className="w-full gap-1.5 glow-primary bg-primary text-primary-foreground hover:bg-primary/90"><Monitor className="h-4 w-4" /> Panel</Button>
+                  <Button size="sm" className="w-full gap-1.5 glow-primary bg-primary text-primary-foreground hover:bg-primary/90"><LayoutDashboard className="h-4 w-4" /> Panel</Button>
                 </a>
               </div>
             </div>

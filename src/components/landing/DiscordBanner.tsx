@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Users } from "lucide-react";
+import { useDiscordInvite } from "@/lib/vixon";
 
-const DISCORD_LINK = "https://discord.gg/nFvnxwmsAS";
-
-const DiscordBanner = () => (
+const DiscordBanner = () => {
+  const DISCORD_LINK = useDiscordInvite();
+  return (
   <section className="py-16 px-4">
     <motion.div
       className="max-w-3xl mx-auto relative rounded-2xl overflow-hidden glass gradient-border p-8 sm:p-12 text-center"
@@ -48,6 +49,7 @@ const DiscordBanner = () => (
       </motion.div>
     </motion.div>
   </section>
-);
+  );
+};
 
 export default DiscordBanner;

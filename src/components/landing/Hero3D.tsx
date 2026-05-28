@@ -218,11 +218,12 @@ const Hero3D = () => {
             className="inline-flex items-center gap-2.5 rounded-full glass border border-primary/30 px-4 py-2 text-[11px] font-medium text-primary mb-6 backdrop-blur-md"
           >
             <SparklesIcon className="h-3 w-3" />
-            NEXT-GEN GAME HOSTING IN 3D
+            Next-gen game hosting in 3D
           </motion.div>
 
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[0.95] tracking-tighter mb-6 font-display text-white"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 font-display text-white"
+            style={{ lineHeight: 1.08, letterSpacing: "-0.02em" }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
