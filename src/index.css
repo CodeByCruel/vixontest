@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -47,23 +47,43 @@
   html { color-scheme: dark; }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', 'Space Grotesk', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Syne', 'Inter', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
     font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
   }
+  h1 { line-height: 1.1; }
+  p { line-height: 1.6; }
 }
 
-/* Kill "pressed" look globally: no forced uppercase, no wide tracking */
-.font-display { font-family: 'Syne', 'Inter', sans-serif; letter-spacing: -0.01em; }
+/* Kill "pressed / condensed" look globally */
+.font-display {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif !important;
+  letter-spacing: -0.015em !important;
+}
 .uppercase { text-transform: none !important; }
-.tracking-wider, .tracking-widest, .tracking-\[0\.2em\], .tracking-\[0\.18em\] {
+.tracking-wider,
+.tracking-widest,
+.tracking-tighter,
+.tracking-tight,
+.tracking-\[0\.2em\],
+.tracking-\[0\.18em\] {
   letter-spacing: normal !important;
+}
+/* No more squashed line-heights on giant headlines */
+.leading-none,
+.leading-tight,
+.leading-\[0\.95\],
+.leading-\[1\],
+.leading-\[1\.05\] {
+  line-height: 1.15 !important;
 }
 
 @media (hover: hover) and (pointer: fine) {
