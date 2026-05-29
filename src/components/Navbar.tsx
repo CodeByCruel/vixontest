@@ -8,6 +8,8 @@ import {
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/vixon-logo.png";
 import { useDiscordInvite, PANEL_URL } from "@/lib/vixon";
+import { UserMenu } from "@/components/UserMenu";
+import { NotificationBell } from "@/components/NotificationBell";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -137,6 +139,8 @@ const Navbar = () => {
               <ExternalLink className="h-3 w-3" />
             </Button>
           </a>
+          <NotificationBell />
+          <UserMenu />
         </div>
 
         {/* Mobile toggle */}
