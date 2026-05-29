@@ -26,12 +26,12 @@ const FreeServer = () => {
   const [enabled, setEnabled] = useState<boolean | null>(null);
 
   useEffect(() => {
-    supabase
+    (supabase as any)
       .from("site_settings")
       .select("value")
       .eq("key", "free_server_enabled")
       .maybeSingle()
-      .then(({ data }) => {
+      .then(({ data }: { data: { value: string } | null }) => {
         setEnabled(data?.value === "true");
       });
   }, []);
