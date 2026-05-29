@@ -24,14 +24,14 @@ const SupportPage = () => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
-  const load = () => user && supabase.from("support_tickets").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).then(({ data }) => setTickets((data as any) || []));
+  const load = () => { if (user) supabase.from("support_tickets").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).then(({ data }) => setTickets((data as any) || [])); };
   useEffect(load, [user]);
 
   const submit = async () => {
     const v = schema.safeParse({ subject, message });
     if (!v.success) return toast({ title: v.error.issues[0].message, variant: "destructive" });
     if (!user) return;
-    const { error } = await supabase.from("support_tickets").insert({ user_id: user.id, ...v.data });
+    const { error } = await supabase.from("support_tickets").insert({ user_id: user.id, subject: v.data.subject, message: v.data.message });
     if (error) return toast({ title: "Failed", description: error.message, variant: "destructive" });
     toast({ title: "Ticket sent" });
     setSubject(""); setMessage(""); setOpen(false); load();

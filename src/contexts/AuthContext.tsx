@@ -15,6 +15,8 @@ interface Profile {
   country: string | null;
   postal_code: string | null;
   avatar_url: string | null;
+  phone_verified: boolean;
+  kyc_status: string;
   status: "active" | "suspended" | "banned";
 }
 
