@@ -137,7 +137,7 @@ const OrdersTab = () => {
   useEffect(() => { load(); }, []);
 
   const updateStatus = async (order: any, status: string) => {
-    await supabase.from("orders").update({ status }).eq("id", order.id);
+    await supabase.from("orders").update({ status: status as any }).eq("id", order.id);
     if (status === "paid") await supabase.from("invoices").update({ status: "paid", paid_at: new Date().toISOString() }).eq("order_id", order.id);
     await supabase.from("notifications").insert({
       user_id: order.user_id, title: `Order ${order.order_number} → ${status}`,
