@@ -1,401 +1,202 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
-import {
-  ShoppingCart, Package, Clock, CheckCircle2, ArrowRight, Copy,
-  Server, Search, MessageCircle, Send, ArrowLeft, X, Image as ImageIcon
-} from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "@/hooks/use-toast";
-import { addMessage } from "@/lib/storage";
-import type { TicketMessage } from "@/lib/storage";
+import { Trash2, Minus, Plus, Tag, ShoppingCart, MessageCircle, Copy } from "lucide-react";
+import { useDiscordInvite } from "@/lib/vixon";
 
-interface Order {
+interface CartItem {
   id: string;
-  type: string;
-  status: string;
-  specs: Record<string, string>;
-  createdAt: string;
-  messages: TicketMessage[];
+  plan_id: string | null;
+  plan_name: string;
+  plan_category: string | null;
+  unit_price_inr: number;
+  quantity: number;
 }
 
-const ORDER_STEPS = [
-  { key: "open", label: "Submitted", icon: Clock },
-  { key: "reviewing", label: "Reviewing", icon: Search },
-  { key: "verified", label: "Verified", icon: CheckCircle2 },
-  { key: "ready", label: "Ready", icon: Server },
-];
-
-const getStepIndex = (status: string) => {
-  if (status === "closed" || status === "ready") return 3;
-  if (status === "verified") return 2;
-  if (status === "reviewing") return 1;
-  return 0;
-};
-
 const CartPage = () => {
-  const navigate = useNavigate();
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [session, setSession] = useState<any>(null);
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
-  const [chatMsg, setChatMsg] = useState("");
-  const [sending, setSending] = useState(false);
-  const chatEndRef = useRef<HTMLDivElement>(null);
+  const { user, loading: authLoading } = useAuth();
+  const nav = useNavigate();
+  const invite = useDiscordInvite();
+  const [items, setItems] = useState<CartItem[]>([]);
+  const [coupon, setCoupon] = useState("");
+  const [applied, setApplied] = useState<{ code: string; percent: number } | null>(null);
+  const [placing, setPlacing] = useState(false);
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      if (data.session) loadOrders(data.session.user.id);
-      else setLoading(false);
-    });
-  }, []);
-
-  const loadOrders = async (userId: string) => {
-    setLoading(true);
-    const { data: tickets } = await (supabase as any)
-      .from("tickets")
-      .select("*")
-      .eq("user_id", userId)
-      .order("created_at", { ascending: false });
-
-    if (!tickets || tickets.length === 0) {
-      setOrders([]);
-      setLoading(false);
-      return;
-    }
-
-    const ids = tickets.map((t: any) => t.id);
-    const { data: msgs } = await (supabase as any)
-      .from("ticket_messages")
-      .select("*")
-      .in("ticket_id", ids)
-      .order("created_at");
-
-    const byTicket: Record<string, TicketMessage[]> = {};
-    (msgs || []).forEach((m: any) => {
-      if (!byTicket[m.ticket_id]) byTicket[m.ticket_id] = [];
-      byTicket[m.ticket_id].push({
-        id: m.id, sender: m.sender, text: m.text,
-        imageUrl: m.image_url || undefined, timestamp: m.created_at,
-        isTriggered: m.is_triggered || false,
-      });
-    });
-
-    const mapped = tickets.map((t: any) => ({
-      id: t.id, type: t.type, status: t.status,
-      specs: t.specs as Record<string, string>,
-      createdAt: t.created_at,
-      messages: byTicket[t.id] || [],
-    }));
-
-    setOrders(mapped);
-    setLoading(false);
+  const load = async () => {
+    if (!user) return;
+    const { data } = await supabase.from("cart_items").select("*").eq("user_id", user.id).order("created_at");
+    setItems((data as any) || []);
   };
 
-  // Realtime: listen for new messages on selected order
-  useEffect(() => {
-    if (!selectedOrder) return;
-    const channel = supabase
-      .channel(`chat-${selectedOrder.id}`)
-      .on("postgres_changes", {
-        event: "INSERT",
-        schema: "public",
-        table: "ticket_messages",
-        filter: `ticket_id=eq.${selectedOrder.id}`,
-      }, (payload: any) => {
-        const m = payload.new;
-        const newMsg: TicketMessage = {
-          id: m.id, sender: m.sender, text: m.text,
-          imageUrl: m.image_url || undefined, timestamp: m.created_at,
-          isTriggered: m.is_triggered || false,
-        };
-        setSelectedOrder(prev => prev ? { ...prev, messages: [...prev.messages, newMsg] } : prev);
-        setOrders(prev => prev.map(o =>
-          o.id === selectedOrder.id ? { ...o, messages: [...o.messages, newMsg] } : o
-        ));
-      })
-      .subscribe();
+  useEffect(() => { if (user) load(); }, [user]);
 
-    return () => { supabase.removeChannel(channel); };
-  }, [selectedOrder?.id]);
-
-  // Scroll chat to bottom
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [selectedOrder?.messages.length]);
-
-  const handleSendChat = async () => {
-    if (!selectedOrder || !chatMsg.trim() || sending) return;
-    setSending(true);
-    try {
-      await addMessage(selectedOrder.id, "user", chatMsg.trim());
-      setChatMsg("");
-    } catch (err: any) {
-      toast({ title: "Error", description: "Failed to send message", variant: "destructive" });
-    }
-    setSending(false);
-  };
-
-  const copyId = (id: string) => {
-    navigator.clipboard.writeText(id);
-    toast({ title: "Copied!", description: `Order ID: ${id}` });
-  };
-
-  // Chat view for selected order
-  if (selectedOrder) {
-    const stepIdx = getStepIndex(selectedOrder.status);
+  if (!authLoading && !user) {
     return (
-      <div className="min-h-screen animated-bg">
+      <>
         <AnimatedBackground />
         <Navbar />
-        <main className="pt-24 pb-16 relative z-10">
-          <div className="container mx-auto px-4 max-w-2xl">
-            <Button variant="ghost" size="sm" onClick={() => setSelectedOrder(null)} className="gap-1 text-xs mb-4">
-              <ArrowLeft className="h-3 w-3" /> Back to Orders
-            </Button>
-
-            {/* Order header */}
-            <div className="rounded-xl glass gradient-border p-4 mb-4 space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <button onClick={() => copyId(selectedOrder.id)} className="font-mono text-xs text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
-                    #{selectedOrder.id} <Copy className="h-2.5 w-2.5" />
-                  </button>
-                  <Badge className="bg-primary/15 text-primary text-[10px]">{selectedOrder.type.toUpperCase()}</Badge>
-                </div>
-                <Badge className={`text-[10px] ${
-                  selectedOrder.status === "ready" ? "bg-green-500/15 text-green-400" :
-                  selectedOrder.status === "verified" ? "bg-blue-500/15 text-blue-400" :
-                  selectedOrder.status === "reviewing" ? "bg-yellow-500/15 text-yellow-400" :
-                  selectedOrder.status === "closed" ? "bg-muted/30 text-muted-foreground" :
-                  "bg-orange-500/15 text-orange-400"
-                }`}>{selectedOrder.status.toUpperCase()}</Badge>
-              </div>
-
-              {/* Progress */}
-              <div className="flex items-center gap-1">
-                {ORDER_STEPS.map((s, idx) => {
-                  const StepIcon = s.icon;
-                  const active = idx <= stepIdx;
-                  return (
-                    <div key={s.key} className="flex items-center flex-1">
-                      <div className={`flex flex-col items-center flex-1 ${active ? "text-primary" : "text-muted-foreground/30"}`}>
-                        <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs transition-all ${
-                          active ? "bg-primary/15 border border-primary/40" : "bg-muted/10 border border-border/20"
-                        }`}>
-                          <StepIcon className="h-2.5 w-2.5" />
-                        </div>
-                        <span className="text-[7px] mt-0.5 text-center leading-tight">{s.label}</span>
-                      </div>
-                      {idx < ORDER_STEPS.length - 1 && (
-                        <div className={`h-0.5 flex-1 rounded-full mx-0.5 mb-3 ${idx < stepIdx ? "bg-primary/40" : "bg-border/20"}`} />
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Specs compact */}
-              <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-[11px]">
-                {Object.entries(selectedOrder.specs)
-                  .filter(([k]) => !["Payment Screenshot", "Currency", "Payment Method"].includes(k))
-                  .slice(0, 6)
-                  .map(([k, v]) => (
-                    <div key={k} className="flex justify-between">
-                      <span className="text-muted-foreground">{k}:</span>
-                      <span className="text-foreground font-medium">{v}</span>
-                    </div>
-                  ))}
-              </div>
-            </div>
-
-            {/* Chat */}
-            <div className="rounded-xl glass gradient-border overflow-hidden flex flex-col" style={{ height: "400px" }}>
-              <div className="px-4 py-2.5 border-b border-border/15 flex items-center gap-2">
-                <MessageCircle className="h-3.5 w-3.5 text-primary" />
-                <span className="text-xs font-semibold">Live Chat with Support</span>
-                <span className="text-[10px] text-muted-foreground ml-auto">{selectedOrder.messages.length} messages</span>
-              </div>
-
-              <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2">
-                {selectedOrder.messages.length === 0 ? (
-                  <div className="text-center py-8 text-xs text-muted-foreground">
-                    No messages yet. Send a message to start chatting with support.
-                  </div>
-                ) : (
-                  selectedOrder.messages.map(m => (
-                    <motion.div
-                      key={m.id}
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className={`flex ${m.sender === "user" ? "justify-end" : "justify-start"}`}
-                    >
-                      <div className={`max-w-[75%] rounded-xl px-3 py-2 text-xs ${
-                        m.sender === "user"
-                          ? "bg-primary/15 border border-primary/20 text-foreground"
-                          : "bg-secondary/60 border border-border/20 text-foreground"
-                      }`}>
-                        <div className="flex items-center gap-1.5 mb-0.5">
-                          <span className={`text-[9px] font-semibold ${m.sender === "admin" ? "text-primary" : "text-muted-foreground"}`}>
-                            {m.sender === "admin" ? "Support" : "You"}
-                          </span>
-                          <span className="text-[9px] text-muted-foreground/50">
-                            {new Date(m.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-                          </span>
-                        </div>
-                        <p className="whitespace-pre-wrap break-words">{m.text}</p>
-                        {m.imageUrl && (
-                          <img src={m.imageUrl} alt="" className="mt-1.5 max-w-full rounded-lg border border-border/20" />
-                        )}
-                      </div>
-                    </motion.div>
-                  ))
-                )}
-                <div ref={chatEndRef} />
-              </div>
-
-              {/* Chat input */}
-              {selectedOrder.status !== "closed" && (
-                <div className="px-3 py-2.5 border-t border-border/15 flex gap-2">
-                  <Input
-                    value={chatMsg}
-                    onChange={e => setChatMsg(e.target.value)}
-                    onKeyDown={e => e.key === "Enter" && !e.shiftKey && handleSendChat()}
-                    placeholder="Type a message..."
-                    className="text-xs h-8 bg-secondary/30 border-border/20"
-                  />
-                  <Button size="icon" onClick={handleSendChat} disabled={!chatMsg.trim() || sending} className="h-8 w-8 shrink-0 glow-primary">
-                    <Send className="h-3.5 w-3.5" />
-                  </Button>
-                </div>
-              )}
-            </div>
-          </div>
+        <main className="min-h-screen pt-32 pb-16 relative z-10 container mx-auto px-4 max-w-md text-center">
+          <ShoppingCart className="h-12 w-12 mx-auto text-primary mb-4" />
+          <h1 className="font-display text-2xl font-bold mb-2">Sign in to view your cart</h1>
+          <p className="text-muted-foreground mb-6">Your cart is saved to your account.</p>
+          <Link to="/sign-in"><Button>Sign in</Button></Link>
         </main>
         <Footer />
-      </div>
+      </>
     );
   }
 
+  const updateQty = async (id: string, q: number) => {
+    if (q < 1) return;
+    await supabase.from("cart_items").update({ quantity: q }).eq("id", id);
+    load();
+  };
+  const remove = async (id: string) => {
+    await supabase.from("cart_items").delete().eq("id", id);
+    load();
+  };
+
+  const subtotal = items.reduce((s, i) => s + Number(i.unit_price_inr) * i.quantity, 0);
+  const discount = applied ? Math.round(subtotal * (applied.percent / 100)) : 0;
+  const total = subtotal - discount;
+
+  const applyCoupon = async () => {
+    const code = coupon.trim().toUpperCase();
+    if (!code) return;
+    const { data } = await supabase.from("coupons").select("*").eq("code", code).eq("active", true).maybeSingle();
+    if (!data) return toast({ title: "Invalid coupon", variant: "destructive" });
+    if (data.expires_at && new Date(data.expires_at) < new Date()) return toast({ title: "Coupon expired", variant: "destructive" });
+    if (data.max_uses && data.uses >= data.max_uses) return toast({ title: "Coupon limit reached", variant: "destructive" });
+    setApplied({ code: data.code, percent: data.percent_off });
+    toast({ title: "Coupon applied", description: `${data.percent_off}% off` });
+  };
+
+  const placeOrder = async () => {
+    if (!user || items.length === 0) return;
+    setPlacing(true);
+    const { data: order, error } = await supabase
+      .from("orders")
+      .insert({
+        user_id: user.id,
+        subtotal_inr: subtotal,
+        discount_inr: discount,
+        total_inr: total,
+        coupon_code: applied?.code || null,
+      })
+      .select()
+      .single();
+    if (error || !order) { setPlacing(false); return toast({ title: "Order failed", description: error?.message, variant: "destructive" }); }
+
+    const orderItems = items.map((i) => ({
+      order_id: order.id, plan_id: i.plan_id, plan_name: i.plan_name, unit_price_inr: i.unit_price_inr, quantity: i.quantity,
+    }));
+    await supabase.from("order_items").insert(orderItems);
+
+    const invoiceNumber = `INV-${order.order_number.replace("VC-", "")}`;
+    await supabase.from("invoices").insert({
+      order_id: order.id, user_id: user.id, invoice_number: invoiceNumber, amount_inr: total, status: "pending",
+    });
+
+    await supabase.from("cart_items").delete().eq("user_id", user.id);
+    await supabase.from("user_activity_logs").insert({ user_id: user.id, action: `Placed order ${order.order_number}` });
+    await supabase.from("notifications").insert({
+      user_id: user.id, title: `Order ${order.order_number} created`,
+      message: `Open a Discord ticket to complete payment. Total ₹${total.toLocaleString("en-IN")}.`, type: "order",
+    });
+
+    setPlacing(false);
+    toast({ title: "Order placed", description: order.order_number });
+    nav("/dashboard/orders");
+  };
+
   return (
-    <div className="min-h-screen animated-bg">
+    <>
       <AnimatedBackground />
       <Navbar />
-      <main className="pt-24 pb-16 relative z-10">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-            <h1 className="font-display text-3xl font-black tracking-tight">
-              MY <span className="text-primary text-glow">ORDERS</span>
-            </h1>
-            <p className="text-sm text-muted-foreground mt-1">Track orders, chat with support, and manage your tickets.</p>
-          </motion.div>
+      <main className="min-h-screen pt-24 pb-16 relative z-10">
+        <div className="container mx-auto px-4">
+          <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="font-display text-3xl md:text-4xl font-bold mb-8">
+            Your cart
+          </motion.h1>
 
-          {loading ? (
-            <div className="text-center py-20 text-muted-foreground text-sm">Loading…</div>
-          ) : !session ? (
-            <div className="text-center py-20">
-              <div className="rounded-full bg-secondary/50 w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <ShoppingCart className="h-9 w-9 opacity-30" />
-              </div>
-              <p className="text-base font-semibold mb-2">Log in to view your orders</p>
-              <p className="text-sm text-muted-foreground mb-6">You need to be signed in to see your order history.</p>
-              <Button onClick={() => navigate("/auth")} className="glow-primary gap-2">
-                Log In <ArrowRight className="h-4 w-4" />
-              </Button>
-            </div>
-          ) : orders.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="rounded-full bg-secondary/50 w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <Package className="h-9 w-9 opacity-30" />
-              </div>
-              <p className="text-base font-semibold mb-2">No orders yet</p>
-              <p className="text-sm text-muted-foreground mb-6">Browse our plans and place your first order!</p>
-              <div className="flex gap-3 justify-center">
-                <Button onClick={() => navigate("/minecraft-plans")} className="glow-primary gap-2" size="sm">
-                  Minecraft Plans <ArrowRight className="h-3 w-3" />
-                </Button>
-                <Button onClick={() => navigate("/bot-plans")} variant="outline" size="sm" className="gap-2 border-primary/30">
-                  Bot Plans <ArrowRight className="h-3 w-3" />
-                </Button>
-              </div>
-            </div>
+          {items.length === 0 ? (
+            <Card><CardContent className="py-16 text-center">
+              <ShoppingCart className="h-12 w-12 mx-auto text-muted-foreground mb-3" />
+              <p className="text-muted-foreground mb-4">Your cart is empty</p>
+              <Link to="/minecraft-plans"><Button>Browse plans</Button></Link>
+            </CardContent></Card>
           ) : (
-            <div className="space-y-3">
-              {orders.map((order, i) => {
-                const stepIdx = getStepIndex(order.status);
-                const lastMsg = order.messages[order.messages.length - 1];
-                const hasAdminReply = lastMsg?.sender === "admin";
-                return (
-                  <motion.div
-                    key={order.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.04 }}
-                    onClick={() => setSelectedOrder(order)}
-                    className="rounded-xl glass gradient-border p-4 space-y-3 cursor-pointer hover:bg-secondary/10 transition-colors"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs text-muted-foreground">#{order.id}</span>
-                        <Badge className="bg-primary/15 text-primary text-[10px]">{order.type.toUpperCase()}</Badge>
-                        {order.specs.Currency && (
-                          <Badge className="bg-muted/30 text-muted-foreground text-[10px]">
-                            {order.specs.Currency === "PKR" ? "🇵🇰" : "🇮🇳"} {order.specs.Currency}
-                          </Badge>
-                        )}
-                        {hasAdminReply && (
-                          <Badge className="bg-green-500/15 text-green-400 text-[10px]">New Reply</Badge>
-                        )}
+            <div className="grid lg:grid-cols-[1fr_360px] gap-6">
+              <div className="space-y-3">
+                {items.map((i) => (
+                  <Card key={i.id}>
+                    <CardContent className="p-4 flex items-center gap-4">
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium">{i.plan_name}</p>
+                        {i.plan_category && <Badge variant="secondary" className="text-[10px] mt-1">{i.plan_category}</Badge>}
+                        <p className="text-sm text-muted-foreground mt-1">₹{Number(i.unit_price_inr).toLocaleString("en-IN")} each</p>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-[10px] text-muted-foreground">{order.messages.length} msgs</span>
-                        <MessageCircle className="h-3 w-3 text-primary" />
+                      <div className="flex items-center gap-1.5">
+                        <Button size="icon" variant="outline" className="h-8 w-8" onClick={() => updateQty(i.id, i.quantity - 1)}><Minus className="h-3.5 w-3.5" /></Button>
+                        <span className="w-8 text-center text-sm">{i.quantity}</span>
+                        <Button size="icon" variant="outline" className="h-8 w-8" onClick={() => updateQty(i.id, i.quantity + 1)}><Plus className="h-3.5 w-3.5" /></Button>
                       </div>
-                    </div>
+                      <p className="font-semibold w-24 text-right">₹{(Number(i.unit_price_inr) * i.quantity).toLocaleString("en-IN")}</p>
+                      <Button size="icon" variant="ghost" onClick={() => remove(i.id)} className="text-destructive h-8 w-8">
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
 
-                    {/* Compact progress */}
-                    <div className="flex items-center gap-1">
-                      {ORDER_STEPS.map((s, idx) => {
-                        const active = idx <= stepIdx;
-                        return (
-                          <div key={s.key} className="flex items-center flex-1">
-                            <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                              active ? "bg-primary/15 border border-primary/40" : "bg-muted/10 border border-border/20"
-                            }`}>
-                              <s.icon className={`h-2.5 w-2.5 ${active ? "text-primary" : "text-muted-foreground/30"}`} />
-                            </div>
-                            {idx < ORDER_STEPS.length - 1 && (
-                              <div className={`h-0.5 flex-1 rounded-full mx-0.5 ${idx < stepIdx ? "bg-primary/40" : "bg-border/20"}`} />
-                            )}
-                          </div>
-                        );
-                      })}
+              <Card className="h-fit sticky top-24">
+                <CardHeader>
+                  <CardTitle className="text-base">Order summary</CardTitle>
+                  <CardDescription>Manual payment via Discord</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="flex justify-between text-sm"><span className="text-muted-foreground">Subtotal</span><span>₹{subtotal.toLocaleString("en-IN")}</span></div>
+                  {applied && <div className="flex justify-between text-sm text-green-400"><span>Discount ({applied.code})</span><span>-₹{discount.toLocaleString("en-IN")}</span></div>}
+                  <div className="border-t border-border/40 pt-3 flex justify-between font-semibold">
+                    <span>Total</span><span className="font-display text-xl">₹{total.toLocaleString("en-IN")}</span>
+                  </div>
+                  <div className="flex gap-2 pt-2">
+                    <div className="relative flex-1">
+                      <Tag className="absolute left-3 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
+                      <Input value={coupon} onChange={(e) => setCoupon(e.target.value)} placeholder="Coupon code" className="pl-9 h-9" />
                     </div>
-
-                    <div className="flex items-center justify-between text-[10px]">
-                      <span className="text-muted-foreground">
-                        {order.specs.Plan || order.specs.Type || "Order"} • {order.specs.Price || order.specs.Total}
-                      </span>
-                      <span className="text-muted-foreground">
-                        {new Date(order.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
-                      </span>
-                    </div>
-                  </motion.div>
-                );
-              })}
+                    <Button size="sm" variant="outline" onClick={applyCoupon}>Apply</Button>
+                  </div>
+                  <Button onClick={placeOrder} disabled={placing} className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90 glow-primary">
+                    <MessageCircle className="h-4 w-4" /> {placing ? "Placing…" : "Place order"}
+                  </Button>
+                  <p className="text-[11px] text-muted-foreground text-center">
+                    You'll get an order ID. Open a Discord ticket to pay via UPI or other methods — our team verifies manually.
+                  </p>
+                  <a href={invite} target="_blank" rel="noopener noreferrer" className="block">
+                    <Button variant="outline" size="sm" className="w-full gap-1.5">
+                      <MessageCircle className="h-3.5 w-3.5" /> Join our Discord
+                    </Button>
+                  </a>
+                </CardContent>
+              </Card>
             </div>
           )}
         </div>
       </main>
       <Footer />
-    </div>
+    </>
   );
 };
 
