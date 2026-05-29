@@ -9,6 +9,8 @@ import CustomCursor from "@/components/CustomCursor";
 import LoadingScreen from "@/components/LoadingScreen";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import { refreshDiscordInvite } from "@/lib/vixon";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 
 const Index = lazy(() => import("./pages/Index"));
 const MinecraftHosting = lazy(() => import("./pages/MinecraftHosting"));
@@ -28,6 +30,16 @@ const VpsStarter = lazy(() => import("./pages/VpsStarter"));
 const VpsPremium = lazy(() => import("./pages/VpsPremium"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const AdminPanel = lazy(() => import("./pages/AdminPanel"));
+const SignIn = lazy(() => import("./pages/SignIn"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const CartPage = lazy(() => import("./pages/CartPage"));
+const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
+const ProfilePage = lazy(() => import("./pages/dashboard/ProfilePage"));
+const OrdersPage = lazy(() => import("./pages/dashboard/OrdersPage"));
+const BillingPage = lazy(() => import("./pages/dashboard/BillingPage"));
+const SettingsPage = lazy(() => import("./pages/dashboard/SettingsPage"));
+const SupportPage = lazy(() => import("./pages/dashboard/SupportPage"));
 
 const queryClient = new QueryClient();
 
@@ -38,13 +50,9 @@ const PageLoader = () => (
 );
 
 const App = () => {
-  const [showLoader, setShowLoader] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return document.readyState !== "complete";
-  });
+  const [showLoader, setShowLoader] = useState(() => typeof window !== "undefined" && document.readyState !== "complete");
 
   useEffect(() => {
-    // Force dark theme always
     document.documentElement.classList.remove("light");
     try { localStorage.removeItem("vixon-theme"); } catch {}
     refreshDiscordInvite();
@@ -56,6 +64,8 @@ const App = () => {
     return () => clearTimeout(t);
   }, [showLoader]);
 
+  const P = (el: JSX.Element, adminOnly = false) => <ProtectedRoute adminOnly={adminOnly}>{el}</ProtectedRoute>;
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -63,31 +73,47 @@ const App = () => {
         <Sonner />
         {showLoader && <LoadingScreen onComplete={() => setShowLoader(false)} />}
         <BrowserRouter>
-          <AnimatedBackground />
-          <CustomCursor />
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/minecraft" element={<MinecraftHosting />} />
-              <Route path="/minecraft-plans" element={<MinecraftPlans />} />
-              <Route path="/bot-hosting" element={<BotHosting />} />
-              <Route path="/bot-plans" element={<BotPlans />} />
-              <Route path="/games" element={<AllGames />} />
-              <Route path="/features" element={<FeaturesPage />} />
-              <Route path="/why-us" element={<WhyUsPage />} />
-              <Route path="/tos" element={<TermsOfService />} />
-              <Route path="/faq" element={<FAQPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/status" element={<StatusPage />} />
-              <Route path="/website-plans" element={<WebsitePlans />} />
-              <Route path="/vps-starter" element={<VpsStarter />} />
-              <Route path="/vps-premium" element={<VpsPremium />} />
-              <Route path="/adminpagemeow" element={<AdminLogin />} />
-              <Route path="/adminpagemeow/panel" element={<AdminPanel />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-          <BackToTop />
+          <AuthProvider>
+            <AnimatedBackground />
+            <CustomCursor />
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/minecraft" element={<MinecraftHosting />} />
+                <Route path="/minecraft-plans" element={<MinecraftPlans />} />
+                <Route path="/bot-hosting" element={<BotHosting />} />
+                <Route path="/bot-plans" element={<BotPlans />} />
+                <Route path="/games" element={<AllGames />} />
+                <Route path="/features" element={<FeaturesPage />} />
+                <Route path="/why-us" element={<WhyUsPage />} />
+                <Route path="/tos" element={<TermsOfService />} />
+                <Route path="/faq" element={<FAQPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/status" element={<StatusPage />} />
+                <Route path="/website-plans" element={<WebsitePlans />} />
+                <Route path="/vps-starter" element={<VpsStarter />} />
+                <Route path="/vps-premium" element={<VpsPremium />} />
+
+                <Route path="/sign-in" element={<SignIn />} />
+                <Route path="/sign-up" element={<SignUp />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/dashboard" element={P(<Dashboard />)} />
+                <Route path="/dashboard/profile" element={P(<ProfilePage />)} />
+                <Route path="/dashboard/orders" element={P(<OrdersPage />)} />
+                <Route path="/dashboard/billing" element={P(<BillingPage />)} />
+                <Route path="/dashboard/settings" element={P(<SettingsPage />)} />
+                <Route path="/dashboard/support" element={P(<SupportPage />)} />
+
+                <Route path="/adminpagemeow" element={<AdminLogin />} />
+                <Route path="/adminpagemeow/panel" element={P(<AdminPanel />, true)} />
+
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+            <BackToTop />
+          </AuthProvider>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
