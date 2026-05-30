@@ -71,6 +71,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const signOut = async () => {
+    try { await (window as any).__clerkSignOut?.(); } catch {}
     await supabase.auth.signOut();
     setProfile(null);
     setIsAdmin(false);
