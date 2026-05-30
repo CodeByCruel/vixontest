@@ -22,7 +22,9 @@ export const ClerkBridge = ({ children }: { children: React.ReactNode }) => {
         exchangedFor.current = null;
         return;
       }
-      if (!user?.id || exchangedFor.current === user.id) return;
+      if (!user?.id) return;
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session && exchangedFor.current === user.id) return;
       try {
         const token = await getToken();
         if (!token || cancelled) return;
