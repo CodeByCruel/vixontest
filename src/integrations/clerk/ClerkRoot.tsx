@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { ClerkProvider } from "@clerk/clerk-react";
 import { dark } from "@clerk/themes";
+import { useNavigate } from "react-router-dom";
 import { fetchClerkPublishableKey } from "./bootstrap";
 import { ClerkBridge } from "./ClerkBridge";
 
 export const ClerkRoot = ({ children }: { children: React.ReactNode }) => {
+  const navigate = useNavigate();
   const [pk, setPk] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
@@ -33,6 +35,8 @@ export const ClerkRoot = ({ children }: { children: React.ReactNode }) => {
   return (
     <ClerkProvider
       publishableKey={pk}
+      routerPush={(to) => navigate(to)}
+      routerReplace={(to) => navigate(to, { replace: true })}
       appearance={{
         baseTheme: dark,
         variables: {

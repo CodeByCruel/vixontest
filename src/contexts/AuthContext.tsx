@@ -40,34 +40,50 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   const loadProfile = async (uid: string) => {
-    const [{ data: prof }, { data: roles }] = await Promise.all([
-      supabase.from("profiles").select("*").eq("user_id", uid).maybeSingle(),
-      supabase.from("user_roles").select("role").eq("user_id", uid),
-    ]);
-    setProfile((prof as any) || null);
-    setIsAdmin(!!roles?.some((r: any) => r.role === "admin"));
+    try {
+      const [{ data: prof }, { data: roles }] = await Promise.all([
+        supabase.from("profiles").select("*").eq("user_id", uid).maybeSingle(),
+        supabase.from("user_roles").select("role").eq("user_id", uid),
+      ]);
+      setProfile((prof as any) || null);
+      setIsAdmin(!!roles?.some((r: any) => r.role === "admin"));
+    } catch {
+      setProfile(null);
+      setIsAdmin(false);
+    }
   };
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, s) => {
+    let active = true;
+
+    const applySession = (s: Session | null) => {
+      if (!active) return;
       setSession(s);
       setUser(s?.user ?? null);
       if (s?.user) {
-        setTimeout(() => loadProfile(s.user.id), 0);
+        setLoading(true);
+        setTimeout(() => {
+          loadProfile(s.user.id).finally(() => active && setLoading(false));
+        }, 0);
       } else {
         setProfile(null);
         setIsAdmin(false);
+        setLoading(false);
       }
+    };
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, s) => {
+      applySession(s);
     });
 
     supabase.auth.getSession().then(({ data: { session: s } }) => {
-      setSession(s);
-      setUser(s?.user ?? null);
-      if (s?.user) loadProfile(s.user.id).finally(() => setLoading(false));
-      else setLoading(false);
+      applySession(s);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      active = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
   const signOut = async () => {
