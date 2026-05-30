@@ -11,6 +11,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import { refreshDiscordInvite } from "@/lib/vixon";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
+import { ClerkRoot } from "@/integrations/clerk/ClerkRoot";
 
 const Index = lazy(() => import("./pages/Index"));
 const MinecraftHosting = lazy(() => import("./pages/MinecraftHosting"));
@@ -73,6 +74,7 @@ const App = () => {
         <Sonner />
         {showLoader && <LoadingScreen onComplete={() => setShowLoader(false)} />}
         <BrowserRouter>
+         <ClerkRoot>
           <AuthProvider>
             <AnimatedBackground />
             <CustomCursor />
@@ -94,8 +96,8 @@ const App = () => {
                 <Route path="/vps-starter" element={<VpsStarter />} />
                 <Route path="/vps-premium" element={<VpsPremium />} />
 
-                <Route path="/sign-in" element={<SignIn />} />
-                <Route path="/sign-up" element={<SignUp />} />
+                <Route path="/sign-in/*" element={<SignIn />} />
+                <Route path="/sign-up/*" element={<SignUp />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
 
                 <Route path="/cart" element={<CartPage />} />
@@ -114,6 +116,7 @@ const App = () => {
             </Suspense>
             <BackToTop />
           </AuthProvider>
+         </ClerkRoot>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
