@@ -1,0 +1,80 @@
+import { motion } from "framer-motion";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import AnimatedBackground from "@/components/AnimatedBackground";
+import SEOHead from "@/components/SEOHead";
+import CurrencyConverter from "@/components/CurrencyConverter";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Cpu, HardDrive, MapPin, MemoryStick, Network, Server, ShoppingCart, Wifi } from "lucide-react";
+import { useDiscordInvite } from "@/lib/vixon";
+
+const plans = [
+  { name: "8GB Plan", ram: "8GB DDR4 RAM", cpu: "2 vCores", storage: "50GB NVMe SSD", price: 400 },
+  { name: "16GB Plan", ram: "16GB DDR4 RAM", cpu: "4 vCores", storage: "80GB NVMe SSD", price: 900 },
+  { name: "32GB Plan", ram: "32GB DDR4 RAM", cpu: "8 vCores", storage: "120GB NVMe SSD", price: 1500 },
+  { name: "48GB Plan", ram: "48GB DDR4 RAM", cpu: "10 vCores", storage: "150GB NVMe SSD", price: 2000 },
+  { name: "64GB Plan", ram: "64GB DDR4 RAM", cpu: "12 vCores", storage: "200GB NVMe SSD", price: 2100 },
+  { name: "64GB Ultra Plan", ram: "64GB DDR4 RAM", cpu: "16 vCores", storage: "200GB NVMe SSD", price: 2600 },
+];
+
+const shared = [
+  { icon: Server, text: "Intel Platinum 8269-CY" },
+  { icon: Wifi, text: "1x Dedicated IPv4" },
+  { icon: MapPin, text: "India, Delhi" },
+  { icon: Network, text: "Unmetered Bandwidth" },
+  { icon: Network, text: "2GBPS Network Speed" },
+];
+
+const VpsStarter = () => {
+  const discord = useDiscordInvite();
+
+  return (
+    <div className="min-h-screen relative">
+      <SEOHead title="Starter VPS Plans" description="Affordable Intel VPS plans in India with DDR4 RAM, NVMe SSD, dedicated IPv4, unmetered bandwidth and 2GBPS network." path="/vps-starter" />
+      <AnimatedBackground />
+      <Navbar />
+      <main className="pt-24 pb-16 relative z-10">
+        <div className="container mx-auto px-4">
+          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mb-10">
+            <Badge className="mb-4 bg-primary/15 text-primary border border-primary/20">STARTER VPS</Badge>
+            <h1 className="text-4xl md:text-5xl font-extrabold font-display">Starter VPS Plans</h1>
+            <p className="mt-4 text-muted-foreground">Budget-friendly Intel Platinum VPS hosting for bots, sites, panels, and lightweight game services.</p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {shared.map(({ icon: Icon, text }) => <span key={text} className="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-secondary/40 px-3 py-1.5 text-xs text-muted-foreground"><Icon className="h-3.5 w-3.5 text-primary" />{text}</span>)}
+            </div>
+          </motion.div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {plans.map((plan, i) => (
+              <motion.div key={plan.name} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}>
+                <Card className="h-full border-primary/15 bg-card/70 card-lift">
+                  <CardContent className="p-5 flex h-full flex-col gap-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <h2 className="text-lg font-bold font-display">{plan.name}</h2>
+                        <p className="text-xs text-muted-foreground">Intel Platinum 8269-CY</p>
+                      </div>
+                      <div className="text-right shrink-0"><span className="text-2xl font-extrabold text-primary">₹{plan.price}</span><span className="text-xs text-muted-foreground">/mo</span></div>
+                    </div>
+                    <div className="space-y-2 text-sm flex-1">
+                      {[{ icon: MemoryStick, text: plan.ram }, { icon: Cpu, text: plan.cpu }, { icon: HardDrive, text: plan.storage }, ...shared.slice(1)].map(({ icon: Icon, text }) => (
+                        <div key={text} className="flex items-center gap-2 text-muted-foreground"><Icon className="h-3.5 w-3.5 text-primary shrink-0" /><span className="text-xs">{text}</span></div>
+                      ))}
+                    </div>
+                    <CurrencyConverter amount={plan.price} />
+                    <Button onClick={() => window.open(discord, "_blank")} className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90"><ShoppingCart className="h-4 w-4" /> Order on Discord</Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default VpsStarter;
