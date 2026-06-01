@@ -108,8 +108,8 @@ const App = () => {
                 <Route path="/dashboard/settings" element={P(<SettingsPage />)} />
                 <Route path="/dashboard/support" element={P(<SupportPage />)} />
 
-                <Route path="/adminpagemeow/*" element={<AdminLogin />} />
                 <Route path="/adminpagemeow/panel" element={P(<AdminPanel />, true)} />
+                <Route path="/adminpagemeow/*" element={<AdminLogin />} />
 
                 <Route path="*" element={<NotFound />} />
               </Routes>
