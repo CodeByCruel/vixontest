@@ -1,4 +1,4 @@
-import { Suspense, useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
@@ -61,6 +61,22 @@ const FloatingOrb = ({
 };
 
 const AnimatedBackground = () => {
+  const [lowPower, setLowPower] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mobile = window.matchMedia("(max-width: 768px)");
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setLowPower(mobile.matches || reduced.matches);
+    update();
+    mobile.addEventListener("change", update);
+    reduced.addEventListener("change", update);
+    return () => {
+      mobile.removeEventListener("change", update);
+      reduced.removeEventListener("change", update);
+    };
+  }, []);
+
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10" aria-hidden="true">
       {/* Base dark blue gradient */}
@@ -72,41 +88,38 @@ const AnimatedBackground = () => {
         }}
       />
 
-      {/* 3D layer */}
-      <div className="absolute inset-0 opacity-90">
-        <Canvas
-          camera={{ position: [0, 0, 5], fov: 60 }}
-          dpr={[1, 1.5]}
-          gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-        >
-          <Suspense fallback={null}>
-            <Starfield />
-            <FloatingOrb position={[-3, 1, -2]} color="#3b9eff" size={0.5} speed={0.3} />
-            <FloatingOrb position={[3, -1, -3]} color="#5eb6ff" size={0.7} speed={0.25} />
-            <FloatingOrb position={[1, 2, -4]} color="#2d7fd9" size={0.4} speed={0.35} />
-          </Suspense>
-        </Canvas>
-      </div>
+      {!lowPower && (
+        <div className="absolute inset-0 opacity-90">
+          <Canvas camera={{ position: [0, 0, 5], fov: 60 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}>
+            <Suspense fallback={null}>
+              <Starfield />
+              <FloatingOrb position={[-3, 1, -2]} color="#3b9eff" size={0.5} speed={0.3} />
+              <FloatingOrb position={[3, -1, -3]} color="#5eb6ff" size={0.7} speed={0.25} />
+              <FloatingOrb position={[1, 2, -4]} color="#2d7fd9" size={0.4} speed={0.35} />
+            </Suspense>
+          </Canvas>
+        </div>
+      )}
 
       {/* Ambient blue glows */}
-      <motion.div
+      {!lowPower && <motion.div
         className="absolute -top-32 -left-16 w-[500px] h-[500px] rounded-full blur-[100px]"
         style={{ background: "hsl(210 100% 50% / 0.15)" }}
         animate={{ x: [0, 60, 0], y: [0, 40, 0], scale: [1, 1.2, 1] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
+      />}
+      {!lowPower && <motion.div
         className="absolute -bottom-24 -right-20 w-[450px] h-[450px] rounded-full blur-[100px]"
         style={{ background: "hsl(195 100% 55% / 0.12)" }}
         animate={{ x: [0, -50, 0], y: [0, 30, 0], scale: [1, 0.9, 1] }}
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-      />
-      <motion.div
+      />}
+      {!lowPower && <motion.div
         className="absolute top-1/2 left-1/3 w-[400px] h-[400px] rounded-full blur-[120px]"
         style={{ background: "hsl(220 100% 45% / 0.1)" }}
         animate={{ x: [0, 40, 0], y: [0, -50, 0], scale: [1, 1.15, 1] }}
         transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-      />
+      />}
 
       {/* Grid overlay */}
       <div

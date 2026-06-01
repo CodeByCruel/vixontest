@@ -20,6 +20,14 @@ import { toast } from "@/hooks/use-toast";
 
 const ORDER_STATUSES = ["pending", "awaiting_verification", "paid", "active", "suspended", "cancelled"];
 
+const attachProfiles = async <T extends { user_id?: string }>(rows: T[]) => {
+  const ids = [...new Set(rows.map((r) => r.user_id).filter(Boolean))] as string[];
+  if (!ids.length) return rows.map((row) => ({ ...row, profile: null }));
+  const { data } = await supabase.from("profiles").select("user_id, full_name, email").in("user_id", ids);
+  const profiles = new Map((data || []).map((p: any) => [p.user_id, p]));
+  return rows.map((row) => ({ ...row, profile: row.user_id ? profiles.get(row.user_id) || null : null }));
+};
+
 const AdminPanel = () => {
   const nav = useNavigate();
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -133,7 +141,11 @@ const UsersTab = () => {
 // ============ ORDERS ============
 const OrdersTab = () => {
   const [orders, setOrders] = useState<any[]>([]);
-  const load = () => supabase.from("orders").select("*, profiles(full_name, email)").order("created_at", { ascending: false }).then(({ data }) => setOrders((data as any) || []));
+  const load = async () => {
+    const { data, error } = await supabase.from("orders").select("*").order("created_at", { ascending: false });
+    if (error) return toast({ title: "Could not load orders", description: error.message, variant: "destructive" });
+    setOrders(await attachProfiles((data as any) || []));
+  };
   useEffect(() => { load(); }, []);
 
   const updateStatus = async (order: any, status: string) => {
@@ -157,7 +169,7 @@ const OrdersTab = () => {
             {orders.map((o) => (
               <TableRow key={o.id}>
                 <TableCell className="font-mono text-xs">{o.order_number}</TableCell>
-                <TableCell className="text-xs">{o.profiles?.full_name || o.profiles?.email || o.user_id.slice(0, 8)}</TableCell>
+                <TableCell className="text-xs">{o.profile?.full_name || o.profile?.email || o.user_id.slice(0, 8)}</TableCell>
                 <TableCell>₹{Number(o.total_inr).toLocaleString("en-IN")}</TableCell>
                 <TableCell className="text-xs">{new Date(o.created_at).toLocaleString()}</TableCell>
                 <TableCell>
@@ -275,7 +287,12 @@ const CouponsTab = () => {
 // ============ INVOICES ============
 const InvoicesTab = () => {
   const [list, setList] = useState<any[]>([]);
-  useEffect(() => { supabase.from("invoices").select("*, profiles(full_name, email)").order("created_at", { ascending: false }).then(({ data }) => setList((data as any) || [])); }, []);
+  useEffect(() => {
+    supabase.from("invoices").select("*").order("created_at", { ascending: false }).then(async ({ data, error }) => {
+      if (error) return toast({ title: "Could not load invoices", description: error.message, variant: "destructive" });
+      setList(await attachProfiles((data as any) || []));
+    });
+  }, []);
   return (
     <Card>
       <CardHeader><CardTitle className="text-base">Invoices ({list.length})</CardTitle></CardHeader>
@@ -285,7 +302,7 @@ const InvoicesTab = () => {
           <TableBody>{list.map((i) => (
             <TableRow key={i.id}>
               <TableCell className="font-mono text-xs">{i.invoice_number}</TableCell>
-              <TableCell className="text-xs">{i.profiles?.full_name || i.profiles?.email || "—"}</TableCell>
+              <TableCell className="text-xs">{i.profile?.full_name || i.profile?.email || "—"}</TableCell>
               <TableCell>₹{Number(i.amount_inr).toLocaleString("en-IN")}</TableCell>
               <TableCell><Badge variant={i.status === "paid" ? "default" : "secondary"} className="text-[10px]">{i.status}</Badge></TableCell>
               <TableCell className="text-xs">{new Date(i.created_at).toLocaleDateString()}</TableCell>
@@ -300,7 +317,11 @@ const InvoicesTab = () => {
 // ============ TICKETS ============
 const TicketsTab = () => {
   const [list, setList] = useState<any[]>([]);
-  const load = () => supabase.from("support_tickets").select("*, profiles(full_name, email)").order("created_at", { ascending: false }).then(({ data }) => setList((data as any) || []));
+  const load = async () => {
+    const { data, error } = await supabase.from("support_tickets").select("*").order("created_at", { ascending: false });
+    if (error) return toast({ title: "Could not load tickets", description: error.message, variant: "destructive" });
+    setList(await attachProfiles((data as any) || []));
+  };
   useEffect(() => { load(); }, []);
   const setStatus = async (id: string, status: string) => { await supabase.from("support_tickets").update({ status }).eq("id", id); load(); };
 
@@ -313,7 +334,7 @@ const TicketsTab = () => {
             <div className="flex items-center justify-between gap-2 mb-1">
               <div>
                 <p className="text-sm font-medium">{t.subject}</p>
-                <p className="text-xs text-muted-foreground">{t.profiles?.full_name || t.profiles?.email} · {new Date(t.created_at).toLocaleString()}</p>
+                <p className="text-xs text-muted-foreground">{t.profile?.full_name || t.profile?.email || "User"} · {new Date(t.created_at).toLocaleString()}</p>
               </div>
               <Select value={t.status} onValueChange={(v) => setStatus(t.id, v)}>
                 <SelectTrigger className="h-7 w-32 text-xs"><SelectValue /></SelectTrigger>

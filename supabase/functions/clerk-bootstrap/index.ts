@@ -83,6 +83,15 @@ Deno.serve(async (req) => {
         },
         { onConflict: "user_id" },
       );
+
+      await admin
+        .from("user_roles")
+        .insert({ user_id: supaUser.id, role: "user" })
+        .select("id")
+        .maybeSingle()
+        .then(({ error }) => {
+          if (error && error.code !== "23505") console.error("role bootstrap failed", error.message);
+        });
     }
 
     return json({ email, token_hash: hashed });
