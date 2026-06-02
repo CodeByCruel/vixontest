@@ -26,7 +26,7 @@ const botPlans = [
 ];
 
 const BotPlans = () => {
-  const BILLING_URL = "https://discord.gg/nFvnxwmsAS";
+  const BILLING_URL = "https://discord.gg/wDKTvVPh4d";
 
   return (
     <div className="min-h-screen relative">

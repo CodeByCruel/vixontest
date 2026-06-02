@@ -32,7 +32,7 @@ const planTheme = {
 };
 
 const MinecraftPlans = () => {
-  const BILLING_URL = "https://discord.gg/nFvnxwmsAS";
+  const BILLING_URL = "https://discord.gg/wDKTvVPh4d";
 
   const PlanGrid = ({ plans, type }: { plans: Plan[]; type: "starter" | "standard" | "premium" }) => {
     const t = planTheme[type];

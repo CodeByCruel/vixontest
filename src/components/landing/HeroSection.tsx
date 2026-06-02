@@ -11,7 +11,7 @@ import palworldBg from "@/assets/hero/palworld-bg.jpg";
 import terrariaBg from "@/assets/hero/terraria-bg.jpg";
 import rustBg from "@/assets/hero/rust-bg.jpg";
 
-const DISCORD_LINK = "https://discord.gg/nFvnxwmsAS";
+const DISCORD_LINK = "https://discord.gg/wDKTvVPh4d";
 
 const heroGames = [
   { name: "Minecraft", bg: minecraftBg, color: "hsl(120 60% 50%)" },

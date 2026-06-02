@@ -37,7 +37,7 @@ interface Props {
 type Currency = "INR" | "PKR";
 
 const INR_TO_PKR = 3.3;
-const DISCORD_INVITE = "https://discord.gg/vixon";
+const DISCORD_INVITE = "https://discord.gg/wDKTvVPh4d";
 
 const currencyConfig: Record<Currency, { symbol: string; label: string; flag: string; qr: string; paymentMethod: string; accountInfo: string; accountName: string }> = {
   INR: { symbol: "₹", label: "INR", flag: "🇮🇳", qr: qrInr, paymentMethod: "UPI", accountInfo: "akshit1408@fam", accountName: "AKSHIT" },

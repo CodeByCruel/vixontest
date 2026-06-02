@@ -19,12 +19,12 @@ const cpuTiers = [
 ];
 const getPlayerSlots = (ram: number) => { if (ram <= 2) return 20; if (ram <= 4) return 40; if (ram <= 8) return 80; if (ram <= 16) return 160; if (ram <= 32) return 300; return 500; };
 
-const DISCORD_LINK = "https://discord.gg/nFvnxwmsAS";
+const DISCORD_LINK = "https://discord.gg/wDKTvVPh4d";
 
 const MinecraftHosting = () => {
   const [cpu, setCpu] = useState("starter");
   const [ram, setRam] = useState(4);
-  const BILLING_URL = "https://discord.gg/nFvnxwmsAS";
+  const BILLING_URL = "https://discord.gg/wDKTvVPh4d";
   const [settings, setSettingsState] = useState<SiteSettings>(DEFAULT_SETTINGS);
 
   useEffect(() => { getSettings().then(setSettingsState); }, []);

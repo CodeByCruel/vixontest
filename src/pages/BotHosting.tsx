@@ -11,7 +11,7 @@ import { Bot, MemoryStick, HardDrive, Wifi, ShoppingCart, ExternalLink, Shield }
 import { getSettings, DEFAULT_SETTINGS } from "@/lib/storage";
 import type { SiteSettings } from "@/lib/storage";
 
-const DISCORD_LINK = "https://discord.gg/nFvnxwmsAS";
+const DISCORD_LINK = "https://discord.gg/wDKTvVPh4d";
 const PRICE_PER_GB = 50;
 const formatRam = (mb: number) => mb >= 1024 ? `${mb / 1024} GB` : `${mb} MB`;
 
@@ -59,7 +59,7 @@ const BotHosting = () => {
                     <div className="flex items-baseline justify-between"><span className="text-muted-foreground">Monthly</span><span className="font-extrabold text-3xl text-primary" style={{ fontFamily: "'Outfit', sans-serif" }}>₹{price.toFixed(0)}</span></div>
                     <div className="flex items-center justify-between mt-1"><span className="text-xs text-muted-foreground">₹{PRICE_PER_GB}/GB × {(ramMb / 1024).toFixed(1)} GB</span><CurrencyConverter amount={price} /></div>
                   </div>
-                  <Button onClick={() => window.open("https://discord.gg/nFvnxwmsAS", "_blank")} className="w-full glow-primary gap-2 font-semibold text-sm" size="lg"><ShoppingCart className="h-4 w-4" /> Order on Discord</Button>
+                  <Button onClick={() => window.open("https://discord.gg/wDKTvVPh4d", "_blank")} className="w-full glow-primary gap-2 font-semibold text-sm" size="lg"><ShoppingCart className="h-4 w-4" /> Order on Discord</Button>
                   <a href={DISCORD_LINK} target="_blank" rel="noopener noreferrer"><Button variant="outline" className="w-full gap-2 text-sm border-primary/30" size="lg"><ExternalLink className="h-4 w-4" /> JOIN DISCORD</Button></a>
                 </CardContent>
               </Card>
