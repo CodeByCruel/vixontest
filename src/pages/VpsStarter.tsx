@@ -64,7 +64,7 @@ const VpsStarter = () => {
                       ))}
                     </div>
                     <CurrencyConverter amount={plan.price} />
-                    <Button onClick={() => window.open(discord, "_blank")} className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90"><ShoppingCart className="h-4 w-4" /> Order on Discord</Button>
+                    <Button onClick={() => window.open("https://billing.vixoncloud.com", "_blank")} className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90"><ShoppingCart className="h-4 w-4" /> Order Now</Button>
                   </CardContent>
                 </Card>
               </motion.div>
