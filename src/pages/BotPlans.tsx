@@ -26,7 +26,7 @@ const botPlans = [
 ];
 
 const BotPlans = () => {
-  const BILLING_URL = "https://discord.gg/wDKTvVPh4d";
+  const BILLING_URL = "https://billing.vixoncloud.com";
 
   return (
     <div className="min-h-screen relative">
