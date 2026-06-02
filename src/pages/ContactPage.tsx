@@ -43,7 +43,7 @@ const ContactPage = () => {
                 <Users className="h-3 w-3" />
                 Recommended
               </div>
-              <a href="https://discord.gg/BdFNqyNuKD" target="_blank" rel="noopener noreferrer" className="w-full mt-auto">
+              <a href="https://discord.gg/wDKTvVPh4d" target="_blank" rel="noopener noreferrer" className="w-full mt-auto">
                 <Button className="w-full gap-2 bg-[#5865F2] hover:bg-[#4752C4] text-white">
                   <MessageCircle className="h-4 w-4" />
                   Open Discord Ticket

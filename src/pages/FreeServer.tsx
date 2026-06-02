@@ -63,7 +63,7 @@ const FreeServer = () => {
             <p className="text-muted-foreground text-sm leading-relaxed">
               The free server program is currently paused. Join our Discord to get notified when it's back!
             </p>
-            <a href="https://discord.gg/vixon" target="_blank" rel="noopener noreferrer" className="mt-6 inline-block">
+            <a href="https://discord.gg/wDKTvVPh4d" target="_blank" rel="noopener noreferrer" className="mt-6 inline-block">
               <Button className="gap-2">
                 <ExternalLink className="h-4 w-4" /> Join Discord
               </Button>
@@ -179,7 +179,7 @@ const FreeServer = () => {
               viewport={{ once: true }}
               className="text-center mt-12"
             >
-              <a href="https://discord.gg/vixon" target="_blank" rel="noopener noreferrer">
+              <a href="https://discord.gg/wDKTvVPh4d" target="_blank" rel="noopener noreferrer">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button size="lg" className="glow-primary gap-2.5 px-10 text-sm font-bold rounded-xl h-12 bg-primary text-primary-foreground hover:bg-primary/90">
                     <ExternalLink className="h-4 w-4" /> Join Discord & Claim Now

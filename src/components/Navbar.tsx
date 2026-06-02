@@ -3,13 +3,14 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu, X, ExternalLink, FileText, LayoutDashboard, ChevronDown, Gamepad2,
-  Box, Cpu, Rocket, Globe, Bot, HelpCircle, Activity, Code2, MessagesSquare, Home, Sparkles
+  Box, Cpu, Rocket, Globe, Bot, HelpCircle, Activity, MessagesSquare, Home, Sparkles, Receipt
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/vixon-logo.png";
-import { useDiscordInvite, PANEL_URL } from "@/lib/vixon";
-import { UserMenu } from "@/components/UserMenu";
-import { NotificationBell } from "@/components/NotificationBell";
+import { useDiscordInvite } from "@/lib/vixon";
+
+const GAME_PANEL_URL = "https://dash.vixoncloud.com";
+const CLIENT_PANEL_URL = "https://billing.vixoncloud.com";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -133,14 +134,18 @@ const Navbar = () => {
               <MessagesSquare className="h-4 w-4" /> Discord
             </Button>
           </a>
-          <a href={PANEL_URL} target="_blank" rel="noopener noreferrer">
-            <Button size="sm" className="glow-primary text-sm h-9 gap-1.5 font-semibold bg-primary text-primary-foreground hover:bg-primary/90">
-              <LayoutDashboard className="h-4 w-4" /> Panel
+          <a href={CLIENT_PANEL_URL} target="_blank" rel="noopener noreferrer">
+            <Button size="sm" variant="outline" className="gap-1.5 text-sm h-9">
+              <Receipt className="h-4 w-4" /> Client Panel
               <ExternalLink className="h-3 w-3" />
             </Button>
           </a>
-          <NotificationBell />
-          <UserMenu />
+          <a href={GAME_PANEL_URL} target="_blank" rel="noopener noreferrer">
+            <Button size="sm" className="glow-primary text-sm h-9 gap-1.5 font-semibold bg-primary text-primary-foreground hover:bg-primary/90">
+              <LayoutDashboard className="h-4 w-4" /> Game Panel
+              <ExternalLink className="h-3 w-3" />
+            </Button>
+          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -195,8 +200,11 @@ const Navbar = () => {
                 <a href={invite} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
                   <Button variant="outline" size="sm" className="w-full gap-1.5"><MessagesSquare className="h-4 w-4" /> Discord</Button>
                 </a>
-                <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
-                  <Button size="sm" className="w-full gap-1.5 glow-primary bg-primary text-primary-foreground hover:bg-primary/90"><LayoutDashboard className="h-4 w-4" /> Panel</Button>
+                <a href={CLIENT_PANEL_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+                  <Button variant="outline" size="sm" className="w-full gap-1.5"><Receipt className="h-4 w-4" /> Client Panel</Button>
+                </a>
+                <a href={GAME_PANEL_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+                  <Button size="sm" className="w-full gap-1.5 glow-primary bg-primary text-primary-foreground hover:bg-primary/90"><LayoutDashboard className="h-4 w-4" /> Game Panel</Button>
                 </a>
               </div>
             </div>

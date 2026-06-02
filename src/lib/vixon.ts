@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-const DEFAULT_INVITE = "https://discord.gg/nFvnxwmsAS";
+const DEFAULT_INVITE = "https://discord.gg/wDKTvVPh4d";
 
 interface VixonSettings {
   discord_invite: string;

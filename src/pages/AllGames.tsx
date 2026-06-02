@@ -28,7 +28,7 @@ import terrariaBg from "@/assets/hero/terraria-bg.jpg";
 import hytaleBg from "@/assets/hero/hytale-bg.jpg";
 import gta5Bg from "@/assets/hero/gta5-bg.jpg";
 
-const BILLING_URL = "https://discord.gg/nFvnxwmsAS";
+const BILLING_URL = "https://billing.vixoncloud.com";
 
 const games = [
   { name: "Minecraft", img: minecraft, bg: minecraftBg, desc: "World's most popular sandbox game", price: "From ₹20/GB", available: true, link: "/minecraft-plans", tag: "Popular" },
