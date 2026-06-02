@@ -80,7 +80,7 @@ const process = [
 ];
 
 const faqs = [
-  { q: "How do I order?",        a: "Click any 'Order on Discord' button — our team replies within an hour." },
+  { q: "How do I order?",        a: "Click any 'Order Now' button — our team replies within an hour." },
   { q: "What payment methods?",  a: "UPI, INR bank transfer, USDT and PayPal — we'll confirm in Discord." },
   { q: "Do you provide hosting?",a: "Yes. We can deploy on Vercel/Netlify or our own VPS at no extra cost." },
   { q: "Will I own the code?",   a: "Yes — on the Pro and VixonCloud-Tier plans you get the full source code." },
@@ -184,7 +184,7 @@ const WebsitePlans = () => {
                     ))}
                   </ul>
                   <VisitDiscordButton
-                    label="Order on Discord"
+                    label="Order Now"
                     fullWidth
                     className={t.featured
                       ? "glow-primary bg-amber-500 text-black hover:bg-amber-400"

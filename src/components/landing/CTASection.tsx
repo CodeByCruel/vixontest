@@ -45,7 +45,7 @@ const CTASection = () => {
                 <Button size="lg" onClick={() => window.open("https://discord.gg/wDKTvVPh4d", "_blank")} className="glow-primary gap-2 px-8 text-sm font-bold group rounded-xl h-11 bg-primary text-primary-foreground hover:bg-primary/90 relative overflow-hidden">
                   <span className="shine-line absolute inset-0" />
                   <span className="relative z-10 flex items-center gap-2">
-                    Order on Discord
+                    Order Now
                     <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
                       <ArrowRight className="h-4 w-4" />
                     </motion.span>
