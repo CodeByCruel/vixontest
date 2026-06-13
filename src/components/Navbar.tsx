@@ -28,21 +28,30 @@ const Navbar = () => {
   const navItems: Array<{ label: string; to?: string; icon?: any; external?: boolean; children?: Array<{ label: string; to: string; icon: any; desc: string; external?: boolean }> }> = [
     { label: "Home", to: "/", icon: Home },
     {
+      label: "Minecraft",
+      children: [
+        { label: "All Plans Overview",   to: "/minecraft-plans",    icon: Box,    desc: "Compare all three tiers" },
+        { label: "🌱 Starter Tier",      to: "/minecraft-starter",  icon: Box,    desc: "From ₹20/GB — small SMPs" },
+        { label: "⚡ Standard Tier",      to: "/minecraft-standard", icon: Box,    desc: "From ₹40/GB — most popular" },
+        { label: "👑 Premium Tier",      to: "/minecraft-premium",  icon: Box,    desc: "From ₹55/GB — top performance" },
+      ],
+    },
+    {
       label: "Services",
       children: [
-        { label: "Minecraft Plan",     to: "/minecraft-plans", icon: Box,    desc: "Java & Bedrock servers" },
-        { label: "Bot Plan",           to: "/bot-plans",       icon: Bot,    desc: "Discord bot hosting" },
-        { label: "Website Plan",       to: "/website-plans",   icon: Globe,  desc: "We build websites for you" },
-        { label: "VPS Starter Plan",   to: "/vps-starter",     icon: Cpu,    desc: "Intel VPS from ₹400/mo" },
-        { label: "VPS Premium Plan",   to: "/vps-premium",     icon: Rocket, desc: "AMD EPYC VPS from ₹500/mo" },
+        { label: "Bot Plan",             to: "/bot-plans",       icon: Bot,    desc: "Discord bot hosting" },
+        { label: "Website Plan",         to: "/website-plans",   icon: Globe,  desc: "We build websites for you" },
+        { label: "VPS Starter Plan",     to: "/vps-starter",     icon: Cpu,    desc: "Intel VPS from ₹400/mo" },
+        { label: "VPS Premium Plan",     to: "/vps-premium",     icon: Rocket, desc: "AMD EPYC VPS from ₹500/mo" },
       ],
     },
     { label: "Games",    to: "/games",    icon: Gamepad2 },
     { label: "Features", to: "/features", icon: Sparkles },
-    { label: "Why Us",   to: "/why-us",   icon: Activity },
     {
-      label: "More",
+      label: "Company",
       children: [
+        { label: "About Us",             to: "/about",   icon: Sparkles,      desc: "Our mission & history" },
+        { label: "Why Us",               to: "/why-us",  icon: Activity,      desc: "Why thousands trust us" },
         { label: "FAQ",                  to: "/faq",     icon: HelpCircle,    desc: "Common questions" },
         { label: "Contact",              to: "/contact", icon: MessagesSquare, desc: "Get in touch" },
         { label: "Status",               to: "/status",  icon: Activity,      desc: "Live system status" },

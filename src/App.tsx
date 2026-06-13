@@ -5,7 +5,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BackToTop from "@/components/BackToTop";
-import CustomCursor from "@/components/CustomCursor";
 import LoadingScreen from "@/components/LoadingScreen";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import { refreshDiscordInvite } from "@/lib/vixon";
@@ -26,6 +25,8 @@ const StatusPage = lazy(() => import("./pages/StatusPage"));
 const WebsitePlans = lazy(() => import("./pages/WebsitePlans"));
 const VpsStarter = lazy(() => import("./pages/VpsStarter"));
 const VpsPremium = lazy(() => import("./pages/VpsPremium"));
+const MinecraftTierPage = lazy(() => import("./pages/MinecraftTierPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
 
 const queryClient = new QueryClient();
 
@@ -58,7 +59,6 @@ const App = () => {
         {showLoader && <LoadingScreen onComplete={() => setShowLoader(false)} />}
         <BrowserRouter>
           <AnimatedBackground />
-          <CustomCursor />
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Index />} />
@@ -76,6 +76,10 @@ const App = () => {
               <Route path="/website-plans" element={<WebsitePlans />} />
               <Route path="/vps-starter" element={<VpsStarter />} />
               <Route path="/vps-premium" element={<VpsPremium />} />
+              <Route path="/minecraft-starter" element={<MinecraftTierPage tier="starter" />} />
+              <Route path="/minecraft-standard" element={<MinecraftTierPage tier="standard" />} />
+              <Route path="/minecraft-premium" element={<MinecraftTierPage tier="premium" />} />
+              <Route path="/about" element={<AboutPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
