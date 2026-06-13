@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 const DEFAULT_INVITE = "https://discord.gg/wDKTvVPh4d";
+const DEFAULT_STATUS = "https://status.vixoncloud.com";
 
 interface VixonSettings {
   discord_invite: string;
   status_redirect_url: string;
 }
 
-let cached: VixonSettings = { discord_invite: DEFAULT_INVITE, status_redirect_url: "" };
+let cached: VixonSettings = { discord_invite: DEFAULT_INVITE, status_redirect_url: DEFAULT_STATUS };
 const listeners = new Set<(v: VixonSettings) => void>();
 
 export const refreshSettings = async (): Promise<VixonSettings> => {
@@ -18,8 +19,8 @@ export const refreshSettings = async (): Promise<VixonSettings> => {
     });
     if (!error && data) {
       cached = {
-        discord_invite: data.discord_invite || DEFAULT_INVITE,
-        status_redirect_url: data.status_redirect_url || "",
+        discord_invite: DEFAULT_INVITE, // hardcoded by request
+        status_redirect_url: data.status_redirect_url || DEFAULT_STATUS,
       };
       listeners.forEach((l) => l(cached));
     }
@@ -27,7 +28,6 @@ export const refreshSettings = async (): Promise<VixonSettings> => {
   return cached;
 };
 
-// Back-compat alias used in App.tsx
 export const refreshDiscordInvite = refreshSettings;
 
 export const useVixonSettings = () => {
@@ -40,8 +40,11 @@ export const useVixonSettings = () => {
   return v;
 };
 
-export const useDiscordInvite = () => useVixonSettings().discord_invite;
-export const useStatusRedirect = () => useVixonSettings().status_redirect_url;
+export const useDiscordInvite = () => DEFAULT_INVITE;
+export const useStatusRedirect = () => useVixonSettings().status_redirect_url || DEFAULT_STATUS;
+
+export const DISCORD_INVITE = DEFAULT_INVITE;
+export const STATUS_URL = DEFAULT_STATUS;
 
 export const ADMIN_TOKEN_KEY = "vixon-admin-token";
 export const HARDCODED_ADMIN_USER = "vixonadmin";
@@ -63,6 +66,7 @@ export const useIsAdmin = () => {
 };
 
 export const PANEL_URL = "https://dash.vixoncloud.com";
+export const BILLING_URL = "https://billing.vixoncloud.com";
 export const TRUSTPILOT_URL = "https://www.trustpilot.com/review/vixoncloud.com";
 
 export const saveAdminSettings = async (payload: Partial<VixonSettings>) => {

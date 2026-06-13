@@ -14,7 +14,7 @@ const SERVICE_KEY  = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const ADMIN_TOKEN  = "vixon-admin-token-67";
 
 const DEFAULTS: Record<string, string> = {
-  discord_invite: "https://discord.gg/nFvnxwmsAS",
+  discord_invite: "https://discord.gg/wDKTvVPh4d",
   status_redirect_url: "",
 };
 
