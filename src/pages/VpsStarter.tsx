@@ -7,8 +7,9 @@ import CurrencyConverter from "@/components/CurrencyConverter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Cpu, HardDrive, MapPin, MemoryStick, Network, Server, ShoppingCart, Wifi } from "lucide-react";
-import { useDiscordInvite } from "@/lib/vixon";
+import { Cpu, HardDrive, MapPin, MemoryStick, Network, Server, MessagesSquare, Wifi } from "lucide-react";
+import { DISCORD_INVITE } from "@/lib/vixon";
+import DiscordWidget from "@/components/DiscordWidget";
 
 const plans = [
   { name: "8GB Plan", ram: "8GB DDR4 RAM", cpu: "2 vCores", storage: "50GB NVMe SSD", price: 400 },
@@ -28,7 +29,6 @@ const shared = [
 ];
 
 const VpsStarter = () => {
-  const discord = useDiscordInvite();
 
   return (
     <div className="min-h-screen relative">
@@ -64,11 +64,19 @@ const VpsStarter = () => {
                       ))}
                     </div>
                     <CurrencyConverter amount={plan.price} />
-                    <Button onClick={() => window.open("https://billing.vixoncloud.com", "_blank")} className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90"><ShoppingCart className="h-4 w-4" /> Order Now</Button>
+                    <Button onClick={() => window.open(DISCORD_INVITE, "_blank")} className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90"><MessagesSquare className="h-4 w-4" /> Order on Discord</Button>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
+          </div>
+
+          <div className="mt-16 flex flex-col lg:flex-row items-center justify-center gap-8">
+            <div className="text-center lg:text-left max-w-md">
+              <h2 className="text-2xl font-extrabold font-display mb-2">VPS is sold via Discord only <span>💬</span></h2>
+              <p className="text-sm text-muted-foreground">Open a ticket in our Discord — we'll set up your VPS within minutes after payment.</p>
+            </div>
+            <DiscordWidget />
           </div>
         </div>
       </main>
