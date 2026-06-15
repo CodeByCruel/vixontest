@@ -17,5 +17,5 @@ CREATE POLICY "Site settings are publicly readable"
   USING (true);
 
 INSERT INTO public.site_settings (key, value) VALUES
-  ('discord_invite', 'https://discord.gg/wDKTvVPh4d'),
+  ('discord_invite', 'https://discord.gg/TtV26hZEJx'),
   ('status_redirect_url', '');

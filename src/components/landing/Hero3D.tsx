@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink, Sparkles as SparklesIcon } from "lucide-react";
 
-const DISCORD_LINK = "https://discord.gg/wDKTvVPh4d";
+const DISCORD_LINK = "https://discord.gg/TtV26hZEJx";
 
 /* ---------- 3D crystal planet ---------- */
 const CrystalPlanet = () => {

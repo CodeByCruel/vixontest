@@ -38,7 +38,7 @@ DROP POLICY IF EXISTS "vc_node_pings_read" ON public.vc_node_pings;
 CREATE POLICY "vc_node_pings_read" ON public.vc_node_pings FOR SELECT USING (true);
 
 INSERT INTO public.vc_settings (key, value) VALUES
-  ('discord_invite', 'https://discord.gg/wDKTvVPh4d'),
+  ('discord_invite', 'https://discord.gg/TtV26hZEJx'),
   ('ptero_url', ''),
   ('ptero_api_key', '')
 ON CONFLICT (key) DO NOTHING;
