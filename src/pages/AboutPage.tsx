@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
-import DiscordWidget from "@/components/DiscordWidget";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -138,7 +137,6 @@ const AboutPage = () => (
               </a>
             </div>
             <div className="flex justify-center lg:justify-end">
-              <DiscordWidget />
             </div>
           </div>
         </Card>

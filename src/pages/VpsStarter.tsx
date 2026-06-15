@@ -9,7 +9,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Cpu, HardDrive, MapPin, MemoryStick, Network, Server, MessagesSquare, Wifi } from "lucide-react";
 import { DISCORD_INVITE } from "@/lib/vixon";
-import DiscordWidget from "@/components/DiscordWidget";
 
 const plans = [
   { name: "8GB Plan", ram: "8GB DDR4 RAM", cpu: "2 vCores", storage: "50GB NVMe SSD", price: 400 },
@@ -76,7 +75,6 @@ const VpsStarter = () => {
               <h2 className="text-2xl font-extrabold font-display mb-2">VPS is sold via Discord only <span>💬</span></h2>
               <p className="text-sm text-muted-foreground">Open a ticket in our Discord — we'll set up your VPS within minutes after payment.</p>
             </div>
-            <DiscordWidget />
           </div>
         </div>
       </main>

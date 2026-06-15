@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
-import DiscordWidget from "@/components/DiscordWidget";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -94,7 +93,6 @@ const MinecraftPlans = () => (
             <h2 className="text-2xl font-extrabold font-display mb-2">Talk to us live <span>💬</span></h2>
             <p className="text-sm text-muted-foreground">Join the VixonCloud Discord — get help picking, custom pricing, and instant support.</p>
           </div>
-          <DiscordWidget />
         </div>
       </div>
     </main>

@@ -4,7 +4,6 @@ import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import CurrencyConverter from "@/components/CurrencyConverter";
 import SEOHead from "@/components/SEOHead";
-import DiscordWidget from "@/components/DiscordWidget";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -153,7 +152,6 @@ const MinecraftTierPage = ({ tier }: { tier: Tier }) => {
               <h2 className="text-2xl font-extrabold font-display mb-2">Need help choosing? <span>💬</span></h2>
               <p className="text-sm text-muted-foreground">Join our Discord — our team replies in minutes and helps you pick the right plan.</p>
             </div>
-            <DiscordWidget />
           </div>
         </div>
       </main>

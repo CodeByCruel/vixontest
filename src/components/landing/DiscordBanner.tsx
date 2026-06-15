@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Users } from "lucide-react";
 import { useDiscordInvite } from "@/lib/vixon";
-import DiscordWidget from "@/components/DiscordWidget";
 
 const DiscordBanner = () => {
   const DISCORD_LINK = useDiscordInvite();
@@ -49,7 +48,6 @@ const DiscordBanner = () => {
           </motion.a>
         </div>
         <div className="flex justify-center lg:justify-end">
-          <DiscordWidget />
         </div>
       </div>
     </motion.div>
