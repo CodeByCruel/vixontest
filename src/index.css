@@ -86,14 +86,11 @@
   line-height: 1.15 !important;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  html:not(.no-custom-cursor) *, html:not(.no-custom-cursor) *::before, html:not(.no-custom-cursor) *::after {
-    cursor: none !important;
-  }
-}
-@media (hover: none), (pointer: coarse) {
-  canvas.cursor-canvas { display: none !important; }
-}
+/* Use the system's default cursor everywhere */
+html, body { cursor: auto; }
+a, button, [role="button"], summary, label[for], select { cursor: pointer; }
+input[type="text"], input[type="email"], input[type="password"], input[type="search"], input[type="number"], textarea { cursor: text; }
+:disabled, [aria-disabled="true"] { cursor: not-allowed; }
 
 @layer utilities {
   .glow-primary { box-shadow: 0 0 20px hsl(210 100% 55% / 0.2), 0 0 60px hsl(210 100% 55% / 0.06); }
