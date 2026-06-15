@@ -1,27 +1,26 @@
 import Navbar from "@/components/Navbar";
-import Hero3D from "@/components/landing/Hero3D";
-import GamesSection from "@/components/landing/GamesSection";
-import FeaturesShowcase from "@/components/landing/FeaturesShowcase";
-import PricingPreview from "@/components/landing/PricingPreview";
-import TestimonialsSection from "@/components/landing/TestimonialsSection";
-import DiscordBanner from "@/components/landing/DiscordBanner";
-import CTASection from "@/components/landing/CTASection";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import ScrollExperience from "@/components/landing/ScrollExperience";
+import FeaturesShowcase from "@/components/landing/FeaturesShowcase";
+import TestimonialsSection from "@/components/landing/TestimonialsSection";
+import DiscordBanner from "@/components/landing/DiscordBanner";
 
 const Index = () => {
   return (
-    <div className="min-h-screen relative">
-      <SEOHead title="VixonCloud — Premium Game Server Hosting" description="VixonCloud: Premium game server hosting for Minecraft, Palworld, Rust, Valheim & more. 99.99% uptime, DDoS protection, instant setup." path="/" />
+    <div className="min-h-screen relative bg-background">
+      <SEOHead
+        title="VixonCloud — Premium Game & VPS Hosting"
+        description="High performance Minecraft, game and VPS hosting. 99.99% uptime, DDoS protection, instant deployment. Watch the infrastructure come alive."
+        path="/"
+      />
       <Navbar />
       <main>
-        <Hero3D />
-        <GamesSection />
+        <ScrollExperience />
+        {/* Existing features remain, revealed after the immersive scene */}
         <FeaturesShowcase />
-        <PricingPreview />
         <TestimonialsSection />
         <DiscordBanner />
-        <CTASection />
       </main>
       <Footer />
     </div>
