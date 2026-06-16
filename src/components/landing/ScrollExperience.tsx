@@ -8,8 +8,10 @@ import {
 import { BILLING_URL, DISCORD_INVITE } from "@/lib/vixon";
 
 /* ---------- helpers ---------- */
+const clampProgress = (n: number) => Math.min(1, Math.max(0, n));
+
 const between = (v: MotionValue<number>, a: number, b: number, vals: [number, number, number, number] = [0, 1, 1, 0]) =>
-  useTransform(v, [a - 0.06, a, b, b + 0.06], vals);
+  useTransform(v, [a - 0.06, a, b, b + 0.06].map(clampProgress), vals);
 
 /* ---------- background SVG scene that "comes alive" ---------- */
 function InfrastructureScene({ p }: { p: MotionValue<number> }) {
