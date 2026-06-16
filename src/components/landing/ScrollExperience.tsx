@@ -138,7 +138,8 @@ function InfrastructureScene({ p }: { p: MotionValue<number> }) {
               <circle cx={n.cx} cy={n.cy} r="4" fill="hsl(195 100% 70%)" />
               <motion.circle cx={n.cx} cy={n.cy} r="14" fill="none"
                 stroke="hsl(195 100% 60%)" strokeOpacity="0.6"
-                animate={reduce ? {} : { r: [14, 28], opacity: [0.6, 0] }}
+                style={{ transformOrigin: `${n.cx}px ${n.cy}px` }}
+                animate={reduce ? {} : { scale: [1, 2], opacity: [0.6, 0] }}
                 transition={{ duration: 2.4, repeat: Infinity, delay: i * 0.3 }}
               />
             </g>
