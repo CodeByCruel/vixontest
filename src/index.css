@@ -5,6 +5,40 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    will-change: transform;
+    transform: translateZ(0);
+    overscroll-behavior: none;
+  }
+
+  /* GPU accelerate heavy sections */
+  .gpu-accelerate {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(210 100% 55% / 0.2);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(210 100% 55% / 0.4);
+  }
+
   :root {
     --background: 220 30% 4%;
     --foreground: 210 20% 96%;

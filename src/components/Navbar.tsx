@@ -414,7 +414,7 @@ const MobileMenu = ({
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
   const [hidden, setHidden] = useState(false);
   const [announcementVisible, setAnnouncementVisible] = useState(true);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
@@ -435,26 +435,37 @@ const Navbar = () => {
     try { localStorage.setItem("vixon-announcement-dismissed", "1"); } catch { /* localStorage may be unavailable */ }
   }, []);
 
-  // Scroll handling: auto-hide + glass effect
+  // Scroll handling: auto-hide navbar + auto-hide announcement bar + glass effect
   useEffect(() => {
+    let ticking = false;
     const onScroll = () => {
-      const currentY = window.scrollY;
-      setScrolled(currentY > 20);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const currentY = window.scrollY;
+        setScrolled(currentY > 20);
 
-      if (currentY < 60) {
-        setHidden(false);
-      } else if (currentY > lastScrollY + 5) {
-        setHidden(true);
-        setHoveredItem(null);
-      } else if (currentY < lastScrollY - 5) {
-        setHidden(false);
-      }
-      setLastScrollY(currentY);
+        // Auto-hide announcement bar when scrolling down
+        if (currentY > 100 && announcementVisible) {
+          setAnnouncementVisible(false);
+        }
+
+        if (currentY < 60) {
+          setHidden(false);
+        } else if (currentY > lastScrollYRef.current + 5) {
+          setHidden(true);
+          setHoveredItem(null);
+        } else if (currentY < lastScrollYRef.current - 5) {
+          setHidden(false);
+        }
+        lastScrollYRef.current = currentY;
+        ticking = false;
+      });
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [lastScrollY]);
+  }, [announcementVisible]);
 
   // Close mobile menu on route change
   useEffect(() => {
