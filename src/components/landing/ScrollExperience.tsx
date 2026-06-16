@@ -169,16 +169,22 @@ function InfrastructureScene({ p }: { p: MotionValue<number> }) {
 
         {/* ------- SECURITY SHIELDS ------- */}
         <motion.g style={{ opacity: shieldsOn }}>
-          <motion.circle cx="500" cy="320" r={ringR as any} stroke="hsl(195 100% 65%)" fill="none"
-            strokeWidth="2" style={{ opacity: ringO as any }} />
-          <motion.circle cx="500" cy="320" r={useTransform(ringR, (v) => v * 0.6) as any}
-            stroke="hsl(210 100% 70%)" fill="none" strokeWidth="1.5" style={{ opacity: ringO as any }} />
+          <circle cx="500" cy="320" r="180" stroke="hsl(195 100% 65%)" fill="none" strokeWidth="2" opacity="0.35" />
+          <circle cx="500" cy="320" r="110" stroke="hsl(210 100% 70%)" fill="none" strokeWidth="1.5" opacity="0.45" />
+          {!reduce && (
+            <motion.circle cx="500" cy="320" r="60" stroke="hsl(195 100% 65%)" fill="none" strokeWidth="2"
+              animate={{ opacity: [0.6, 0], scale: [1, 1.8] }}
+              style={{ transformOrigin: "500px 320px" }}
+              transition={{ duration: 2.2, repeat: Infinity }}
+            />
+          )}
         </motion.g>
 
         {/* ------- DEPLOY PULSE ------- */}
         <motion.g style={{ opacity: deployOn }}>
-          <motion.circle cx="500" cy="320" r="6" fill="hsl(140 90% 60%)"
-            animate={reduce ? {} : { r: [6, 18, 6], opacity: [1, 0.4, 1] }}
+          <motion.circle cx="500" cy="320" r="8" fill="hsl(140 90% 60%)"
+            animate={reduce ? {} : { opacity: [1, 0.4, 1], scale: [1, 1.6, 1] }}
+            style={{ transformOrigin: "500px 320px" }}
             transition={{ duration: 1.6, repeat: Infinity }}
           />
         </motion.g>
