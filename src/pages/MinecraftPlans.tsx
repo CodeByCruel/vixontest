@@ -58,12 +58,13 @@ const MinecraftPlans = () => (
  <div className="grid gap-6 md:grid-cols-3">
  {tiers.map((t, i) => (
  <motion.div key={t.slug} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}>
- <Card className={`p-6 h-full flex flex-col card-lift bg-gradient-to-br ${t.accent} relative overflow-hidden`}>
+ <Card className={`p-6 h-full flex flex-col card-lift bg-gradient-to-br ${t.accent} relative overflow-hidden card-theme-minecraft`}>
  {t.featured && (
  <div className="absolute top-3 right-3 text-[10px] font-bold text-blue-300 bg-blue-500/20 border border-blue-500/40 px-2 py-0.5 rounded-full flex items-center gap-1">
  <Sparkles className="h-3 w-3" /> POPULAR
  </div>
  )}
+ <div className="relative z-10">
  <div className="text-4xl mb-3">{t.emoji}</div>
  <div className={`inline-flex w-fit items-center text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-md ${t.badge} mb-2`}>{t.price}</div>
  <h2 className="text-2xl font-extrabold font-display">{t.name}</h2>
@@ -83,6 +84,7 @@ const MinecraftPlans = () => (
  View {t.name} plans <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
  </Button>
  </Link>
+ </div>
  </Card>
  </motion.div>
  ))}

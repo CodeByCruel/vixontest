@@ -48,8 +48,8 @@ const VpsStarter = () => {
  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
  {plans.map((plan, i) => (
  <motion.div key={plan.name} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}>
- <Card className="h-full border-primary/15 bg-card/70 card-lift">
- <CardContent className="p-5 flex h-full flex-col gap-4">
+ <Card className="h-full border-primary/15 bg-card/70 card-lift card-theme-vps-intel">
+ <CardContent className="p-5 flex h-full flex-col gap-4 relative z-10">
  <div className="flex items-start justify-between gap-3">
  <div>
  <h2 className="text-lg font-bold font-display">{plan.name}</h2>

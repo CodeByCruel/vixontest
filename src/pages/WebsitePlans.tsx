@@ -157,7 +157,7 @@ const WebsitePlans = () => {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {tiers.map((t, i) => (
               <motion.div key={t.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}>
-                <Card className={`relative overflow-hidden h-full flex flex-col p-6 card-lift ${t.featured ? `${t.border} bg-gradient-to-br ${t.accent}` : t.border}`}>
+                <Card className={`relative overflow-hidden h-full flex flex-col p-6 card-lift ${t.featured ? `${t.border} bg-gradient-to-br ${t.accent}` : t.border} card-theme-website`}>
                   {t.featured && (
                     <div className="absolute top-3 right-3">
                       <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/40 gap-1">
@@ -165,7 +165,7 @@ const WebsitePlans = () => {
                       </Badge>
                     </div>
                   )}
-                  <div className={`rounded-xl p-2.5 w-fit mb-3 bg-gradient-to-br ${t.accent}`}>
+                  <div className={`rounded-xl p-2.5 w-fit mb-3 bg-gradient-to-br ${t.accent} relative z-10`}>
                     <t.icon className="h-5 w-5 text-foreground" />
                   </div>
                   <p className="text-[11px] uppercase text-muted-foreground tracking-wider">{t.tag}</p>

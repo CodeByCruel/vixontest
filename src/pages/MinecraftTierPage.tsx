@@ -110,8 +110,8 @@ const MinecraftTierPage = ({ tier }: { tier: Tier }) => {
  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-7xl mx-auto">
  {plans.map((plan, i) => (
  <motion.div key={plan.ramGb} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.025 }} className="group">
- <Card className={`${t.card} h-full card-lift transition-all duration-300 shadow-lg ${t.glow}`}>
- <CardContent className="p-5 space-y-4 flex flex-col h-full">
+    <Card className={`${t.card} h-full card-lift transition-all duration-300 shadow-lg ${t.glow} card-theme-minecraft`}>
+ <CardContent className="p-5 space-y-4 flex flex-col h-full relative z-10">
  <div className="flex items-center justify-between">
  <Badge className={`text-xs border ${t.badge}`}>
  {tier === "premium" && <Crown className="h-3 w-3 mr-1" />}{plan.ram}

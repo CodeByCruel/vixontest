@@ -30,7 +30,7 @@ const VixonMCSection = () => {
         >
           <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-[11px] font-medium text-primary mb-6">
             <Gamepad2 className="h-3.5 w-3.5" />
-            ZEYRONMC NETWORK
+            VIXONCLOUD NETWORK
           </div>
 
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter font-display mb-4">

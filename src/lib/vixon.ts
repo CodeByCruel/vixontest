@@ -47,12 +47,9 @@ export const DISCORD_INVITE = DEFAULT_INVITE;
 export const STATUS_URL = DEFAULT_STATUS;
 
 export const ADMIN_TOKEN_KEY = "vixon-admin-token";
-export const HARDCODED_ADMIN_USER = "vixonadmin";
-export const HARDCODED_ADMIN_PASS = "vixon@67";
-export const ADMIN_TOKEN_VALUE = "vixon-admin-token-67";
 
 export const isAdminLoggedIn = () => {
-  try { return localStorage.getItem(ADMIN_TOKEN_KEY) === ADMIN_TOKEN_VALUE; } catch { return false; }
+  try { return !!localStorage.getItem(ADMIN_TOKEN_KEY); } catch { return false; }
 };
 
 export const useIsAdmin = () => {
@@ -70,8 +67,9 @@ export const BILLING_URL = "https://billing.vixoncloud.com";
 export const TRUSTPILOT_URL = "https://www.trustpilot.com/review/vixoncloud.com";
 
 export const saveAdminSettings = async (payload: Partial<VixonSettings>) => {
+  const adminToken = localStorage.getItem(ADMIN_TOKEN_KEY) || "";
   const { data, error } = await (supabase as any).functions.invoke("pterodactyl-proxy", {
-    body: { action: "save_settings", adminToken: ADMIN_TOKEN_VALUE, ...payload },
+    body: { action: "save_settings", adminToken, ...payload },
   });
   if (error) throw error;
   if (data?.error) throw new Error(data.error);

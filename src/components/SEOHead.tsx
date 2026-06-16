@@ -7,7 +7,7 @@ interface SEOHeadProps {
   type?: string;
 }
 
-const BASE_URL = "https://vixoncloud.lovable.app";
+const BASE_URL = "https://vixoncloud.com";
 
 const SEOHead = ({ title, description, path = "", type = "website" }: SEOHeadProps) => {
   useEffect(() => {
@@ -29,6 +29,8 @@ const SEOHead = ({ title, description, path = "", type = "website" }: SEOHeadPro
     setMeta("property", "og:description", description);
     setMeta("property", "og:type", type);
     setMeta("property", "og:url", `${BASE_URL}${path}`);
+    setMeta("property", "og:site_name", "VixonCloud");
+    setMeta("name", "twitter:card", "summary_large_image");
     setMeta("name", "twitter:title", fullTitle);
     setMeta("name", "twitter:description", description);
 
@@ -40,6 +42,27 @@ const SEOHead = ({ title, description, path = "", type = "website" }: SEOHeadPro
       document.head.appendChild(canonical);
     }
     canonical.setAttribute("href", `${BASE_URL}${path}`);
+
+    // JSON-LD Structured Data
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "VixonCloud",
+      url: BASE_URL,
+      description: "Premium game and VPS hosting with 99.99% uptime",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: `${BASE_URL}/search?q={search_term_string}`,
+        "query-input": "required name=search_term_string",
+      },
+    };
+    let script = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
+    if (!script) {
+      script = document.createElement("script");
+      script.setAttribute("type", "application/ld+json");
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify(jsonLd);
   }, [title, description, path, type]);
 
   return null;

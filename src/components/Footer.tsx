@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import logo from "@/assets/vixoncloud-logo.png";
-import { ExternalLink, Heart, MessageCircle, Activity, FileText, Monitor, Star } from "lucide-react";
+import { ExternalLink, Heart, MessageCircle, Activity, FileText, Monitor, Star, Zap } from "lucide-react";
 import { useDiscordInvite, PANEL_URL, TRUSTPILOT_URL } from "@/lib/vixon";
 
 const Footer = () => {
@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <footer className="border-t border-border/10 bg-surface/50 backdrop-blur-sm py-14 mt-12 relative z-10">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4 mb-10">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-5 mb-10">
           <div className="col-span-2 md:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-3">
               <img src={logo} alt="VixonCloud" className="h-7 w-7 rounded-lg" />
@@ -29,6 +29,19 @@ const Footer = () => {
               <Link to="/vps-starter" className="block text-muted-foreground hover:text-primary transition-colors">VPS — Starter</Link>
               <Link to="/vps-premium" className="block text-muted-foreground hover:text-primary transition-colors">VPS — Premium</Link>
               <Link to="/website-plans" className="block text-muted-foreground hover:text-primary transition-colors">Website Plans</Link>
+              <Link to="/configurator" className="block text-muted-foreground hover:text-primary transition-colors">Server Configurator</Link>
+            </div>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold text-foreground/70 mb-3">Tools</p>
+            <div className="space-y-2 text-sm">
+              <Link to="/configurator" className="block text-muted-foreground hover:text-primary transition-colors">Configurator</Link>
+              <Link to="/benchmarks" className="block text-muted-foreground hover:text-primary transition-colors">Benchmarks</Link>
+              <Link to="/migration" className="block text-muted-foreground hover:text-primary transition-colors">Free Migration</Link>
+              <Link to="/knowledge-base" className="block text-muted-foreground hover:text-primary transition-colors">Knowledge Base</Link>
+              <Link to="/affiliate" className="block text-muted-foreground hover:text-primary transition-colors">Affiliate Program</Link>
+              <Link to="/games" className="block text-muted-foreground hover:text-primary transition-colors">All Games</Link>
             </div>
           </div>
 

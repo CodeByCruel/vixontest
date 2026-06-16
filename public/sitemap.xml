@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://vixoncloud.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://vixoncloud.com/minecraft</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vixoncloud.com/minecraft-plans</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vixoncloud.com/minecraft-starter</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vixoncloud.com/minecraft-standard</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vixoncloud.com/minecraft-premium</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vixoncloud.com/bot-hosting</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vixoncloud.com/bot-plans</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vixoncloud.com/games</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vixoncloud.com/features</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vixoncloud.com/why-us</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vixoncloud.com/about</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://vixoncloud.com/status</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vixoncloud.com/knowledge-base</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vixoncloud.com/affiliate</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vixoncloud.com/configurator</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vixoncloud.com/benchmarks</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vixoncloud.com/migration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vixoncloud.com/website-plans</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vixoncloud.com/vps-starter</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vixoncloud.com/vps-premium</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vixoncloud.com/faq</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://vixoncloud.com/contact</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://vixoncloud.com/tos</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>
