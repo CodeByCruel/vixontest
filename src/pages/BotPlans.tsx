@@ -6,6 +6,7 @@ import CurrencyConverter from "@/components/CurrencyConverter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import MoneyBackBadge from "@/components/MoneyBackBadge";
 import {
   Bot, HardDrive, Shield, Wifi, MemoryStick, ShoppingCart, Sparkles,
   Check, Zap, Crown, MessageCircle,
@@ -154,6 +155,9 @@ const BotPlans = () => {
           </div>
 
           {/* Bottom CTA */}
+          <div className="mt-12">
+            <MoneyBackBadge />
+          </div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

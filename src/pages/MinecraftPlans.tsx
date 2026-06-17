@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
+import MoneyBackBadge from "@/components/MoneyBackBadge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -88,6 +89,10 @@ const MinecraftPlans = () => (
  </Card>
  </motion.div>
  ))}
+ </div>
+
+ <div className="mt-12">
+  <MoneyBackBadge />
  </div>
 
  <div className="mt-16 flex flex-col lg:flex-row items-center justify-center gap-8">

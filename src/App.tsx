@@ -6,6 +6,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BackToTop from "@/components/BackToTop";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import CookieConsent from "@/components/CookieConsent";
+import ScrollProgress from "@/components/ScrollProgress";
 import LoadingScreen from "@/components/LoadingScreen";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -69,9 +72,10 @@ const App = () => {
         <Sonner />
         {showLoader && <LoadingScreen onComplete={() => setShowLoader(false)} />}
         <BrowserRouter>
-          <KeyboardShortcuts />
-          <a href="#main-content" className="skip-link">Skip to main content</a>
-          <AnimatedBackground />
+        <KeyboardShortcuts />
+        <ScrollProgress />
+        <a href="#main-content" className="skip-link">Skip to main content</a>
+        <AnimatedBackground />
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
               <div id="main-content">
@@ -106,6 +110,8 @@ const App = () => {
             </Suspense>
           </ErrorBoundary>
           <BackToTop />
+          <WhatsAppButton />
+          <CookieConsent />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
