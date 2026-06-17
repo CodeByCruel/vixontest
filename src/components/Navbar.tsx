@@ -488,14 +488,14 @@ const Navbar = () => {
           opacity: 1,
         }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed left-0 right-0 z-50 transition-all duration-300 overflow-hidden ${
+        className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
             ? "glass-strong shadow-lg shadow-black/30 border-b border-border/10"
             : "bg-transparent"
         }`}
         style={{ top: announcementVisible ? "32px" : "0px" }}
       >
-        <div className="container mx-auto flex h-14 items-center justify-between px-4 overflow-hidden">
+        <div className="container mx-auto flex h-14 items-center justify-between px-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
             <motion.img
