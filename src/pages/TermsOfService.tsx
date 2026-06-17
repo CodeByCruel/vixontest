@@ -62,14 +62,18 @@ const TermsOfService = () => {
     },
     {
       title: "9. Modifications to Terms",
-      content: "VixonCloud reserves the right to modify these terms at any time. Users will be notified of significant changes via Discord. Continued use of our services after changes constitutes acceptance of the new terms.",
+      content: "The founders (Deepak and Akshit) reserve the absolute right to modify, update, amend, or replace any part of these Terms of Service at any time, with or without prior notice, at their sole discretion. Changes take effect immediately upon posting on the website. It is the user's responsibility to review these terms periodically. Continued use of our services after any changes constitutes full acceptance of the modified terms.",
     },
     {
-      title: "10. Contact",
+      title: "10. Bulk Data Loss Compensation",
+      content: "In the event of a catastrophic failure — including but not limited to complete node failure, data center outage, storage array loss, or any circumstance resulting in bulk data loss affecting multiple servers or users — VixonCloud will compensate all affected users by extending their active plan by a minimum of 5 days at no additional cost. This compensation applies automatically to all impacted accounts. The exact extension may be increased based on the severity and duration of the incident. VixonCloud will communicate details of such events and compensations via Discord.",
+    },
+    {
+      title: "11. Contact",
       content: `For questions about these terms, contact us via Discord: ${invite}.`,
     },
     {
-      title: "Ownership",
+      title: "12. Ownership",
       content: "VixonCloud is owned and operated by Akshit and Deepak.",
     },
   ];
