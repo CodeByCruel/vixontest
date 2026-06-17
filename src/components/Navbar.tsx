@@ -60,7 +60,6 @@ const navItems: NavItem[] = [
       { label: "Website Plans", to: "/website-plans", icon: Globe, desc: "We build websites for you" },
       { label: "VPS Starter", to: "/vps-starter", icon: Cpu, desc: "Intel VPS from ₹400/mo" },
       { label: "VPS Premium", to: "/vps-premium", icon: Rocket, desc: "AMD EPYC VPS from ₹500/mo" },
-      { label: "Server Configurator", to: "/configurator", icon: Cpu, desc: "Build your custom server", badge: "New", badgeColor: "bg-violet-500/15 text-violet-400" },
     ],
   },
   { label: "Games", to: "/games", icon: Gamepad2 },
@@ -69,9 +68,7 @@ const navItems: NavItem[] = [
     label: "Tools",
     icon: Zap,
     children: [
-      { label: "Server Configurator", to: "/configurator", icon: Cpu, desc: "Build & price your server" },
       { label: "Benchmarks", to: "/benchmarks", icon: Activity, desc: "See our performance numbers" },
-      { label: "Free Migration", to: "/migration", icon: ArrowRight, desc: "We'll move you for free", badge: "Free", badgeColor: "bg-emerald-500/15 text-emerald-400" },
       { label: "Knowledge Base", to: "/knowledge-base", icon: HelpCircle, desc: "Guides & documentation" },
       { label: "Affiliate Program", to: "/affiliate", icon: Users, desc: "Earn 20-30% commissions", badge: "Earn", badgeColor: "bg-amber-500/15 text-amber-400" },
     ],
@@ -491,14 +488,14 @@ const Navbar = () => {
           opacity: 1,
         }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed left-0 right-0 z-50 transition-all duration-300 overflow-hidden ${
           scrolled
             ? "glass-strong shadow-lg shadow-black/30 border-b border-border/10"
             : "bg-transparent"
         }`}
         style={{ top: announcementVisible ? "32px" : "0px" }}
       >
-        <div className="container mx-auto flex h-14 items-center justify-between px-4">
+        <div className="container mx-auto flex h-14 items-center justify-between px-4 overflow-hidden">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
             <motion.img
@@ -515,7 +512,7 @@ const Navbar = () => {
 
           {/* Desktop nav */}
           <LayoutGroup>
-            <div className="hidden lg:flex items-center gap-0.5">
+            <div className="hidden lg:flex items-center gap-0.5 min-w-0">
               {navItems.map((item) => {
                 if (item.children) {
                   const isActive = item.children.some((c) => location.pathname === c.to);
@@ -585,7 +582,7 @@ const Navbar = () => {
           </LayoutGroup>
 
           {/* Right side */}
-          <div className="hidden lg:flex items-center gap-2 shrink-0">
+          <div className="hidden lg:flex items-center gap-1.5 shrink-0">
             <motion.a
               href={invite}
               target="_blank"
@@ -594,7 +591,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.97 }}
             >
               <Button size="sm" variant="outline" className="gap-1.5 text-sm h-9 rounded-lg">
-                <MessagesSquare className="h-4 w-4" /> Discord
+                <MessagesSquare className="h-4 w-4" /> <span className="hidden xl:inline">Discord</span>
               </Button>
             </motion.a>
             <ThemeToggle />
@@ -606,8 +603,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.97 }}
             >
               <Button size="sm" variant="outline" className="gap-1.5 text-sm h-9 rounded-lg">
-                <Receipt className="h-4 w-4" /> Client Panel
-                <ExternalLink className="h-3 w-3" />
+                <Receipt className="h-4 w-4" /> <span className="hidden xl:inline">Client Panel</span>
               </Button>
             </motion.a>
             <motion.a
@@ -618,8 +614,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
             >
               <Button size="sm" className="glow-primary text-sm h-9 gap-1.5 font-semibold bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg">
-                <LayoutDashboard className="h-4 w-4" /> Game Panel
-                <ExternalLink className="h-3 w-3" />
+                <LayoutDashboard className="h-4 w-4" /> <span className="hidden xl:inline">Game Panel</span>
               </Button>
             </motion.a>
           </div>

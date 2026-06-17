@@ -21,7 +21,7 @@ import { BILLING_URL } from "@/lib/vixon";
 const serverTiers = [
   {
     name: "Starter",
-    cpu: "Intel Xeon E5-2699 v4",
+    cpu: "Intel Platinum 8269-CY",
     clock: "3.2 GHz",
     ram: "DDR4 ECC",
     storage: "NVMe SSD",
@@ -30,7 +30,7 @@ const serverTiers = [
   },
   {
     name: "Standard",
-    cpu: "Intel Platinum 8573C",
+    cpu: "AMD EPYC 7K62",
     clock: "4.2 GHz Boost",
     ram: "DDR4 ECC",
     storage: "NVMe RAID",
@@ -40,7 +40,7 @@ const serverTiers = [
   },
   {
     name: "Premium",
-    cpu: "AMD EPYC 9J14",
+    cpu: "AMD EPYC 9754",
     clock: "96C / 192T",
     ram: "DDR5 ECC",
     storage: "NVMe RAID-10",

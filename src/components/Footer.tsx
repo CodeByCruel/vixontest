@@ -63,16 +63,13 @@ const Footer = () => {
               <Link to="/vps-starter" className="block text-muted-foreground hover:text-primary transition-colors">VPS — Starter</Link>
               <Link to="/vps-premium" className="block text-muted-foreground hover:text-primary transition-colors">VPS — Premium</Link>
               <Link to="/website-plans" className="block text-muted-foreground hover:text-primary transition-colors">Website Plans</Link>
-              <Link to="/configurator" className="block text-muted-foreground hover:text-primary transition-colors">Server Configurator</Link>
             </div>
           </div>
 
           <div>
             <p className="text-xs font-semibold text-foreground/70 mb-3">Tools</p>
             <div className="space-y-2 text-sm">
-              <Link to="/configurator" className="block text-muted-foreground hover:text-primary transition-colors">Configurator</Link>
               <Link to="/benchmarks" className="block text-muted-foreground hover:text-primary transition-colors">Benchmarks</Link>
-              <Link to="/migration" className="block text-muted-foreground hover:text-primary transition-colors">Free Migration</Link>
               <Link to="/knowledge-base" className="block text-muted-foreground hover:text-primary transition-colors">Knowledge Base</Link>
               <Link to="/affiliate" className="block text-muted-foreground hover:text-primary transition-colors">Affiliate Program</Link>
               <Link to="/games" className="block text-muted-foreground hover:text-primary transition-colors">All Games</Link>

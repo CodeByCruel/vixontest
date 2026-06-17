@@ -38,10 +38,10 @@ const machines: MachineInfo[] = [
   },
   {
     name: "VPS Nodes",
-    type: "AMD EPYC 9J14",
+    type: "AMD EPYC 9754",
     tagColor: "#8b5cf6",
     components: [
-      { id: "cpu", icon: Cpu, label: "CPU", value: "EPYC 9J14", detail: "128 Cores / 256 Threads @ 3.7GHz", color: "#3b82f6", specs: ["128 Cores", "256 Threads", "3.7 GHz Boost", "360W TDP", "Genoa Architecture"], animation: "cpu" },
+      { id: "cpu", icon: Cpu, label: "CPU", value: "EPYC 9754", detail: "128 Cores / 256 Threads @ 3.7GHz", color: "#3b82f6", specs: ["128 Cores", "256 Threads", "3.7 GHz Boost", "360W TDP", "Bergamo Architecture"], animation: "cpu" },
       { id: "ram", icon: MemoryStick, label: "RAM", value: "512GB DDR5", detail: "4800MHz ECC RDIMM", color: "#8b5cf6", specs: ["512 GB Capacity", "DDR5-4800", "ECC RDIMM", "12 Channel", "3DS Stacked"], animation: "ram" },
       { id: "disk", icon: HardDrive, label: "Storage", value: "15TB NVMe", detail: "Intel Optane P5800X RAID", color: "#10b981", specs: ["15 TB Total", "PCIe 5.0 x8", "RAID-10 Array", "100 DWPD Endurance", "PLP Protected"], animation: "disk" },
       { id: "network", icon: Network, label: "Network", value: "10 Gbps Port", detail: "Redundant Carrier Connections", color: "#ec4899", specs: ["10 Gbps Speed", "Dual Uplink", "BGP Routing", "MPLS Backbone", "99.999% SLA"], animation: "network" },

@@ -19,6 +19,10 @@ import {
   ExternalLink,
   ChevronRight,
   HelpCircle,
+  Gift,
+  Zap,
+  Target,
+  CheckCircle2,
 } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { DISCORD_INVITE } from "@/lib/vixon";
@@ -27,52 +31,52 @@ const steps = [
   {
     icon: Share2,
     title: "Share your link",
-    desc: "Get a unique referral link from your dashboard and share it with friends, communities, or on social media.",
+    desc: "Get a unique referral link from your dashboard and share it with friends, gaming communities, or on social media.",
     color: "text-blue-400",
     bg: "bg-blue-500/10 border-blue-500/20",
   },
   {
     icon: UserPlus,
-    title: "Friends sign up",
-    desc: "They purchase any hosting plan using your referral link — no extra cost to them.",
+    title: "Friends buy a plan",
+    desc: "They sign up and purchase any VixonCloud hosting plan worth ₹300 or more using your referral link.",
     color: "text-purple-400",
     bg: "bg-purple-500/10 border-purple-500/20",
   },
   {
     icon: IndianRupee,
-    title: "Earn commission",
-    desc: "Get 20% of their first payment, paid directly via UPI or bank transfer. No caps, no limits.",
+    title: "Earn ₹100–₹500",
+    desc: "After 5+ qualifying referrals, you earn ₹100 to ₹500 discount credits per referral — usable on any service.",
     color: "text-green-400",
     bg: "bg-green-500/10 border-green-500/20",
   },
 ];
 
-const tiers = [
+const rewardTiers = [
   {
-    name: "Basic",
-    referrals: "1-5 referrals",
-    commission: "20%",
+    referrals: "1–4",
+    reward: "₹100",
+    perRef: "₹100 per referral",
     color: "from-blue-500/15 to-cyan-500/5 border-blue-500/30",
     badge: "bg-blue-500/15 text-blue-400",
-    perks: ["20% per referral", "Monthly payouts", "Dashboard analytics"],
+    perks: ["₹100 credit per referral", "Applied to next invoice", "No minimum purchase required"],
     featured: false,
   },
   {
-    name: "Pro",
-    referrals: "6-20 referrals",
-    commission: "25%",
+    referrals: "5–15",
+    reward: "₹250",
+    perRef: "₹250 per referral",
     color: "from-purple-500/15 to-violet-500/5 border-purple-500/30",
     badge: "bg-purple-500/15 text-purple-400",
-    perks: ["25% per referral", "Priority support badge", "Faster payouts", "Exclusive updates"],
+    perks: ["₹250 credit per referral", "Priority support badge", "Free server upgrade", "Faster payouts"],
     featured: true,
   },
   {
-    name: "Elite",
-    referrals: "21+ referrals",
-    commission: "30%",
+    referrals: "16+",
+    reward: "₹500",
+    perRef: "₹500 per referral",
     color: "from-amber-500/15 to-orange-500/5 border-amber-500/30",
     badge: "bg-amber-500/15 text-amber-400",
-    perks: ["30% per referral", "Free server", "Dedicated account manager", "Custom payouts"],
+    perks: ["₹500 credit per referral", "Dedicated account manager", "Free server month", "Custom commission deals"],
     featured: false,
   },
 ];
@@ -80,25 +84,49 @@ const tiers = [
 const stats = [
   { value: "₹50,000+", label: "Paid out to affiliates", icon: IndianRupee },
   { value: "200+", label: "Active affiliates", icon: Users },
-  { value: "₹500", label: "Avg per referral", icon: TrendingUp },
+  { value: "₹250", label: "Avg per referral", icon: TrendingUp },
+];
+
+const rules = [
+  { icon: Target, text: "Each referred user must purchase a plan worth ₹300 or more", color: "text-blue-400" },
+  { icon: CheckCircle2, text: "Credits are applied after the referred user's first payment is confirmed", color: "text-green-400" },
+  { icon: Gift, text: "Credits can be used on any VixonCloud service — Minecraft, VPS, Bot hosting", color: "text-purple-400" },
+  { icon: Zap, text: "No cap on total earnings — refer 100 users, earn on all of them", color: "text-amber-400" },
+  { icon: Shield, text: "Self-referrals and fake accounts are not allowed", color: "text-red-400" },
 ];
 
 const faqs = [
   {
     q: "How do I get my referral link?",
-    a: "Once you join the program through our Discord, we'll generate a unique referral link for you. You can find it in your affiliate dashboard along with real-time tracking of your referrals and earnings.",
+    a: "Join our Discord server and request your affiliate link. We'll generate a unique referral link for you and you can track referrals in your dashboard.",
   },
   {
-    q: "When do I get paid?",
-    a: "Payouts are processed monthly, typically within the first week of each month. Once your balance reaches the minimum payout threshold, we'll send your commission via UPI or bank transfer — whichever you prefer.",
+    q: "When do I get my credits?",
+    a: "Credits are applied within 24 hours after the referred user's first payment is confirmed. You'll receive a notification on Discord when credits are added.",
   },
   {
-    q: "Is there a minimum payout?",
-    a: "Yes, the minimum payout is ₹500. If your monthly earnings are below this threshold, they'll roll over to the next month until you reach the minimum. There's no cap on how much you can earn.",
+    q: "What counts as a qualifying referral?",
+    a: "A new user who signs up through your link and purchases any VixonCloud plan worth ₹300 or more. The purchase must be their first ever order.",
   },
   {
-    q: "Can I refer myself?",
-    a: "No, self-referrals are not allowed. You must refer a new customer who hasn't used VixonCloud before. We verify all referrals to ensure fairness for our affiliate community.",
+    q: "Can I use credits on any service?",
+    a: "Yes! Your earned credits can be applied to any VixonCloud service — Minecraft hosting, VPS, Bot hosting, Website plans, and more.",
+  },
+  {
+    q: "Is there a limit on how many people I can refer?",
+    a: "No limit at all! The more people you refer, the more you earn. Top affiliates earn thousands of rupees every month.",
+  },
+  {
+    q: "What if my referral cancels their plan?",
+    a: "If a referred user cancels within the first 7 days, the referral is reversed. If they cancel after 7 days, you keep your credits — no strings attached.",
+  },
+  {
+    q: "Can I refer myself or existing users?",
+    a: "No. Self-referrals and referring existing VixonCloud customers are not allowed. We verify all referrals for fairness.",
+  },
+  {
+    q: "How do I track my referrals?",
+    a: "We provide a real-time dashboard where you can see all your referrals, pending credits, and total earnings. Access it anytime via Discord.",
   },
 ];
 
@@ -111,7 +139,7 @@ const AffiliatePage = () => (
   <div className="min-h-screen relative">
     <SEOHead
       title="Affiliate Program — VixonCloud"
-      description="Refer friends to VixonCloud and earn up to 30% commission on every referral. Join our affiliate program today."
+      description="Refer friends to VixonCloud and earn ₹100–₹500 per referral. Join our affiliate program today."
       path="/affiliate"
     />
     <AnimatedBackground />
@@ -132,7 +160,7 @@ const AffiliatePage = () => (
             Earn with <span className="gradient-text">VixonCloud</span>
           </h1>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-            Refer friends, earn commissions. Our affiliate program rewards you with real money for every new customer you bring in.
+            Refer 5+ friends, earn ₹100–₹500 credits per referral. Use them on any VixonCloud service. No limits, no caps.
           </p>
         </motion.div>
 
@@ -142,7 +170,7 @@ const AffiliatePage = () => (
             How it works
           </h2>
           <p className="text-muted-foreground text-sm text-center mb-10 max-w-lg mx-auto">
-            Three simple steps to start earning commissions.
+            Three simple steps to start earning credits.
           </p>
           <div className="grid gap-6 md:grid-cols-3">
             {steps.map((step, i) => (
@@ -173,18 +201,18 @@ const AffiliatePage = () => (
           </div>
         </motion.div>
 
-        {/* Commission tiers */}
+        {/* Reward tiers */}
         <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.2 }} className="mb-20">
           <h2 className="text-2xl md:text-3xl font-extrabold font-display text-center mb-3">
-            Commission <span className="gradient-text">tiers</span>
+            Reward <span className="gradient-text">tiers</span>
           </h2>
           <p className="text-muted-foreground text-sm text-center mb-10 max-w-lg mx-auto">
-            The more you refer, the more you earn. Unlock higher tiers as you grow.
+            Refer more, earn more. Higher tiers unlock better rewards.
           </p>
           <div className="grid gap-6 md:grid-cols-3">
-            {tiers.map((tier, i) => (
+            {rewardTiers.map((tier, i) => (
               <motion.div
-                key={tier.name}
+                key={tier.referrals}
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + i * 0.08 }}
@@ -197,10 +225,10 @@ const AffiliatePage = () => (
                   )}
                   <div className="relative z-10 flex flex-col h-full">
                     <div className={`inline-flex w-fit items-center text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-md ${tier.badge} mb-3`}>
-                      {tier.commission} COMMISSION
+                      {tier.reward} PER REFERRAL
                     </div>
-                    <h3 className="text-2xl font-extrabold font-display mb-1">{tier.name}</h3>
-                    <p className="text-xs text-muted-foreground mb-4">{tier.referrals}</p>
+                    <h3 className="text-2xl font-extrabold font-display mb-1">{tier.referrals} referrals</h3>
+                    <p className="text-xs text-muted-foreground mb-4">{tier.perRef}</p>
                     <ul className="space-y-2 flex-1 mb-5">
                       {tier.perks.map((perk) => (
                         <li key={perk} className="flex items-center gap-2 text-xs text-foreground/80">
@@ -213,6 +241,32 @@ const AffiliatePage = () => (
               </motion.div>
             ))}
           </div>
+        </motion.div>
+
+        {/* Rules */}
+        <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.25 }} className="mb-20">
+          <h2 className="text-2xl md:text-3xl font-extrabold font-display text-center mb-3">
+            Program <span className="gradient-text">rules</span>
+          </h2>
+          <p className="text-muted-foreground text-sm text-center mb-10 max-w-lg mx-auto">
+            Keep it fair for everyone.
+          </p>
+          <Card className="p-6 glass gradient-border max-w-2xl mx-auto">
+            <div className="space-y-4">
+              {rules.map((rule, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 + i * 0.05 }}
+                  className="flex items-center gap-3"
+                >
+                  <rule.icon className={`h-4 w-4 ${rule.color} shrink-0`} />
+                  <p className="text-xs text-muted-foreground leading-relaxed">{rule.text}</p>
+                </motion.div>
+              ))}
+            </div>
+          </Card>
         </motion.div>
 
         {/* Stats */}
@@ -269,7 +323,7 @@ const AffiliatePage = () => (
           <TrendingUp className="h-8 w-8 text-primary mx-auto mb-4" />
           <h3 className="font-display text-2xl font-bold mb-2">Ready to start earning?</h3>
           <p className="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
-            Join our affiliate program on Discord and start earning commissions today. No sign-up fees, no hidden terms.
+            Join our affiliate program on Discord and start earning credits today. Refer 5+ friends to unlock ₹250 per referral.
           </p>
           <a href={DISCORD_INVITE} target="_blank" rel="noopener noreferrer">
             <Button className="gap-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 glow-primary font-semibold">

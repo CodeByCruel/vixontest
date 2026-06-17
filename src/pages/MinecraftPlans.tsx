@@ -12,7 +12,7 @@ import { ArrowRight, Crown, Sparkles, Zap, Cpu, Check } from "lucide-react";
 const tiers = [
  {
  slug: "starter", emoji: "", name: "Starter", price: "₹20/GB",
- cpu: "Intel Xeon E5-2699 v4",
+ cpu: "Intel Platinum 8269-CY",
  desc: "Best value for small SMPs, friends-only worlds and lightweight modpacks.",
  accent: "from-green-500/15 to-emerald-500/5 border-green-500/30",
  badge: "bg-green-500/15 text-green-400",
@@ -20,7 +20,7 @@ const tiers = [
  },
  {
  slug: "standard", emoji: "", name: "Standard", price: "₹40/GB",
- cpu: "Intel Platinum 8573C 4.2GHz",
+ cpu: "AMD EPYC 7K62",
  desc: "The sweet spot. High clocks, NVMe SSDs, ideal for active modded servers & networks.",
  accent: "from-blue-500/15 to-cyan-500/5 border-blue-500/30",
  badge: "bg-blue-500/15 text-blue-400",
@@ -29,7 +29,7 @@ const tiers = [
  },
  {
  slug: "premium", emoji: "", name: "Premium", price: "₹55/GB",
- cpu: "AMD EPYC 9J14 96C/192T",
+ cpu: "AMD EPYC 9754 96C/192T",
  desc: "Absolute top-tier. Monster core counts, priority support, built for massive networks.",
  accent: "from-amber-500/15 to-orange-500/5 border-amber-500/30",
  badge: "bg-amber-500/15 text-amber-400",

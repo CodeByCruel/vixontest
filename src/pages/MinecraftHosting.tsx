@@ -74,7 +74,7 @@ const MinecraftHosting = () => {
                 <CardHeader><CardTitle className="font-bold text-sm tracking-wider flex items-center gap-2" style={{ fontFamily: "'Outfit', sans-serif" }}><Server className={`h-5 w-5 ${isPremium ? "text-amber-400" : "text-primary"}`} /> YOUR SERVER</CardTitle></CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-3">
-                    {[{ icon: Cpu, label: "CPU", value: cpu === "starter" ? "Intel Xeon" : cpu === "standard" ? "AMD Ryzen 9" : "Premium Ryzen 9" }, { icon: MemoryStick, label: "RAM", value: `${ram} GB DDR4` }, { icon: HardDrive, label: "Storage", value: `${storage} GB NVMe` }, { icon: Users, label: "Players", value: `${getPlayerSlots(ram)}` }].map(item => (
+                    {[{ icon: Cpu, label: "CPU", value: cpu === "starter" ? "Intel Platinum 8269-CY" : cpu === "standard" ? "AMD EPYC 7K62" : "AMD EPYC 9754" }, { icon: MemoryStick, label: "RAM", value: `${ram} GB DDR4` }, { icon: HardDrive, label: "Storage", value: `${storage} GB NVMe` }, { icon: Users, label: "Players", value: `${getPlayerSlots(ram)}` }].map(item => (
                       <div key={item.label} className="flex items-center justify-between rounded-lg bg-secondary/50 px-4 py-3"><span className="flex items-center gap-2 text-sm text-muted-foreground"><item.icon className="h-4 w-4" /> {item.label}</span><span className="text-sm font-semibold">{item.value}</span></div>
                     ))}
                   </div>

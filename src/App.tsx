@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BackToTop from "@/components/BackToTop";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import CookieConsent from "@/components/CookieConsent";
 import ScrollProgress from "@/components/ScrollProgress";
 import LoadingScreen from "@/components/LoadingScreen";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -34,9 +33,8 @@ const MinecraftTierPage = lazy(() => import("./pages/MinecraftTierPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const KnowledgeBase = lazy(() => import("./pages/KnowledgeBase"));
 const AffiliatePage = lazy(() => import("./pages/AffiliatePage"));
-const ServerConfigurator = lazy(() => import("./pages/ServerConfigurator"));
+
 const BenchmarksPage = lazy(() => import("./pages/BenchmarksPage"));
-const MigrationPage = lazy(() => import("./pages/MigrationPage"));
 
 const queryClient = new QueryClient();
 
@@ -95,9 +93,7 @@ const App = () => {
                 <Route path="/status" element={<StatusPage />} />
                 <Route path="/knowledge-base" element={<KnowledgeBase />} />
                 <Route path="/affiliate" element={<AffiliatePage />} />
-                <Route path="/configurator" element={<ServerConfigurator />} />
                 <Route path="/benchmarks" element={<BenchmarksPage />} />
-                <Route path="/migration" element={<MigrationPage />} />
                 <Route path="/website-plans" element={<WebsitePlans />} />
                 <Route path="/vps-starter" element={<VpsStarter />} />
                 <Route path="/vps-premium" element={<VpsPremium />} />
@@ -111,7 +107,6 @@ const App = () => {
           </ErrorBoundary>
           <BackToTop />
           <WhatsAppButton />
-          <CookieConsent />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

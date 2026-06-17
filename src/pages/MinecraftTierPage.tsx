@@ -29,7 +29,7 @@ const tierConfig: Record<Tier, {
 }> = {
  starter: {
  title: "Starter", emoji: "", tagline: "Affordable Minecraft hosting that just works.",
- pricePerGb: 20, cpu: "Intel Xeon E5-2699 v4 3.2GHz",
+ pricePerGb: 20, cpu: "Intel Platinum 8269-CY",
  card: "border-green-500/25 bg-gradient-to-br from-green-500/8 to-emerald-500/4",
  badge: "bg-green-500/15 text-green-400 border-green-500/30",
  price: "text-green-400", icon: "text-green-400",
@@ -40,7 +40,7 @@ const tierConfig: Record<Tier, {
  },
  standard: {
  title: "Standard", emoji: "", tagline: "Balanced performance for serious communities.",
- pricePerGb: 40, cpu: "Intel Platinum 8573C 4.2GHz",
+ pricePerGb: 40, cpu: "AMD EPYC 7K62",
  card: "border-blue-500/25 bg-gradient-to-br from-blue-500/8 to-cyan-500/4",
  badge: "bg-blue-500/15 text-blue-400 border-blue-500/30",
  price: "text-blue-400", icon: "text-blue-400",
@@ -51,14 +51,14 @@ const tierConfig: Record<Tier, {
  },
  premium: {
  title: "Premium", emoji: "", tagline: "Top-tier AMD EPYC for the best experience.",
- pricePerGb: 55, cpu: "AMD Epyc 9J14 96C/192T",
+ pricePerGb: 55, cpu: "AMD EPYC 9754 96C/192T",
  card: "border-amber-500/30 bg-gradient-to-br from-amber-500/10 to-orange-500/4",
  badge: "bg-amber-500/15 text-amber-400 border-amber-500/30",
  price: "text-amber-400", icon: "text-amber-400",
  btn: "bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-500/40",
  chip: "from-amber-500/20 to-orange-500/10 border-amber-500/30",
  glow: "shadow-amber-500/15",
- blurb: "Absolute top tier. AMD EPYC 9J14 with monstrous core counts, premium NVMe and priority support — built for huge networks.",
+ blurb: "Absolute top tier. AMD EPYC 9754 with monstrous core counts, premium NVMe and priority support — built for huge networks.",
  },
 };
 
