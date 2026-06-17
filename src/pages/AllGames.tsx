@@ -45,15 +45,15 @@ const categories: { key: Category; label: string }[] = [
 ];
 
 const games = [
-  { name: "Minecraft", img: minecraft, bg: minecraftBg, desc: "World's most popular sandbox game with endless possibilities", price: "From ₹20/GB", available: true, link: "/minecraft-plans", tag: "Popular", category: "sandbox" as Category, players: "100+", mods: true, storage: "NVMe" },
-  { name: "Hytale", img: hytale, bg: hytaleBg, desc: "Next-gen adventure and building with voxel graphics", price: "Coming Soon", available: false, tag: "Coming Soon", category: "adventure" as Category, players: "50+", mods: false, storage: "NVMe" },
-  { name: "Rust", img: rust, bg: rustBg, desc: "Survive, build, and dominate in this harsh multiplayer world", price: "From ₹80/slot", available: true, tag: "Popular", category: "survival" as Category, players: "200+", mods: true, storage: "NVMe" },
-  { name: "Palworld", img: palworld, bg: palworldBg, desc: "Open-world survival crafting with mysterious creatures", price: "From ₹60/GB", available: true, category: "survival" as Category, players: "32+", mods: true, storage: "NVMe" },
-  { name: "ARK: Survival", img: ark, bg: minecraftBg, desc: "Tame dinosaurs and survive in a prehistoric world", price: "From ₹70/GB", available: true, category: "survival" as Category, players: "70+", mods: true, storage: "NVMe" },
-  { name: "Terraria", img: terraria, bg: terrariaBg, desc: "2D sandbox adventure with tModLoader support", price: "From ₹30/GB", available: true, category: "sandbox" as Category, players: "8+", mods: true, storage: "NVMe" },
-  { name: "Valheim", img: valheim, bg: palworldBg, desc: "Explore a Viking world with friends", price: "From ₹50/GB", available: true, category: "adventure" as Category, players: "10+", mods: true, storage: "NVMe" },
-  { name: "Satisfactory", img: satisfactory, bg: gta5Bg, desc: "Build giant factories on an alien planet", price: "From ₹60/GB", available: true, category: "building" as Category, players: "8+", mods: false, storage: "NVMe" },
-  { name: "7 Days to Die", img: sevenDays, bg: rustBg, desc: "Zombie survival with crafting and base building", price: "From ₹50/GB", available: true, category: "survival" as Category, players: "8+", mods: true, storage: "NVMe" },
+  { name: "Minecraft", img: minecraft, bg: minecraftBg, desc: "World's most popular sandbox game with endless possibilities", price: "From ₹20/GB", available: true, link: "/minecraft-plans", tag: "Popular", category: "sandbox" as Category, players: "100+", mods: true, storage: "NVMe", version: "1.21.4" },
+  { name: "Hytale", img: hytale, bg: hytaleBg, desc: "Next-gen adventure and building with voxel graphics", price: "Coming Soon", available: false, tag: "Coming Soon", category: "adventure" as Category, players: "50+", mods: false, storage: "NVMe", version: "Coming 2024" },
+  { name: "Rust", img: rust, bg: rustBg, desc: "Survive, build, and dominate in this harsh multiplayer world", price: "From ₹80/slot", available: true, tag: "Popular", category: "survival" as Category, players: "200+", mods: true, storage: "NVMe", version: "Latest" },
+  { name: "Palworld", img: palworld, bg: palworldBg, desc: "Open-world survival crafting with mysterious creatures", price: "From ₹60/GB", available: true, category: "survival" as Category, players: "32+", mods: true, storage: "NVMe", version: "v0.3.x" },
+  { name: "ARK: Survival", img: ark, bg: minecraftBg, desc: "Tame dinosaurs and survive in a prehistoric world", price: "From ₹70/GB", available: true, category: "survival" as Category, players: "70+", mods: true, storage: "NVMe", version: "ASA" },
+  { name: "Terraria", img: terraria, bg: terrariaBg, desc: "2D sandbox adventure with tModLoader support", price: "From ₹30/GB", available: true, category: "sandbox" as Category, players: "8+", mods: true, storage: "NVMe", version: "1.4.4.9" },
+  { name: "Valheim", img: valheim, bg: palworldBg, desc: "Explore a Viking world with friends", price: "From ₹50/GB", available: true, category: "adventure" as Category, players: "10+", mods: true, storage: "NVMe", version: "0.217.x" },
+  { name: "Satisfactory", img: satisfactory, bg: gta5Bg, desc: "Build giant factories on an alien planet", price: "From ₹60/GB", available: true, category: "building" as Category, players: "8+", mods: false, storage: "NVMe", version: "Early Access" },
+  { name: "7 Days to Die", img: sevenDays, bg: rustBg, desc: "Zombie survival with crafting and base building", price: "From ₹50/GB", available: true, category: "survival" as Category, players: "8+", mods: true, storage: "NVMe", version: "1.1" },
 ];
 
 const marqueeGames = [...games, ...games];
@@ -392,8 +392,13 @@ const AllGames = () => {
                         </div>
                         <div className="flex items-center justify-between pt-1">
                           <span className="text-sm font-bold text-primary">{game.price}</span>
-                          <div className="flex items-center gap-1 text-[10px] text-muted-foreground animate-pulse">
-                            <Zap className="h-3 w-3 text-primary" /> Instant Setup
+                          <div className="flex items-center gap-2">
+                            <span className="inline-flex items-center rounded-full glass px-2 py-0.5 text-[10px] font-mono font-semibold text-muted-foreground border border-border/20">
+                              {game.version}
+                            </span>
+                            <div className="flex items-center gap-1 text-[10px] text-muted-foreground animate-pulse">
+                              <Zap className="h-3 w-3 text-primary" /> Instant Setup
+                            </div>
                           </div>
                         </div>
                         <Button
