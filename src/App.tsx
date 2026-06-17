@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BackToTop from "@/components/BackToTop";
+import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import LoadingScreen from "@/components/LoadingScreen";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -68,9 +69,12 @@ const App = () => {
         <Sonner />
         {showLoader && <LoadingScreen onComplete={() => setShowLoader(false)} />}
         <BrowserRouter>
+          <KeyboardShortcuts />
+          <a href="#main-content" className="skip-link">Skip to main content</a>
           <AnimatedBackground />
           <ErrorBoundary>
             <Suspense fallback={<PageLoader />}>
+              <div id="main-content">
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/minecraft" element={<MinecraftHosting />} />
@@ -98,6 +102,7 @@ const App = () => {
                 <Route path="/tos" element={<TermsOfService />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              </div>
             </Suspense>
           </ErrorBoundary>
           <BackToTop />
