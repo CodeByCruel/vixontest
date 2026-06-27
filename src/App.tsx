@@ -33,7 +33,10 @@ const AboutPage = lazy(() => import("./pages/AboutPage"));
 const KnowledgeBase = lazy(() => import("./pages/KnowledgeBase"));
 const AffiliatePage = lazy(() => import("./pages/AffiliatePage"));
 
+const HardwarePage = lazy(() => import("./pages/HardwarePage"));
 const BenchmarksPage = lazy(() => import("./pages/BenchmarksPage"));
+const ChangelogPage = lazy(() => import("./pages/ChangelogPage"));
+const ServerLocations = lazy(() => import("./pages/ServerLocations"));
 
 const queryClient = new QueryClient();
 
@@ -92,7 +95,10 @@ const App = () => {
                 <Route path="/status" element={<StatusPage />} />
                 <Route path="/knowledge-base" element={<KnowledgeBase />} />
                 <Route path="/affiliate" element={<AffiliatePage />} />
-                <Route path="/benchmarks" element={<BenchmarksPage />} />
+                <Route path="/server-locations" element={<ServerLocations />} />
+                <Route path="/hardware" element={<HardwarePage />} />
+<Route path="/benchmarks" element={<BenchmarksPage />} />
+                <Route path="/changelog" element={<ChangelogPage />} />
                 <Route path="/website-plans" element={<WebsitePlans />} />
                 <Route path="/vps-starter" element={<VpsStarter />} />
                 <Route path="/vps-premium" element={<VpsPremium />} />
