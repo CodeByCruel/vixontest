@@ -8,7 +8,7 @@ import BackToTop from "@/components/BackToTop";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import ScrollProgress from "@/components/ScrollProgress";
 import LoadingScreen from "@/components/LoadingScreen";
-import AnimatedBackground from "@/components/AnimatedBackground";
+import AnimatedBackground from "@/components/ScrollBackground3D";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { refreshDiscordInvite } from "@/lib/vixon";
 

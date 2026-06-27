@@ -24,6 +24,7 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           "vendor-react": ["react", "react-dom", "react-router-dom"],
           "vendor-framer": ["framer-motion"],
+          "vendor-three": ["three", "@react-three/fiber", "@react-three/drei"],
           "vendor-ui": ["@radix-ui/react-accordion", "@radix-ui/react-dialog", "@radix-ui/react-tooltip", "@radix-ui/react-toast"],
           "vendor-lucide": ["lucide-react"],
         },
