@@ -16,6 +16,8 @@ import DiscordWidget from "@/components/DiscordWidget";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import PanelTour from "@/components/PanelTour";
 import MoneyBackBadge from "@/components/MoneyBackBadge";
+import PricingCalculator from "@/components/PricingCalculator";
+import ComparisonTable from "@/components/ComparisonTable";
 
 const Index = () => {
   return (
@@ -35,9 +37,11 @@ const Index = () => {
         <GlobalNetwork />
         <MachinesSection />
         <BeforeAfterSlider />
+        <PricingCalculator />
         <LatencySection />
         <NodesSection />
         <PanelTour />
+        <ComparisonTable />
         <FeaturesEnhanced />
         <TestimonialsSection />
         <DiscordWidget />

@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import SEOHead from "@/components/SEOHead";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HelpCircle, Server, Shield, CreditCard, Zap, MessageCircle, ExternalLink, Gamepad2, Globe, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -88,84 +90,119 @@ const faqCategories = [
   },
 ];
 
-const FAQPage = () => (
-  <div className="min-h-screen animated-bg">
-    <AnimatedBackground />
-    <Navbar />
-    <main className="pt-24 pb-16 relative z-10">
-      <div className="container mx-auto px-4 max-w-4xl">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-primary font-medium mb-4">
-            <HelpCircle className="h-3 w-3" /> Frequently Asked Questions
-          </div>
-          <h1 className="font-display text-3xl md:text-4xl font-black tracking-tight mb-3">
-            GOT <span className="text-primary text-glow">QUESTIONS?</span>
-          </h1>
-          <p className="text-muted-foreground text-sm max-w-lg mx-auto">
-            Find answers to common questions about our hosting services, billing, and more.
-          </p>
-        </motion.div>
+const FAQPage = () => {
+  useEffect(() => {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqCategories.flatMap((cat) =>
+        cat.items.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.a,
+          },
+        }))
+      ),
+    };
 
-        {/* FAQ Categories */}
-        <div className="space-y-6">
-          {faqCategories.map((cat, ci) => (
-            <motion.div
-              key={cat.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: ci * 0.08 }}
-              className="glass rounded-xl gradient-border overflow-hidden"
-            >
-              <div className="flex items-center gap-3 px-6 pt-5 pb-2">
-                <div className="h-8 w-8 rounded-lg bg-primary/10 border border-primary/12 flex items-center justify-center">
-                  <cat.icon className="h-4 w-4 text-primary" />
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "faq-schema";
+    script.textContent = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      const existing = document.getElementById("faq-schema");
+      if (existing) existing.remove();
+    };
+  }, []);
+
+  return (
+    <div className="min-h-screen animated-bg">
+      <AnimatedBackground />
+      <SEOHead
+        title="FAQ | VixonCloud"
+        description="Find answers to common questions about VixonCloud's game server hosting, billing, DDoS protection, VPS hosting, and more."
+        path="/faq"
+      />
+      <Navbar />
+      <main className="pt-24 pb-16 relative z-10">
+        <div className="container mx-auto px-4 max-w-4xl">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-primary font-medium mb-4">
+              <HelpCircle className="h-3 w-3" /> Frequently Asked Questions
+            </div>
+            <h1 className="font-display text-3xl md:text-4xl font-black tracking-tight mb-3">
+              GOT <span className="text-primary text-glow">QUESTIONS?</span>
+            </h1>
+            <p className="text-muted-foreground text-sm max-w-lg mx-auto">
+              Find answers to common questions about our hosting services, billing, and more.
+            </p>
+          </motion.div>
+
+          {/* FAQ Categories */}
+          <div className="space-y-6">
+            {faqCategories.map((cat, ci) => (
+              <motion.div
+                key={cat.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: ci * 0.08 }}
+                className="glass rounded-xl gradient-border overflow-hidden"
+              >
+                <div className="flex items-center gap-3 px-6 pt-5 pb-2">
+                  <div className="h-8 w-8 rounded-lg bg-primary/10 border border-primary/12 flex items-center justify-center">
+                    <cat.icon className="h-4 w-4 text-primary" />
+                  </div>
+                  <h2 className="font-display text-base font-bold">{cat.title}</h2>
                 </div>
-                <h2 className="font-display text-base font-bold">{cat.title}</h2>
-              </div>
-              <Accordion type="single" collapsible className="px-6 pb-4">
-                {cat.items.map((item, i) => (
-                  <AccordionItem key={i} value={`${ci}-${i}`} className="border-border/10">
-                    <AccordionTrigger className="text-sm font-medium hover:no-underline hover:text-primary transition-colors py-3">
-                      {item.q}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground text-xs leading-relaxed">
-                      {item.a}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </motion.div>
-          ))}
-        </div>
+                <Accordion type="single" collapsible className="px-6 pb-4">
+                  {cat.items.map((item, i) => (
+                    <AccordionItem key={i} value={`${ci}-${i}`} className="border-border/10">
+                      <AccordionTrigger className="text-sm font-medium hover:no-underline hover:text-primary transition-colors py-3">
+                        {item.q}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground text-xs leading-relaxed">
+                        {item.a}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </motion.div>
+            ))}
+          </div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          className="mt-12 text-center glass rounded-xl gradient-border p-8"
-        >
-          <MessageCircle className="h-8 w-8 text-primary mx-auto mb-3" />
-          <h3 className="font-display text-lg font-bold mb-2">Still have questions?</h3>
-          <p className="text-muted-foreground text-xs mb-5">
-            Our support team is available 24/7 on Discord. Create a ticket and we'll help you out!
-          </p>
-          <a href="https://discord.gg/TtV26hZEJx" target="_blank" rel="noopener noreferrer">
-            <Button className="glow-primary gap-2 text-xs font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90">
-              <ExternalLink className="h-3.5 w-3.5" /> Join Discord
-            </Button>
-          </a>
-        </motion.div>
-      </div>
-    </main>
-    <Footer />
-  </div>
-);
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="mt-12 text-center glass rounded-xl gradient-border p-8"
+          >
+            <MessageCircle className="h-8 w-8 text-primary mx-auto mb-3" />
+            <h3 className="font-display text-lg font-bold mb-2">Still have questions?</h3>
+            <p className="text-muted-foreground text-xs mb-5">
+              Our support team is available 24/7 on Discord. Create a ticket and we'll help you out!
+            </p>
+            <a href="https://discord.gg/TtV26hZEJx" target="_blank" rel="noopener noreferrer">
+              <Button className="glow-primary gap-2 text-xs font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90">
+                <ExternalLink className="h-3.5 w-3.5" /> Join Discord
+              </Button>
+            </a>
+          </motion.div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+};
 
 export default FAQPage;

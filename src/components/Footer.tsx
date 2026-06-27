@@ -70,6 +70,8 @@ const Footer = () => {
             <p className="text-xs font-semibold text-foreground/70 mb-3">Tools</p>
             <div className="space-y-2 text-sm">
               <Link to="/benchmarks" className="block text-muted-foreground hover:text-primary transition-colors">Benchmarks</Link>
+              <Link to="/server-locations" className="block text-muted-foreground hover:text-primary transition-colors">Server Locations</Link>
+              <Link to="/hardware" className="block text-muted-foreground hover:text-primary transition-colors">Hardware Specs</Link>
               <Link to="/knowledge-base" className="block text-muted-foreground hover:text-primary transition-colors">Knowledge Base</Link>
               <Link to="/affiliate" className="block text-muted-foreground hover:text-primary transition-colors">Affiliate Program</Link>
               <Link to="/games" className="block text-muted-foreground hover:text-primary transition-colors">All Games</Link>
@@ -83,10 +85,12 @@ const Footer = () => {
               <Link to="/features" className="block text-muted-foreground hover:text-primary transition-colors">Features</Link>
               <Link to="/why-us" className="block text-muted-foreground hover:text-primary transition-colors">Why Us</Link>
               <Link to="/faq" className="block text-muted-foreground hover:text-primary transition-colors">FAQ</Link>
+              <Link to="/changelog" className="block text-muted-foreground hover:text-primary transition-colors">Changelog</Link>
               <Link to="/contact" className="block text-muted-foreground hover:text-primary transition-colors">Contact</Link>
               <Link to="/tos" className="flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors">
                 <FileText className="h-3.5 w-3.5" /> Terms &amp; Refund Policy
               </Link>
+              <Link to="/privacy" className="block text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link>
             </div>
           </div>
 

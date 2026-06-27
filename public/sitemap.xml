@@ -20,6 +20,10 @@
   <url><loc>https://vixoncloud.com/vps-starter</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vixoncloud.com/vps-premium</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vixoncloud.com/faq</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://vixoncloud.com/changelog</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://vixoncloud.com/server-locations</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vixoncloud.com/hardware</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://vixoncloud.com/contact</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://vixoncloud.com/tos</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://vixoncloud.com/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

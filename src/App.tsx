@@ -37,6 +37,7 @@ const HardwarePage = lazy(() => import("./pages/HardwarePage"));
 const BenchmarksPage = lazy(() => import("./pages/BenchmarksPage"));
 const ChangelogPage = lazy(() => import("./pages/ChangelogPage"));
 const ServerLocations = lazy(() => import("./pages/ServerLocations"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 
 const queryClient = new QueryClient();
 
@@ -97,8 +98,9 @@ const App = () => {
                 <Route path="/affiliate" element={<AffiliatePage />} />
                 <Route path="/server-locations" element={<ServerLocations />} />
                 <Route path="/hardware" element={<HardwarePage />} />
-<Route path="/benchmarks" element={<BenchmarksPage />} />
+                <Route path="/benchmarks" element={<BenchmarksPage />} />
                 <Route path="/changelog" element={<ChangelogPage />} />
+                <Route path="/privacy" element={<PrivacyPolicy />} />
                 <Route path="/website-plans" element={<WebsitePlans />} />
                 <Route path="/vps-starter" element={<VpsStarter />} />
                 <Route path="/vps-premium" element={<VpsPremium />} />

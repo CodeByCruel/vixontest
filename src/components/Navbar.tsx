@@ -69,8 +69,10 @@ const navItems: NavItem[] = [
     icon: Zap,
     children: [
       { label: "Benchmarks", to: "/benchmarks", icon: Activity, desc: "See our performance numbers" },
+      { label: "Server Locations", to: "/server-locations", icon: Globe, desc: "7 global data centers" },
+      { label: "Hardware Specs", to: "/hardware", icon: Cpu, desc: "Our server hardware" },
       { label: "Knowledge Base", to: "/knowledge-base", icon: HelpCircle, desc: "Guides & documentation" },
-      { label: "Affiliate Program", to: "/affiliate", icon: Users, desc: "Earn 20-30% commissions", badge: "Earn", badgeColor: "bg-amber-500/15 text-amber-400" },
+      { label: "Affiliate Program", to: "/affiliate", icon: Users, desc: "Earn ₹100-₹500 per referral", badge: "Earn", badgeColor: "bg-amber-500/15 text-amber-400" },
     ],
   },
   {
@@ -80,9 +82,11 @@ const navItems: NavItem[] = [
       { label: "About Us", to: "/about", icon: Sparkles, desc: "Our mission & history" },
       { label: "Why Us", to: "/why-us", icon: Activity, desc: "Why thousands trust us" },
       { label: "FAQ", to: "/faq", icon: HelpCircle, desc: "Common questions" },
+      { label: "Changelog", to: "/changelog", icon: FileText, desc: "What's new" },
       { label: "Contact", to: "/contact", icon: MessagesSquare, desc: "Get in touch" },
       { label: "Status", to: "/status", icon: Activity, desc: "Live system status", badge: "Live", badgeColor: "bg-emerald-500/15 text-emerald-400" },
       { label: "Terms & Refund Policy", to: "/tos", icon: FileText, desc: "Legal terms" },
+      { label: "Privacy Policy", to: "/privacy", icon: FileText, desc: "Data & privacy" },
     ],
   },
 ];

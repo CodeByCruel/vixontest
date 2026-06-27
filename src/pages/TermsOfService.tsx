@@ -127,9 +127,9 @@ const TermsOfService = () => {
       title: '11. "Permanent" Server Guarantee',
       content: 'Servers sold as "Permanent" come with a 1-year (12 months) uptime guarantee.',
       list: [
-        "**Guarantee Period:** The "Permanent" status is guaranteed for 12 months from the date of purchase.",
+        "**Guarantee Period:** The \\\"Permanent\\\" status is guaranteed for 12 months from the date of purchase.",
         "**After Guarantee:** After the first year, VixonCloud is not liable for data loss or hardware decommissioning.",
-        "**Renewal:** The "Permanent" status may be reviewed and renewed based on hardware costs and availability.",
+        "**Renewal:** The \\\"Permanent\\\" status may be reviewed and renewed based on hardware costs and availability.",
         "**Hardware Changes:** We reserve the right to migrate permanent servers to equivalent or better hardware at any time.",
       ],
     },
