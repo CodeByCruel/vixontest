@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -83,7 +82,6 @@ const ChangelogPage = () => (
       description="See what's new at VixonCloud. Full changelog with every feature, improvement, and fix."
       path="/changelog"
     />
-    <AnimatedBackground />
     <Navbar />
     <main className="pt-24 pb-20 relative z-10">
       <div className="container mx-auto px-4 max-w-5xl">

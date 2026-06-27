@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -96,7 +95,6 @@ const MigrationPage = () => (
       description="Moving from another host? VixonCloud offers free, zero-downtime migrations. Our expert team handles the entire process."
       path="/migration"
     />
-    <AnimatedBackground />
     <Navbar />
     <main className="pt-24 pb-20 relative z-10">
       {/* Hero */}

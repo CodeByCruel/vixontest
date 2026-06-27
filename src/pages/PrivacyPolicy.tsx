@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
 import { useDiscordInvite } from "@/lib/vixon";
 import { Card } from "@/components/ui/card";
@@ -123,7 +122,6 @@ const PrivacyPolicy = () => {
         description="VixonCloud privacy policy — how we collect, use, protect, and share your data."
         path="/privacy"
       />
-      <AnimatedBackground />
       <Navbar />
       <main className="pt-28 pb-20 relative z-10">
         <div className="container mx-auto px-4 max-w-3xl">

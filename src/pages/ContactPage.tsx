@@ -3,14 +3,12 @@ import { MessageCircle, Mail, ExternalLink, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
 
 const ContactPage = () => {
   return (
     <div className="min-h-screen animated-bg">
       <SEOHead title="Contact Us — VixonCloud" description="Get in touch with VixonCloud support via Discord or email." path="/contact" />
-      <AnimatedBackground />
       <Navbar />
       <main className="pt-28 pb-20 relative z-10">
         <div className="container mx-auto px-4 max-w-3xl">

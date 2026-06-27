@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import CurrencyConverter from "@/components/CurrencyConverter";
 import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
@@ -74,7 +73,6 @@ const MinecraftTierPage = ({ tier }: { tier: Tier }) => {
  description={`${t.title} Minecraft hosting on ${t.cpu}. ${t.blurb}`}
  path={`/minecraft-${tier}`}
  />
- <AnimatedBackground />
  <Navbar />
  <main className="pt-24 pb-20 relative z-10">
  <div className="container mx-auto px-4">

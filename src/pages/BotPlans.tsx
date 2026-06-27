@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import CurrencyConverter from "@/components/CurrencyConverter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -66,7 +65,6 @@ const botPlans = [
 const BotPlans = () => {
   return (
     <div className="min-h-screen relative">
-      <AnimatedBackground />
       <Navbar />
       <main className="pt-24 pb-16 relative z-10">
         <div className="container mx-auto px-4">

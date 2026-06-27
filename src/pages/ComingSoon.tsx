@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import { Server, Clock } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,7 +8,6 @@ import { Link } from "react-router-dom";
 
 const ComingSoon = ({ title, blurb }: { title: string; blurb: string }) => (
   <div className="min-h-screen relative">
-    <AnimatedBackground />
     <Navbar />
     <main className="pt-32 pb-16 relative z-10">
       <div className="container mx-auto px-4 max-w-2xl">

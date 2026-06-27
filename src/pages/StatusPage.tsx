@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
+
 import SEOHead from "@/components/SEOHead";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -116,7 +116,6 @@ const StatusPage = () => {
         description="Real-time status and uptime monitoring for all VixonCloud services. Check server availability, incidents, and maintenance schedules."
         path="/status"
       />
-      <AnimatedBackground />
       <Navbar />
       <main className="pt-24 pb-20 relative z-10">
         <div className="container mx-auto px-4 max-w-6xl">

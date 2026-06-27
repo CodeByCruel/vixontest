@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import WelcomeSection from "@/components/landing/WelcomeSection";
 import TrustStatsSection from "@/components/landing/TrustStatsSection";
 import VixonMCSection from "@/components/landing/VixonMCSection";
@@ -10,7 +9,6 @@ import FAQPreview from "@/components/landing/FAQPreview";
 const WhyUsPage = () => {
   return (
     <div className="min-h-screen relative">
-      <AnimatedBackground />
       <SEOHead
         title="Why VixonCloud — Trusted Game Hosting"
         description="Discover why thousands of gamers trust VixonCloud. See our stats, community, and what makes us different."

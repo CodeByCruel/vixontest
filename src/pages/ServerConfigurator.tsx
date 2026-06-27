@@ -2,7 +2,6 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -139,7 +138,6 @@ const ServerConfigurator = () => {
         description="Build and configure your perfect game server. Choose your game, RAM, CPU cores, and storage. Get instant pricing."
         path="/configurator"
       />
-      <AnimatedBackground />
       <Navbar />
       <main className="pt-24 pb-20 relative z-10">
         <div className="container mx-auto px-4 max-w-6xl">

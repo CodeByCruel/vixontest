@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
+
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -91,7 +91,6 @@ const WebsitePlans = () => {
 
   return (
     <div className="min-h-screen relative">
-      <AnimatedBackground />
       <Navbar />
 
       <main className="pt-24 pb-20 relative z-10">

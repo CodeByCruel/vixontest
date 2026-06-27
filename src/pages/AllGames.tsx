@@ -3,7 +3,6 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -126,7 +125,6 @@ const AllGames = () => {
 
   return (
     <div className="min-h-screen relative">
-      <AnimatedBackground />
       <Navbar />
       <main className="pt-20 relative z-10">
 

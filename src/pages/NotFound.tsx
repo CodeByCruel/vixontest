@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import { Button } from "@/components/ui/button";
 import { Home, ArrowLeft } from "lucide-react";
 
@@ -210,7 +209,6 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <AnimatedBackground />
       <Navbar />
 
       {/* Floating blocks */}

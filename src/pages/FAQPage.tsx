@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HelpCircle, Server, Shield, CreditCard, Zap, MessageCircle, ExternalLink, Gamepad2, Globe, Headphones } from "lucide-react";
@@ -121,8 +120,7 @@ const FAQPage = () => {
 
   return (
     <div className="min-h-screen animated-bg">
-      <AnimatedBackground />
-      <SEOHead
+    <SEOHead
         title="FAQ | VixonCloud"
         description="Find answers to common questions about VixonCloud's game server hosting, billing, DDoS protection, VPS hosting, and more."
         path="/faq"

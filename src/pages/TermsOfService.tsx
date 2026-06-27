@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
+
 import SEOHead from "@/components/SEOHead";
 import { useDiscordInvite } from "@/lib/vixon";
 import { Card } from "@/components/ui/card";
@@ -261,7 +261,6 @@ const TermsOfService = () => {
         description="VixonCloud terms of service, refund policy, acceptable use policy, and service level agreement."
         path="/tos"
       />
-      <AnimatedBackground />
       <Navbar />
       <main className="pt-28 pb-20 relative z-10">
         <div className="container mx-auto px-4 max-w-3xl">

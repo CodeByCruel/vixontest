@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
+
 import SEOHead from "@/components/SEOHead";
 import CurrencyConverter from "@/components/CurrencyConverter";
 import { Button } from "@/components/ui/button";
@@ -32,7 +32,6 @@ const VpsStarter = () => {
  return (
  <div className="min-h-screen relative">
  <SEOHead title="Starter VPS Plans" description="Affordable Intel VPS plans in India with DDR4 RAM, NVMe SSD, dedicated IPv4, unmetered bandwidth and 2GBPS network." path="/vps-starter" />
- <AnimatedBackground />
  <Navbar />
  <main className="pt-24 pb-16 relative z-10">
  <div className="container mx-auto px-4">

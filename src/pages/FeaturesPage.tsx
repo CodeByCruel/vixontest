@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import FeaturesShowcase from "@/components/landing/FeaturesShowcase";
 import ControlPanelSection from "@/components/landing/ControlPanelSection";
@@ -11,7 +10,6 @@ import HowItWorksSection from "@/components/landing/HowItWorksSection";
 const FeaturesPage = () => {
   return (
     <div className="min-h-screen relative">
-      <AnimatedBackground />
       <SEOHead
         title="Features — VixonCloud"
         description="Explore VixonCloud's powerful features: DDoS protection, NVMe storage, custom control panel, instant setup, and more."

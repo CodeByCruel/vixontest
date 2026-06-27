@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -139,7 +138,6 @@ const BenchmarksPage = () => (
       description="See real performance benchmarks for VixonCloud servers. Compare hardware tiers, Minecraft TPS, disk speeds, and network latency."
       path="/benchmarks"
     />
-    <AnimatedBackground />
     <Navbar />
     <main className="pt-24 pb-20 relative z-10">
       {/* Hero */}

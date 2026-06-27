@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
 import MoneyBackBadge from "@/components/MoneyBackBadge";
 import { Card } from "@/components/ui/card";
@@ -40,7 +39,6 @@ const tiers = [
 const MinecraftPlans = () => (
  <div className="min-h-screen relative">
  <SEOHead title="Minecraft Hosting Plans — Starter, Standard & Premium" description="Choose Starter, Standard, or Premium Minecraft hosting. NVMe SSDs, DDoS protection, instant setup. From ₹40/month." path="/minecraft-plans" />
- <AnimatedBackground />
  <Navbar />
  <main className="pt-24 pb-20 relative z-10">
  <div className="container mx-auto px-4 max-w-6xl">
