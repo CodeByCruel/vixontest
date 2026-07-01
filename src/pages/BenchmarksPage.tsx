@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { toast } from "sonner";
 import SEOHead from "@/components/SEOHead";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -415,14 +416,13 @@ const BenchmarksPage = () => (
               Deploy on hardware that actually delivers. No overselling, no shared
               cores, no bottlenecks.
             </p>
-            <a href={BILLING_URL} target="_blank" rel="noopener noreferrer">
-              <Button
-                size="lg"
-                className="gap-2 glow-primary bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                Order Now <ArrowRight className="h-4 w-4" />
-              </Button>
-            </a>
+            <Button
+              size="lg"
+              className="gap-2 glow-primary bg-primary text-primary-foreground hover:bg-primary/90"
+              onClick={() => { toast("Billing is not configured yet. Join our Discord server to place your order!"); window.open("https://discord.gg/TtV26hZEJx", "_blank"); }}
+            >
+              Order Now <ArrowRight className="h-4 w-4" />
+            </Button>
           </Card>
         </motion.div>
       </section>

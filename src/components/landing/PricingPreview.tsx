@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight, Crown, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const plans = [
   { title: "Starter", price: "₹20", unit: "/GB", features: ["Intel Platinum 8269-CY", "1–32 GB DDR4", "NVMe SSD", "DDoS Shield", "Instant Setup"], popular: false, icon: Zap },
@@ -63,7 +64,7 @@ const PricingPreview = () => {
                 ))}
               </ul>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="relative z-10">
-                <Button variant="outline" size="sm" className="w-full gap-1.5 text-[10px] font-semibold border-border/30 text-primary hover:bg-primary/5 rounded-lg" onClick={(e) => { e.stopPropagation(); handlePlanClick(plan); }}>
+                <Button variant="outline" size="sm" className="w-full gap-1.5 text-[10px] font-semibold border-border/30 text-primary hover:bg-primary/5 rounded-lg" onClick={(e) => { e.stopPropagation(); toast("Billing is not configured yet. Join our Discord server to place your order!"); window.open("https://discord.gg/TtV26hZEJx", "_blank"); }}>
                   Order Now <ArrowRight className="h-3 w-3" />
                 </Button>
               </motion.div>

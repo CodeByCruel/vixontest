@@ -358,7 +358,7 @@ const ServerLocations = () => {
               <p className="text-muted-foreground text-xs mb-5 max-w-md mx-auto">
                 Deploy your server on any of our 7 global locations. Instant setup, DDoS protection, and NVMe storage included.
               </p>
-              <a href="https://billing.vixoncloud.com">
+              <a href="https://discord.gg/TtV26hZEJx" target="_blank" rel="noopener noreferrer">
                 <button className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:bg-primary/90 transition-colors glow-primary">
                   <Zap className="h-4 w-4" />
                   Deploy Now

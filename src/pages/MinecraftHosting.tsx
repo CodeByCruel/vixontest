@@ -23,7 +23,7 @@ const DISCORD_LINK = "https://discord.gg/TtV26hZEJx";
 const MinecraftHosting = () => {
   const [cpu, setCpu] = useState("starter");
   const [ram, setRam] = useState(4);
-  const BILLING_URL = "https://billing.vixoncloud.com";
+  const BILLING_URL = "https://discord.gg/TtV26hZEJx";
   const [settings, setSettingsState] = useState<SiteSettings>(DEFAULT_SETTINGS);
 
   useEffect(() => { getSettings().then(setSettingsState); }, []);

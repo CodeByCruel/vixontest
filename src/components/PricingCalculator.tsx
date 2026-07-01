@@ -265,7 +265,7 @@ export default function PricingCalculator() {
 
                   {/* Order Button */}
                   <a
-                    href="https://billing.vixoncloud.com"
+                    href="https://discord.gg/TtV26hZEJx"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}

@@ -235,7 +235,7 @@ const ComparisonTable = () => {
                   </div>
                 </div>
                 <a
-                  href="https://billing.vixoncloud.com"
+                  href="https://discord.gg/TtV26hZEJx"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold font-display hover:bg-primary/90 transition-colors shrink-0"

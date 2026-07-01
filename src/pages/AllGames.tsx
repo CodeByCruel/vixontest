@@ -29,7 +29,7 @@ import terrariaBg from "@/assets/hero/terraria-bg.jpg";
 import hytaleBg from "@/assets/hero/hytale-bg.jpg";
 import gta5Bg from "@/assets/hero/gta5-bg.jpg";
 
-const BILLING_URL = "https://billing.vixoncloud.com";
+const BILLING_URL = "https://discord.gg/TtV26hZEJx";
 const DISCORD_LINK = "https://discord.gg/TtV26hZEJx";
 
 type Category = "all" | "survival" | "sandbox" | "adventure" | "building" | "popular";

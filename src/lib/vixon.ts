@@ -63,7 +63,7 @@ export const useIsAdmin = () => {
 };
 
 export const PANEL_URL = "https://dash.vixoncloud.com";
-export const BILLING_URL = "https://billing.vixoncloud.com";
+export const BILLING_URL = "https://discord.gg/TtV26hZEJx";
 export const TRUSTPILOT_URL = "https://www.trustpilot.com/review/vixoncloud.com";
 
 export const saveAdminSettings = async (payload: Partial<VixonSettings>) => {

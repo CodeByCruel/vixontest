@@ -14,7 +14,7 @@ import logo from "@/assets/vixon-logo.png";
 import { useDiscordInvite } from "@/lib/vixon";
 
 const GAME_PANEL_URL = "https://dash.vixoncloud.com";
-const CLIENT_PANEL_URL = "https://billing.vixoncloud.com";
+const CLIENT_PANEL_URL = "https://discord.gg/TtV26hZEJx";
 
 const announcements = [
   { text: "Minecraft plans from ₹20/GB", icon: Gamepad2 },

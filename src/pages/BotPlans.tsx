@@ -11,7 +11,7 @@ import {
   Check, Zap, Crown, MessageCircle,
 } from "lucide-react";
 
-const BILLING_URL = "https://billing.vixoncloud.com";
+const BILLING_URL = "https://discord.gg/TtV26hZEJx";
 const DISCORD_LINK = "https://discord.gg/TtV26hZEJx";
 
 const botPlans = [

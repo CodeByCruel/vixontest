@@ -64,7 +64,7 @@ const tierConfig: Record<Tier, {
 const MinecraftTierPage = ({ tier }: { tier: Tier }) => {
  const t = tierConfig[tier];
  const plans = makePlans(t.cpu, t.pricePerGb);
- const BILLING_URL = "https://billing.vixoncloud.com";
+ const BILLING_URL = "https://discord.gg/TtV26hZEJx";
 
  return (
  <div className="min-h-screen relative">
