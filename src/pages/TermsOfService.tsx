@@ -56,12 +56,14 @@ const TermsOfService = () => {
     },
     {
       title: "5. Refund & Cancellation Policy",
-      content: "We aim to be fair, but hosting resources are allocated immediately upon purchase.",
+      content: "We aim to be fair, but hosting resources are allocated immediately upon purchase. Refund policies differ by product:",
       list: [
-        "**7-Day Money-Back Guarantee:** All new hosting plans are eligible for a full refund within 7 days of the initial purchase, no questions asked.",
-        "**Refund Eligibility:** Only first-time customers qualify for the 7-day guarantee. Returning customers who have previously received a refund are not eligible.",
+        "**Minecraft Servers — 12-Hour Refund Window:** You may request a full refund within 12 hours of your initial purchase, no questions asked.",
+        "**Minecraft Servers — After 12 Hours:** A 75% refund will be issued. The remaining 25% is retained as a non-refundable setup fee.",
+        "**Minecraft Servers — After 24 Hours:** No refund will be issued under any circumstances.",
+        "**VPS Hosting — No Refund:** All VPS hosting payments are 100% non-refundable. No exceptions.",
+        "**Refund Eligibility:** Only first-time customers qualify for refunds. Returning customers who have previously received a refund are not eligible.",
         "**Refund Method:** Refunds are processed via the same payment method used for the original purchase within 5–7 business days.",
-        "**After 7 Days:** All payments are 100% non-refundable. No exceptions.",
         "**Cancellation:** You may cancel your service at any time. Your server will remain active until the end of your current billing period.",
         "**Chargeback Policy:** Raising a dispute or chargeback through your payment provider is strictly prohibited. Any such action will result in immediate termination of all active services and a permanent ban from our website and Discord.",
         "**How to Request:** Contact support on our Discord: " + invite + ".",

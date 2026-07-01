@@ -50,7 +50,7 @@ const faqCategories = [
     items: [
       { q: "What payment methods do you accept?", a: "We accept UPI payments through FamPay. Simply place your order and follow the payment instructions. We also support bank transfers for larger orders." },
       { q: "How does billing work?", a: "We offer monthly billing cycles. Your server remains active as long as your subscription is current. You'll receive reminders before your next billing date." },
-      { q: "Can I get a refund?", a: "We offer a 7-day money-back guarantee on all plans. If you're not satisfied within the first 7 days, contact us for a full refund. After 7 days, refunds are handled case-by-case." },
+      { q: "Can I get a refund?", a: "For Minecraft servers: full refund within 12 hours of purchase, or 75% refund within 24 hours (25% setup fee retained). After 24 hours, no refund. VPS hosting is non-refundable. Contact us on Discord to request a refund." },
       { q: "Do you offer discounts?", a: "Yes! We regularly offer coupon codes and special promotions. Follow us on Discord to stay updated on deals. We also have an affiliate program where you can earn credits." },
       { q: "Will I be charged automatically?", a: "Yes, billing is automatic each month. You can cancel anytime from your dashboard. If you need to pause billing, contact our support team." },
       { q: "What happens if I don't pay on time?", a: "If your payment is overdue, your server will be suspended after 3 days. Your data is retained for 30 days, after which it may be deleted. Contact us to restore your server." },

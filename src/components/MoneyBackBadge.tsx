@@ -13,10 +13,10 @@ const MoneyBackBadge = ({ className = "" }: { className?: string }) => {
       </div>
       <div className="min-w-0">
         <p className="text-sm font-semibold text-foreground leading-tight">
-          7-Day Money-Back Guarantee
+          12-Hour Refund — Minecraft Servers
         </p>
         <p className="text-xs text-muted-foreground leading-snug mt-0.5">
-          Not satisfied? Full refund, no questions asked.
+          Full refund within 12h. 75% refund within 24h. VPS: Non-refundable.
         </p>
       </div>
     </motion.div>

@@ -230,7 +230,7 @@ const ComparisonTable = () => {
                       See why thousands choose VixonCloud
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      30-day money-back guarantee · Instant setup · Premium hardware
+                      12-hour refund (Minecraft) · Instant setup · Premium hardware
                     </p>
                   </div>
                 </div>

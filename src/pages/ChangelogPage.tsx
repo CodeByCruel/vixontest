@@ -30,7 +30,7 @@ const changelog = [
       "Cookie consent banner",
       "Scroll progress indicator",
       "Keyboard shortcuts (Ctrl+K, ?)",
-      "7-day money-back guarantee",
+      "Updated refund policy (12h Minecraft, none for VPS)",
       "New ToS with 24 sections",
       "New Privacy Policy",
       "Performance: Three.js replaced with CSS (bundle 78% smaller)",
